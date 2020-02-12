@@ -1,0 +1,77 @@
+<div ng-controller="deviceController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Device</h1>
+        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+            ng-click="ctrl.addDevice()"><i class="fas fa-plus fa-sm text-white-50"></i> Device Profile
+        </button>
+    </div>
+
+
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+
+                    <div layout="row">
+                        <h4 class="pr-3">Search :</h4>
+                        <md-input-container flex="10">
+                            <label>ID</label>
+                            <input name="ID" ng-model="ctrl.modelSearch.INVENTORY_CODE">
+                        </md-input-container>
+
+                        <md-input-container flex="15">
+                            <label>Type</label>
+                            <md-select name="type" ng-model="ctrl.modelSearch.TYPE_ID">
+                                <span ng-repeat="x in listType">
+                                    <md-option value="{{x.ID}}">
+                                        {{x.DATA_TOPICS}}
+                                    </md-option>
+                                </span>
+                            </md-select>
+
+                        </md-input-container>
+
+                        <md-input-container flex="20">
+                            <label>Name</label>
+                            <input name="BRAND" ng-model="ctrl.modelSearch.Name">
+                        </md-input-container>
+
+                        <md-input-container flex="15">
+                            <label>ID Staff</label>
+                            <input name="Model" ng-model="ctrl.modelSearch.EMPLOYEE_CODE">
+
+                        </md-input-container>
+
+                        <md-input-container flex="15">
+                            <label>Status</label>
+                            <md-select name="type" ng-model="ctrl.modelSearch.STATUS">
+                                <md-option value="all">Search All</md-option>
+                                <md-option value="ใช้งาน">Active</md-option>
+                                <md-option value="เลิกใช้งาน">Inactive</md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <md-input-container flex="" class="pl-3">
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
+                                ng-click="ctrl.searchDevice()">
+                                <i class="fas fa-search fa-sm text-white-50"></i> Search
+                            </button>
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm"
+                                ng-click="ctrl.clearDevice()">
+                                <i class="fas fa-repeat fa-sm text-white-50"></i> Reset
+                            </button>
+                        </md-input-container>
+
+                    </div>
+                    <grid-search flex="100" g-option="ctrl.gridOptions" on-callback-del="ctrl.gridCallbackDel">
+                    </grid-search>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

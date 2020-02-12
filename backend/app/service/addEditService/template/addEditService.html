@@ -1,0 +1,102 @@
+<style>
+    md-input-container {
+        margin: 0px 0;
+    }
+</style>
+<div ng-controller="addEditServiceController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Service</h1>
+    </div>
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <form name="projectForm" class="container" novalidate>
+                        <br>
+                        <div layout="row" ng-if="!isAdd">
+                            <md-input-container class="md-block" flex="50">
+                                <label>ID</label>
+                                <input type="text" ng-model="ctrl.modelSave.SERVICES_CODE" ng-disabled="true">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex="50">
+                                <label>Create Date</label>
+                                <input type="text" ng-model="ctrl.modelSave.CreateDate" ng-disabled="true">
+                            </md-input-container>
+                        </div>
+
+                        <md-input-container class="input-container pb-5" flex="100" layout="row">
+
+                            <md-radio-group ng-disabled="" ng-model="ctrl.modelSave.TYPE_ID" flex layout="row" ng-change="ctrl.filterPeripeteias(ctrl.modelSave.TYPE_ID)">
+                                <md-radio-button value="{{x.ID}}" ng-repeat="x in ctrl.listType" ng-disabled="!isAdd">
+                                    <span class="pl-5">{{x.DATA_TOPICS}}</span>
+                                </md-radio-button>
+                            </md-radio-group>
+
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex="100" ng-if="ctrl.modelSave.TYPE_ID && isAdd">
+                            <label>ปัญหา</label>
+                            <md-select name="type" ng-model="ctrl.modelSave.PERIPETEIA_ID" ng-required="true">
+                                <md-option ng-repeat="x in ctrl.listPeripeteias" value="{{x.ID}}">{{x.PERIPETEIA}}</md-option>
+                            </md-select>
+                            <br> <br>
+                        </md-input-container>
+
+
+                        <md-input-container class="md-block">
+                            <label>Detail</label>
+                            <textarea ng-model="ctrl.modelSave.DETAIL" rows="5" md-select-on-focus ng-disabled="!isAdd"></textarea>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" ng-if="!isAdd">
+                            <label>Remark</label>
+                            <textarea ng-model="ctrl.modelSave.REMARK" rows="3" md-select-on-focus ng-disabled="!isAdd"></textarea>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" ng-if="!isAdd">
+                            <label>Analyze & Repair</label>
+                            <textarea ng-model="ctrl.modelSave.ANALYZE" rows="5" md-select-on-focus ng-disabled="!isAdd"></textarea>
+                        </md-input-container>
+
+                        <div layout="row" class="pt-3" ng-if="showSatisfaction">
+                            <md-input-container class="md-block" flex="50">
+                                <label>Satisfaction</label>
+                                <md-select name="type" ng-model="ctrl.modelSave.SATISFACTION" ng-required="true">
+                                    <md-option value="5">5 คะแนน</md-option>
+                                    <md-option value="4">4 คะแนน</md-option>
+                                    <md-option value="3">3 คะแนน</md-option>
+                                    <md-option value="2">2 คะแนน</md-option>
+                                    <md-option value="1">1 คะแนน</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+
+
+
+                        <section>
+
+                            <div class="footer-form-button pt-5" layout="row" layout-align="center center">
+
+                                <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-if="showSatisfaction || isAdd" ng-click="ctrl.saveForm()">
+                                    Save
+                                </md-button>
+
+                                <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancelForm()">
+                                    Cancel
+                                </md-button>
+                            </div>
+                        </section>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<div ng-controller="addEditInventoryController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">IT Inventory</h1>
+    </div>
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <form name="projectForm" class="container" novalidate>
+
+                        <div layout="row" ng-if="!typeAdd">
+                            <md-input-container class="md-block" flex="25">
+                                <label>ID</label>
+                                <input type="text" ng-model="model.INVENTORY_CODE" ng-disabled="true">
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container flex="50">
+                                <label>Type</label>
+                                <md-select name="type" ng-model="model.TYPE_ID" ng-required="true">
+                                    <span ng-repeat="x in listType">
+                                        <md-option value="{{x.ID}}">
+                                            {{x.DATA_TOPICS}}
+                                        </md-option>
+                                    </span>
+                                </md-select>
+
+                            </md-input-container>
+
+                            <md-input-container flex="50">
+                                <label>Brand</label>
+                                <input name="Brand" ng-model="model.BRAND" ng-required="true" autocomplete="off">
+
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container flex="50">
+                                <label>Model</label>
+                                <input name="Model" ng-model="model.MODEL" ng-required="true" autocomplete="off">
+
+                            </md-input-container>
+
+                            <md-input-container flex="50">
+                                <label>Serial</label>
+                                <input name="clientName" ng-model="model.SERIAL" autocomplete="off">
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container>
+                                <label>Purchase Date</label>
+                                <md-datepicker ng-model="model.PurchaseDate" md-open-on-focus ng-required="true">
+                                </md-datepicker>
+
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>Disposed Date</label>
+                                <md-datepicker ng-model="model.DisposedDate" md-open-on-focus></md-datepicker>
+                            </md-input-container>
+
+                            <md-input-container flex="30" class="pl-3">
+                                <label>Status</label>
+                                <md-select name="type" ng-model="model.STATUS" ng-required="true">
+                                    <md-option value="ใช้งาน">Active</md-option>
+                                    <md-option value="หมดอายุการใช้งาน">Terminate</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container flex="30" class="pl-3" ng-if="typeAdd">
+                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="ctrl.addInventory()">
+                                    <i class="fas fa-plus fa-sm text-white-50"></i> Add IT Inventory
+                                </button>
+                            </md-input-container>
+                        </div>
+
+                        <hr ng-if="typeAdd">
+                        <section>
+
+                            <div class="footer-form-button pt-5" layout="row" layout-align="center center" ng-if="!typeAdd">
+
+                                <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveEditForm()">
+                                    Save
+                                </md-button>
+
+                                <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancelForm()">
+                                    Cancel
+                                </md-button>
+                            </div>
+                        </section>
+                    </form>
+
+                    <section class="pt-3" ng-if="typeAdd">
+                        <div class="pb-5">
+                            <grid-search flex="100" g-option="ctrl.gridOptions" on-callback-del="ctrl.gridCallbackDel">
+                            </grid-search>
+                        </div>
+
+                        <div class="footer-form-button pt-5" layout="row" layout-align="center center">
+
+                            <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveForm()">
+                                Save
+                            </md-button>
+
+                            <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancelForm()">
+                                Cancel
+                            </md-button>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

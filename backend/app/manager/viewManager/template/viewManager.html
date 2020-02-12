@@ -1,0 +1,89 @@
+<style>
+    md-input-container {
+        margin: 0px 0;
+    }
+</style>
+<div ng-controller="viewManagerController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Request</h1>
+    </div>
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <form name="projectForm" class="container" novalidate>
+                        <br>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex="50">
+                                <label>ID</label>
+                                <input type="text" ng-model="ctrl.modelSave.SERVICES_CODE" ng-disabled="true">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex="50">
+                                <label>Create Date</label>
+                                <input type="text" ng-model="ctrl.modelSave.CreateDate" ng-disabled="true">
+                            </md-input-container>
+                        </div>
+
+                        <md-input-container class="input-container pb-5" flex="100" layout="row">
+
+                            <md-radio-group ng-disabled="" ng-model="ctrl.modelSave.TYPE_ID" flex layout="row">
+                                <md-radio-button value="{{x.ID}}" ng-repeat="x in ctrl.listType" ng-disabled="true">
+                                    <span class="pl-5">{{x.DATA_TOPICS}}</span>
+                                </md-radio-button>
+                            </md-radio-group>
+
+                        </md-input-container>
+
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Detail</label>
+                            <textarea ng-model="ctrl.modelSave.REMARK" rows="3" md-select-on-focus ng-disabled="true"></textarea>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Analyze & Repair</label>
+                            <textarea ng-model="ctrl.modelSave.ANALYZE" rows="5" md-select-on-focus ng-disabled="true"></textarea>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Remark</label>
+                            <textarea ng-model="ctrl.modelSave.MANAGER_REMARK" rows="5" md-select-on-focus ng-disabled="isDisabled"></textarea>
+                        </md-input-container>
+
+                        <md-input-container class="input-container pb-5" flex="100" layout="row">
+
+                            <md-radio-group ng-disabled="isDisabled" ng-model="ctrl.modelSave.MANAGER_STATUS" flex layout="row">
+                                <md-radio-button value="{{x.STATUS}}" ng-repeat="x in ctrl.listApprove">
+                                    <span class="pl-5">{{x.STATUS}}</span>
+                                </md-radio-button>
+                            </md-radio-group>
+
+                        </md-input-container>
+
+                        <section>
+
+                            <div class="footer-form-button pt-5" layout="row" layout-align="center center" ng-if="!typeAdd">
+
+                                <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-if="ctrl.modelSave.STATUS != 'แจ้งซ้อม' && !isDisabled" ng-click="ctrl.saveForm()">
+                                    Save
+                                </md-button>
+
+                                <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancelForm()">
+                                    Cancel
+                                </md-button>
+                            </div>
+                        </section>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,199 @@
+// variable
+@import "../../base/variables.scss";
+// use for plugin family.scss
+@import "../../plugin/family/family.scss";
+// use for plugin juice.scss
+@import "../../plugin/juice/juice.scss";
+// use for plugin include-media.scss
+@import "../../plugin/include-media/include-media.scss";
+// use for plugin z-index-manager.scss
+@import '../../plugin/z-index-manager/functions.scss';
+@import '../../plugin/z-index-manager/mixins.scss';
+// config for plugin z-index-manager.scss
+@debug $z-indexes;
+// use for plugin animated.scss
+@import "../../plugin/animated/animated.scss";
+.btn-main:not([disabled]) {
+    background: {
+        color: $color-2;
+    }
+    color: $color-8;
+    border: {
+        radius: 8px;
+    }
+    min-height: 38px;
+    min-width: 112px;
+    font: {
+        size: rem-calc($content-FontSize-1);
+    }
+    &.md-focused {
+        background: {
+            color: $color-2;
+        }
+    }
+    &.md-button:not([disabled]):hover {
+        background: {
+            color: lighten($color-2, 5%);
+        }
+    }
+}
+
+.md-button:not([disabled]) {
+    &.md-focused {
+        background: {
+            color: $color-2;
+        }
+    }
+}
+
+.btn-cancel:not([disabled]) {
+    background: {
+        color: $color-7;
+    }
+    color: $color-2;
+    border: {
+        radius: 8px;
+    }
+    min-height: 38px;
+    min-width: 112px;
+    font: {
+        size: rem-calc($content-FontSize-1);
+    }
+    &.md-focused {
+        background: {
+            color: $color-7;
+        }
+    }
+    &.md-button:not([disabled]):hover {
+        background: {
+            color: darken($color-7, 5%);
+        }
+    }
+}
+
+#block-login {
+    .btn-cancel:not([disabled]) {
+        background: {
+            color: #dbc37d;
+        }
+        color: #603a16;
+        border: {
+            radius: 8px;
+        }
+        min-height: 38px;
+        min-width: 112px;
+        font: {
+            size: rem-calc($content-FontSize-1);
+        }
+        &.md-focused {
+            background: {
+                color: #dbc37d;
+            }
+        }
+        &.md-button:not([disabled]):hover {
+            background: {
+                color: darken(#dbc37d, 5%);
+            }
+        }
+    }
+    .btn-login {
+        background: {
+            color: #441400;
+        }
+        color: #fff;
+        border: {
+            radius: 8px;
+        }
+        min-height: 38px;
+        min-width: 112px;
+        font: {
+            size: rem-calc($content-FontSize-1);
+        }
+        &.md-focused {
+            background: {
+                color: #441400;
+            }
+        }
+        &.md-button:not([disabled]):hover {
+            background: {
+                color: darken(#441400, 5%);
+            }
+        }
+    }
+    .btn-login[disabled] {
+        background: {
+            color: rgba(53, 51, 50, 0.5);
+        }
+        color: rgba(255, 255, 255, 0.2);
+        cursor: not-allowed;
+    }
+}
+
+.btn-as-img {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.btn-pin-input {
+    margin-left: 10px;
+    margin-top: 0px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.header-btn {
+    font: {
+        family: $main-fontBold;
+        size: rem-calc($content-FontSize-1);
+    }
+    @include first(1) {
+        margin-left: 0px;
+        margin-right: 20px;
+    }
+    @include last(1) {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    @include first-of(1) {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.btn-grid,
+.btn-edit-newsfeed {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    outline: none;
+    transition: all 0.2s;
+    &:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+        cursor: pointer;
+    }
+}
+
+.btn-back {
+    border: 3px solid $color-2;
+    border-radius: 100px;
+    min-width: 38px;
+    min-height: 38px;
+    position: absolute;
+    margin-top: 1px;
+    margin-left: -55px;
+    &:hover {
+        cursor: pointer;
+    }
+    @include media('<=1366px') {
+        border: 2px solid #00538C;
+        min-width: 30px;
+        min-height: 30px;
+        margin-top: 5px;
+        margin-left: -35px;
+    }
+}

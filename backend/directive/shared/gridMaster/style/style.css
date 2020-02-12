@@ -1,0 +1,999 @@
+/**
+ * Functions for z-index management
+ *
+ * @author      paul 
+ * @package     z-manager
+ * @date        25/11/15
+ */
+/**
+ * Spin through the z-indexes and get the highest value
+ *
+ * @return int
+ */
+/**
+ * Spin through the z-indexes and get the lowest value
+ *
+ * @return int
+ */
+/**
+ * Get the z-dex of a layer
+ *
+ * @param $target {string} layer name
+ */
+/**
+ * Work out the z-index for an element.
+ * By default will assume we want to get the value above the layer target.
+ *
+ * Example:
+ *	z-index-manager( 'modal' ); // 25
+ *
+ * @param $target {string} layer target.
+ * @param $insert-above {boolean} get the z-index valuer of above or below the layer target. Set to false to insert below.
+ * @param $layer {string} if specified will store the new layer in our
+ *
+ * @return {int}
+ */
+/**
+ * Helper mixins for z-index management
+ *
+ * @author      paul 
+ * @package     z-manager
+ * @date        25/11/15
+ */
+/**
+ * Sets the z-index to above a specific target.
+ *
+ * @param $target {string}
+ * @param $layerName {string}
+ */
+/**
+ * Sets the z-index to below a specific target.
+ *
+ * @param $target {string}
+ * @param $layer-name {string}
+ */
+/**
+ * Sets the z-index to above all layers.
+ */
+/**
+ * Sets the z-index to below all layers.
+ */
+/*
+// ----- fix kendo ui
+*/
+div[kendo-grid] .k-grid-header {
+  padding-right: 0px !important; }
+
+div[kendo-grid] .k-grid-content {
+  overflow-y: auto !important; }
+
+div[kendo-grid] table {
+  border-collapse: collapse;
+  width: 100%; }
+  div[kendo-grid] table thead {
+    background-color: #263656; }
+    div[kendo-grid] table thead tr:hover {
+      background-color: rgba(83, 101, 145, 0) !important; }
+    div[kendo-grid] table thead tr th {
+      background-color: #263656 !important;
+      text-align: center !important;
+      padding: 0px 1rem 0px 1rem !important;
+      color: #FFFFFF !important;
+      border-color: rgba(83, 101, 145, 0.3);
+      font-size: 30px !important; }
+      div[kendo-grid] table thead tr th a {
+        color: #FFFFFF !important; }
+  div[kendo-grid] table tbody {
+    color: #263656 !important; }
+    div[kendo-grid] table tbody tr:nth-child(odd) td {
+      background-color: #F1F2F2 !important; }
+    div[kendo-grid] table tbody tr:nth-child(even) td {
+      background-color: #E6E7E8 !important; }
+    div[kendo-grid] table tbody tr td {
+      border-left: 1px solid rgba(83, 101, 145, 0.3);
+      padding: 0px 1rem !important; }
+      div[kendo-grid] table tbody tr td:first-child {
+        text-align: center; }
+
+div[kendo-grid] .k-pager-info {
+  display: none; }
+
+div[kendo-grid] .k-pager-wrap {
+  padding: 0px !important;
+  float: right;
+  margin-top: 10px; }
+  div[kendo-grid] .k-pager-wrap .k-link {
+    min-width: auto !important;
+    padding: 0px 2px !important;
+    margin-top: -1px;
+    margin: 0px 11px;
+    height: 35px;
+    line-height: initial;
+    border-color: transparent;
+    font-size: 1.625rem;
+    font-family: "THSarabunPSK-Bold"; }
+  div[kendo-grid] .k-pager-wrap .k-pager-nav {
+    background-color: #263656;
+    color: #FFFFFF;
+    margin-top: -1px;
+    margin: 0px 3px; }
+    div[kendo-grid] .k-pager-wrap .k-pager-nav .k-icon {
+      opacity: 1;
+      font: 30px/1 'WebComponentsIcons'; }
+  div[kendo-grid] .k-pager-wrap .k-pager-numbers .k-state-selected {
+    min-width: 20px;
+    min-height: 35px;
+    padding: 1px 9px;
+    background-color: #263656;
+    color: #FFFFFF;
+    margin-top: auto;
+    line-height: initial;
+    border-width: 0px;
+    font-size: 1.625rem; }
+
+.k-grid td {
+  line-height: normal; }
+
+.k-widget {
+  border: none !important; }
+
+.k-pager-first,
+.k-pager-last {
+  display: none; }
+
+div[kendo-scheduler].k-scheduler {
+  color: #222;
+  background-color: transparent;
+  border-bottom: 1px solid #e6e6e6 !important; }
+  div[kendo-scheduler].k-scheduler .k-header {
+    background-color: transparent; }
+    div[kendo-scheduler].k-scheduler .k-header li {
+      border-color: transparent; }
+    div[kendo-scheduler].k-scheduler .k-header .k-link {
+      color: #747474;
+      font-size: 1.5rem;
+      background-color: transparent;
+      line-height: normal;
+      padding: 0; }
+      div[kendo-scheduler].k-scheduler .k-header .k-link:hover {
+        color: #222; }
+  div[kendo-scheduler].k-scheduler .k-scheduler-toolbar {
+    line-height: normal;
+    padding-bottom: 10px;
+    padding-left: 22px;
+    padding-right: 0px; }
+    div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li {
+      background: #f2f2f2;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 0px 15px;
+      border-radius: 2px; }
+      div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li:hover {
+        background: #f8f8f8;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f1f1f1));
+        background-image: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1);
+        background-image: -o-linear-gradient(top, #f8f8f8, #f1f1f1);
+        background-image: linear-gradient(top, #f8f8f8, #f1f1f1);
+        border: 1px solid #c6c6c6;
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        cursor: pointer; }
+        div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li:hover .k-link {
+          color: #222; }
+      div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-today {
+        margin-right: 15px;
+        text-transform: capitalize; }
+      div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-prev {
+        border-radius: 2px 0px 0px 2px;
+        border-right: none; }
+      div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-next {
+        border-radius: 0px 2px 2px 0px; }
+      div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-current {
+        background-color: transparent;
+        border: none;
+        margin: 0 30px; }
+        div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-current .k-link {
+          color: #222; }
+    div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li {
+      text-transform: capitalize; }
+      div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li:nth-child(n + 3) {
+        border-left: none; }
+      div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li:nth-child(n + 1):nth-last-child(n + 1) {
+        border-radius: 0px; }
+    div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li.k-state-selected {
+      border-bottom: 1px solid #00b0ff !important;
+      -webkit-box-shadow: inset 0 2x 4px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 2x 4px rgba(0, 0, 0, 0.1); }
+      div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li.k-state-selected .k-link {
+        color: #222; }
+    div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li.k-state-hover .k-link {
+      background-color: transparent;
+      border: none; }
+  div[kendo-scheduler].k-scheduler table.k-scheduler-layout {
+    color: #555;
+    font-size: 1rem;
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6; }
+    div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-state-selected {
+      background-color: #b8c0c7;
+      color: #fcee21;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+      div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-state-selected .k-link {
+        color: #fcee21; }
+    div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-header {
+      color: #333;
+      font-size: 1.25rem; }
+    div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-other-month .k-nav-day {
+      color: #d4d4d4; }
+    div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event {
+      background-color: #435369;
+      border-color: #194886; }
+      div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event .custom-event {
+        position: absolute;
+        top: 2px; }
+      div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event .k-event-actions {
+        top: 1px; }
+        div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event .k-event-actions .k-link {
+          color: #dd2c00; }
+      div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event .k-event-actions:first-child {
+        margin-top: 0; }
+    div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-more-events span {
+      margin-top: 0; }
+  div[kendo-scheduler].k-scheduler table.k-scheduler-table .k-today {
+    background: #9ba0a5;
+    border: 1px solid #263656; }
+  div[kendo-scheduler].k-scheduler table.k-scheduler-dayview .k-scheduler-header-wrap .k-event {
+    background-color: #435369;
+    border-color: #194886; }
+    div[kendo-scheduler].k-scheduler table.k-scheduler-dayview .k-scheduler-header-wrap .k-event .k-event-actions {
+      top: 0px; }
+      div[kendo-scheduler].k-scheduler table.k-scheduler-dayview .k-scheduler-header-wrap .k-event .k-event-actions .k-link {
+        color: #dd2c00; }
+  div[kendo-scheduler].k-scheduler .k-window-titlebar {
+    border-radius: 0; }
+    div[kendo-scheduler].k-scheduler .k-window-titlebar .k-header {
+      background-color: #326499; }
+    div[kendo-scheduler].k-scheduler .k-window-titlebar .k-window-title {
+      font-size: 1.75rem;
+      top: 4px;
+      left: 15px; }
+    div[kendo-scheduler].k-scheduler .k-window-titlebar .k-window-actions {
+      right: 10px; }
+  div[kendo-scheduler].k-scheduler .k-window-content .k-dropdown,
+  div[kendo-scheduler].k-scheduler .k-window-content .k-datepicker {
+    width: 100%; }
+  div[kendo-scheduler].k-scheduler .k-window-content .k-popup-message {
+    padding: 15px;
+    min-height: 85px;
+    text-align: center;
+    position: relative;
+    font-size: 1.75rem !important;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+  div[kendo-scheduler].k-scheduler .k-list .k-state-selected.k-state-focused {
+    color: #4d4d4d; }
+  div[kendo-scheduler].k-scheduler .k-list .k-item {
+    background-color: transparent;
+    font-family: "THSarabunPSK";
+    font-size: 1.6875rem;
+    min-height: auto !important;
+    line-height: normal !important; }
+  div[kendo-scheduler].k-scheduler .k-picker-wrap,
+  div[kendo-scheduler].k-scheduler .k-dropdown-wrap {
+    padding: 0 2.0em 0 0;
+    border-top: none;
+    border-left: none;
+    border-right: none; }
+    div[kendo-scheduler].k-scheduler .k-picker-wrap.k-state-default,
+    div[kendo-scheduler].k-scheduler .k-dropdown-wrap.k-state-default {
+      background-color: transparent;
+      color: #4d4d4d;
+      border-color: rgba(0, 0, 0, 0.12);
+      font-family: "THSarabunPSK";
+      font-size: 1.6875rem;
+      background-color: transparent;
+      color: #4d4d4d;
+      font-family: "THSarabunPSK";
+      font-size: 1.6875rem; }
+      div[kendo-scheduler].k-scheduler .k-picker-wrap.k-state-default .k-select,
+      div[kendo-scheduler].k-scheduler .k-dropdown-wrap.k-state-default .k-select {
+        border: none; }
+    div[kendo-scheduler].k-scheduler .k-picker-wrap.k-state-hover, div[kendo-scheduler].k-scheduler .k-picker-wrap.k-state-focused,
+    div[kendo-scheduler].k-scheduler .k-dropdown-wrap.k-state-hover,
+    div[kendo-scheduler].k-scheduler .k-dropdown-wrap.k-state-focused {
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+    div[kendo-scheduler].k-scheduler .k-picker-wrap .k-select,
+    div[kendo-scheduler].k-scheduler .k-dropdown-wrap .k-select {
+      line-height: normal;
+      width: 40px;
+      min-height: 37px; }
+    div[kendo-scheduler].k-scheduler .k-picker-wrap:before,
+    div[kendo-scheduler].k-scheduler .k-dropdown-wrap:before {
+      padding-bottom: 0 !important; }
+    div[kendo-scheduler].k-scheduler .k-picker-wrap .k-input,
+    div[kendo-scheduler].k-scheduler .k-dropdown-wrap .k-input {
+      height: 2.2rem;
+      line-height: normal;
+      background-color: transparent;
+      text-indent: 4px;
+      padding: 0; }
+  div[kendo-scheduler].k-scheduler .k-datepicker,
+  div[kendo-scheduler].k-scheduler .k-dropdown {
+    background-color: transparent; }
+  div[kendo-scheduler].k-scheduler .k-dropdown-wrap {
+    padding: 0 40px 0 0; }
+  div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons {
+    background-color: transparent;
+    border: none;
+    padding: 0px 0 15px 0;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    max-width: 100%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+    div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button {
+      background-color: #00538C;
+      color: #FFFFFF;
+      border-radius: 8px;
+      min-height: 38px;
+      min-width: 112px;
+      max-height: 38px;
+      max-width: 112px;
+      font-size: 1.6875rem;
+      line-height: normal;
+      padding: 0px 0px;
+      -webkit-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      transition: all 0.2s; }
+      div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button:hover {
+        color: #FFFFFF;
+        background-color: #0062a6; }
+      div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-update {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1; }
+      div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-cancel {
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2;
+        background-color: #D0D2D3;
+        color: #00538C; }
+        div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-cancel:hover {
+          background-color: #c3c5c7; }
+      div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-delete {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0;
+        background-color: #818689; }
+        div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-delete:hover {
+          background-color: #747a7c; }
+  div[kendo-scheduler].k-scheduler .k-edit-form-container .k-button:focus,
+  div[kendo-scheduler].k-scheduler .k-edit-form-container .k-button:focus:not(.k-state-disabled):not([disabled]) {
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-combobox .k-dropdown-wrap:before,
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-picker-wrap:before,
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-numeric-wrap:before,
+  div[kendo-scheduler].k-scheduler .event-editor .k-combobox .k-dropdown-wrap:before,
+  div[kendo-scheduler].k-scheduler .event-editor .k-picker-wrap:before,
+  div[kendo-scheduler].k-scheduler .event-editor .k-numeric-wrap:before {
+    height: 1rem; }
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-colorpicker .k-picker-wrap,
+  div[kendo-scheduler].k-scheduler .event-editor .k-colorpicker .k-picker-wrap {
+    line-height: normal; }
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-picker-wrap .k-select,
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-numeric-wrap .k-select,
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-dropdown-wrap .k-select,
+  div[kendo-scheduler].k-scheduler .event-editor .k-picker-wrap .k-select,
+  div[kendo-scheduler].k-scheduler .event-editor .k-numeric-wrap .k-select,
+  div[kendo-scheduler].k-scheduler .event-editor .k-dropdown-wrap .k-select {
+    min-height: auto;
+    line-height: normal; }
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-combobox-clearable .k-input,
+  div[kendo-scheduler].k-scheduler .event-editor .k-combobox-clearable .k-input {
+    height: auto; }
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-dropdown-wrap .k-input,
+  div[kendo-scheduler].k-scheduler .event-editor .k-dropdown-wrap .k-input {
+    line-height: normal;
+    height: auto;
+    color: #444; }
+  div[kendo-scheduler].k-scheduler .wiki-editor span[title="Format"],
+  div[kendo-scheduler].k-scheduler .event-editor span[title="Format"] {
+    width: 160px !important; }
+  div[kendo-scheduler].k-scheduler .wiki-editor .k-combobox,
+  div[kendo-scheduler].k-scheduler .event-editor .k-combobox {
+    width: 12.0rem;
+    margin-right: 3px; }
+    div[kendo-scheduler].k-scheduler .wiki-editor .k-combobox .k-dropdown-wrap .k-i-close,
+    div[kendo-scheduler].k-scheduler .event-editor .k-combobox .k-dropdown-wrap .k-i-close {
+      right: 1.8rem;
+      font-size: 14px; }
+  div[kendo-scheduler].k-scheduler .k-editor .k-editor-toolbar-wrap {
+    background-color: #e6e6e6;
+    padding-bottom: 2px; }
+  div[kendo-scheduler].k-scheduler .k-editor-toolbar {
+    line-height: normal; }
+    div[kendo-scheduler].k-scheduler .k-editor-toolbar .k-button-group .k-tool {
+      width: 40px;
+      height: 40px; }
+    div[kendo-scheduler].k-scheduler .k-editor-toolbar .k-editor-dropdown {
+      background-color: #fff; }
+
+.k-editor-toolbar-wrap .k-editor-dropdown .k-dropdown-wrap, .k-editor-toolbar-wrap .k-editor-dropdown .k-picker-wrap,
+.k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap,
+.k-editor-toolbar-wrap .k-combobox .k-picker-wrap {
+  height: 37px; }
+  .k-editor-toolbar-wrap .k-editor-dropdown .k-dropdown-wrap > .k-i-close, .k-editor-toolbar-wrap .k-editor-dropdown .k-picker-wrap > .k-i-close,
+  .k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap > .k-i-close,
+  .k-editor-toolbar-wrap .k-combobox .k-picker-wrap > .k-i-close {
+    right: 25px; }
+  .k-editor-toolbar-wrap .k-editor-dropdown .k-dropdown-wrap .k-input, .k-editor-toolbar-wrap .k-editor-dropdown .k-picker-wrap .k-input,
+  .k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap .k-input,
+  .k-editor-toolbar-wrap .k-combobox .k-picker-wrap .k-input {
+    height: auto; }
+  .k-editor-toolbar-wrap .k-editor-dropdown .k-dropdown-wrap .k-select, .k-editor-toolbar-wrap .k-editor-dropdown .k-picker-wrap .k-select,
+  .k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap .k-select,
+  .k-editor-toolbar-wrap .k-combobox .k-picker-wrap .k-select {
+    width: 15px;
+    position: absolute;
+    right: 3px;
+    min-height: auto; }
+
+.k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap:before,
+.k-editor-toolbar-wrap .k-picker-wrap:before,
+.k-editor-toolbar-wrap .k-numeric-wrap:before {
+  height: auto !important; }
+
+.k-window-content span.k-datepicker,
+.k-window-content span.k-dropdown {
+  width: 100%;
+  background-color: transparent; }
+  .k-window-content span.k-datepicker .k-input,
+  .k-window-content span.k-dropdown .k-input {
+    background-color: transparent; }
+
+.k-window-content .k-picker-wrap,
+.k-window-content .k-dropdown-wrap {
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  font-family: "THSarabunPSK";
+  font-size: 1.6875rem;
+  line-height: normal;
+  height: 35px; }
+  .k-window-content .k-picker-wrap.k-state-hover,
+  .k-window-content .k-dropdown-wrap.k-state-hover {
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  .k-window-content .k-picker-wrap.k-state-focused,
+  .k-window-content .k-dropdown-wrap.k-state-focused {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 2px solid #3f51b5; }
+  .k-window-content .k-picker-wrap .k-input,
+  .k-window-content .k-picker-wrap .k-select,
+  .k-window-content .k-dropdown-wrap .k-input,
+  .k-window-content .k-dropdown-wrap .k-select {
+    padding: 0;
+    text-indent: 3px;
+    height: 35px;
+    line-height: normal; }
+  .k-window-content .k-picker-wrap .k-select,
+  .k-window-content .k-dropdown-wrap .k-select {
+    width: auto;
+    border: none; }
+
+.k-window-titlebar {
+  padding: 5px 0px 15px 0px; }
+  .k-window-titlebar .k-window-title {
+    font-family: "THSarabunPSK";
+    font-size: 1.6875rem;
+    padding: 0; }
+
+.k-edit-form-container .k-edit-buttons {
+  border-style: none;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .k-edit-form-container .k-edit-buttons .k-scheduler-update,
+  .k-edit-form-container .k-edit-buttons .k-scheduler-cancel,
+  .k-edit-form-container .k-edit-buttons .k-scheduler-delete {
+    border-radius: 8px;
+    border: none;
+    min-height: 38px;
+    min-width: 112px;
+    font-size: 1.375rem; }
+  .k-edit-form-container .k-edit-buttons .k-scheduler-update {
+    background-color: #00538C;
+    color: #FFFFFF; }
+  .k-edit-form-container .k-edit-buttons .k-scheduler-cancel {
+    background-color: #D0D2D3;
+    color: #00538C; }
+  .k-edit-form-container .k-edit-buttons .k-scheduler-delete {
+    background-color: #000000;
+    color: #FFFFFF; }
+
+.k-popup .k-list .k-item {
+  font-family: "THSarabunPSK";
+  font-size: 1.6875rem; }
+
+/**
+ * Functions for z-index management
+ *
+ * @author      paul 
+ * @package     z-manager
+ * @date        25/11/15
+ */
+/**
+ * Spin through the z-indexes and get the highest value
+ *
+ * @return int
+ */
+/**
+ * Spin through the z-indexes and get the lowest value
+ *
+ * @return int
+ */
+/**
+ * Get the z-dex of a layer
+ *
+ * @param $target {string} layer name
+ */
+/**
+ * Work out the z-index for an element.
+ * By default will assume we want to get the value above the layer target.
+ *
+ * Example:
+ *	z-index-manager( 'modal' ); // 25
+ *
+ * @param $target {string} layer target.
+ * @param $insert-above {boolean} get the z-index valuer of above or below the layer target. Set to false to insert below.
+ * @param $layer {string} if specified will store the new layer in our
+ *
+ * @return {int}
+ */
+/**
+ * Helper mixins for z-index management
+ *
+ * @author      paul 
+ * @package     z-manager
+ * @date        25/11/15
+ */
+/**
+ * Sets the z-index to above a specific target.
+ *
+ * @param $target {string}
+ * @param $layerName {string}
+ */
+/**
+ * Sets the z-index to below a specific target.
+ *
+ * @param $target {string}
+ * @param $layer-name {string}
+ */
+/**
+ * Sets the z-index to above all layers.
+ */
+/**
+ * Sets the z-index to below all layers.
+ */
+.btn-main:not([disabled]) {
+  background-color: #00538C;
+  color: #FFFFFF;
+  border-radius: 8px;
+  min-height: 38px;
+  min-width: 112px;
+  font-size: 1.6875rem; }
+  .btn-main:not([disabled]).md-focused {
+    background-color: #00538C; }
+  .btn-main:not([disabled]).md-button:not([disabled]):hover {
+    background-color: #0062a6; }
+
+.md-button:not([disabled]).md-focused {
+  background-color: #00538C; }
+
+.btn-cancel:not([disabled]) {
+  background-color: #D0D2D3;
+  color: #00538C;
+  border-radius: 8px;
+  min-height: 38px;
+  min-width: 112px;
+  font-size: 1.6875rem; }
+  .btn-cancel:not([disabled]).md-focused {
+    background-color: #D0D2D3; }
+  .btn-cancel:not([disabled]).md-button:not([disabled]):hover {
+    background-color: #c3c5c7; }
+
+#block-login .btn-cancel:not([disabled]) {
+  background-color: #dbc37d;
+  color: #603a16;
+  border-radius: 8px;
+  min-height: 38px;
+  min-width: 112px;
+  font-size: 1.6875rem; }
+  #block-login .btn-cancel:not([disabled]).md-focused {
+    background-color: #dbc37d; }
+  #block-login .btn-cancel:not([disabled]).md-button:not([disabled]):hover {
+    background-color: #d5ba69; }
+
+#block-login .btn-login {
+  background-color: #441400;
+  color: #fff;
+  border-radius: 8px;
+  min-height: 38px;
+  min-width: 112px;
+  font-size: 1.6875rem; }
+  #block-login .btn-login.md-focused {
+    background-color: #441400; }
+  #block-login .btn-login.md-button:not([disabled]):hover {
+    background-color: #2b0d00; }
+
+#block-login .btn-login[disabled] {
+  background-color: rgba(53, 51, 50, 0.5);
+  color: rgba(255, 255, 255, 0.2);
+  cursor: not-allowed; }
+
+.btn-as-img:hover {
+  cursor: pointer; }
+
+.btn-pin-input {
+  margin-left: 10px;
+  margin-top: 0px; }
+  .btn-pin-input:hover {
+    cursor: pointer; }
+
+.header-btn {
+  font-family: "THSarabunPSK-Bold";
+  font-size: 1.6875rem; }
+  .header-btn:first-child {
+    margin-left: 0px;
+    margin-right: 20px; }
+  .header-btn:nth-last-child(-n + 1) {
+    margin-left: 0px;
+    margin-right: 0px; }
+  .header-btn:nth-last-child(1):first-child {
+    margin-left: 0px;
+    margin-right: 0px; }
+  .header-btn:hover {
+    cursor: pointer; }
+
+.btn-grid, .btn-edit-newsfeed {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.7;
+  outline: none;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s; }
+  .btn-grid:hover, .btn-edit-newsfeed:hover {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+    opacity: 1;
+    cursor: pointer; }
+
+.btn-back {
+  border: 3px solid #00538C;
+  border-radius: 100px;
+  min-width: 38px;
+  min-height: 38px;
+  position: absolute;
+  margin-top: 1px;
+  margin-left: -55px; }
+  .btn-back:hover {
+    cursor: pointer; }
+  @media (max-width: 1366px) {
+    .btn-back {
+      border: 2px solid #00538C;
+      min-width: 30px;
+      min-height: 30px;
+      margin-top: 5px;
+      margin-left: -35px; } }
+
+.wrapper-btn-grid {
+  text-align: center;
+  height: 100%; }
+  .wrapper-btn-grid img {
+    margin-left: 5px;
+    margin-right: 5px; }
+    .wrapper-btn-grid img:first-of-type {
+      margin-left: 0px;
+      margin-right: 5px; }
+    .wrapper-btn-grid img:last-of-type {
+      margin-left: 5px;
+      margin-right: 0px; }
+    .wrapper-btn-grid img:nth-last-child(1):first-child {
+      margin-left: 0px;
+      margin-right: 0px; }
+    .wrapper-btn-grid img:hover {
+      cursor: pointer; }
+
+div[kendo-grid] table {
+  border-collapse: collapse;
+  width: 100%; }
+  div[kendo-grid] table colgroup col:first-of-type {
+    width: 82px; }
+    @media (max-width: 1366px) {
+      div[kendo-grid] table colgroup col:first-of-type {
+        width: 82px; } }
+  div[kendo-grid] table colgroup col:last-of-type {
+    width: 125px; }
+    @media (max-width: 1366px) {
+      div[kendo-grid] table colgroup col:last-of-type {
+        width: 125px; } }
+  div[kendo-grid] table thead tr th md-checkbox.md-checked .md-ink-ripple {
+    color: rgba(255, 255, 255, 0.54); }
+  div[kendo-grid] table thead tr th md-checkbox:not(.md-checked) .md-icon {
+    border-color: rgba(255, 255, 255, 0.54); }
+  div[kendo-grid] table thead tr th md-checkbox .md-label {
+    margin-left: 0px; }
+  div[kendo-grid] table tbody tr td .md-label {
+    margin-left: 0px; }
+
+div#authoManage[kendo-grid] table colgroup col:first-of-type {
+  width: 285px; }
+  @media (max-width: 1366px) {
+    div#authoManage[kendo-grid] table colgroup col:first-of-type {
+      width: 180px; } }
+
+div#authoManage[kendo-grid] table colgroup col:nth-child(2) {
+  width: 280px; }
+  @media (max-width: 1366px) {
+    div#authoManage[kendo-grid] table colgroup col:nth-child(2) {
+      width: 155px; } }
+
+div#authoManage[kendo-grid] table colgroup col:nth-last-child(2) {
+  width: 442px; }
+  @media (max-width: 1366px) {
+    div#authoManage[kendo-grid] table colgroup col:nth-last-child(2) {
+      width: 198px; } }
+
+div#authoManage[kendo-grid] table colgroup col:last-of-type {
+  width: 125px; }
+  @media (max-width: 1366px) {
+    div#authoManage[kendo-grid] table colgroup col:last-of-type {
+      width: 125px; } }
+
+div#authoManage[kendo-grid] table tbody {
+  color: #263656 !important; }
+  div#authoManage[kendo-grid] table tbody tr td {
+    word-wrap: break-word; }
+    div#authoManage[kendo-grid] table tbody tr td:first-of-type {
+      text-align: left; }
+
+div#permission-manage[kendo-grid] table colgroup col:first-of-type {
+  width: 285px; }
+  @media (max-width: 1366px) {
+    div#permission-manage[kendo-grid] table colgroup col:first-of-type {
+      width: 180px; } }
+
+div#permission-manage[kendo-grid] table colgroup col:last-of-type {
+  width: 125px; }
+  @media (max-width: 1366px) {
+    div#permission-manage[kendo-grid] table colgroup col:last-of-type {
+      width: 125px; } }
+
+div#permission-manage[kendo-grid] table tbody tr td {
+  word-wrap: break-word; }
+  div#permission-manage[kendo-grid] table tbody tr td:first-of-type {
+    text-align: left; }
+
+div#gridSearchIntelligence[kendo-grid] table colgroup col:first-of-type {
+  width: 125px; }
+  @media (max-width: 1366px) {
+    div#gridSearchIntelligence[kendo-grid] table colgroup col:first-of-type {
+      width: 125px; } }
+
+div#gridSearchIntelligence[kendo-grid] table colgroup col:nth-child(2) {
+  width: 100px; }
+  @media (max-width: 1366px) {
+    div#gridSearchIntelligence[kendo-grid] table colgroup col:nth-child(2) {
+      width: 100px; } }
+
+@media (max-width: 1366px) {
+  div#gridSearchIntelligence[kendo-grid] table colgroup col:nth-last-child(2) {
+    width: 200px; } }
+
+div#gridSearchIntelligence[kendo-grid] table colgroup col:last-of-type {
+  width: 125px; }
+  @media (max-width: 1366px) {
+    div#gridSearchIntelligence[kendo-grid] table colgroup col:last-of-type {
+      width: 125px; } }
+
+div#gridSearchIntelligence[kendo-grid] table tbody tr td {
+  word-wrap: break-word; }
+  div#gridSearchIntelligence[kendo-grid] table tbody tr td:first-of-type {
+    text-align: left; }
+
+div#gridSearchEvent[kendo-grid] table colgroup col:first-of-type {
+  width: 180px; }
+  @media (max-width: 1366px) {
+    div#gridSearchEvent[kendo-grid] table colgroup col:first-of-type {
+      width: 135px; } }
+
+div#gridSearchEvent[kendo-grid] table colgroup col:nth-last-child(2) {
+  width: 370px; }
+  @media (max-width: 1366px) {
+    div#gridSearchEvent[kendo-grid] table colgroup col:nth-last-child(2) {
+      width: 235px; } }
+
+div#gridSearchEvent[kendo-grid] table tbody tr td {
+  word-wrap: break-word; }
+
+grid-privilege div[kendo-grid] table colgroup col:first-of-type {
+  width: 270px; }
+  @media (max-width: 1366px) {
+    grid-privilege div[kendo-grid] table colgroup col:first-of-type {
+      width: 270px; } }
+
+grid-privilege div[kendo-grid] table colgroup col:nth-last-child(2) {
+  width: 330px; }
+  @media (max-width: 1366px) {
+    grid-privilege div[kendo-grid] table colgroup col:nth-last-child(2) {
+      width: 165px; } }
+
+grid-privilege div[kendo-grid] table tbody tr td {
+  word-wrap: break-word; }
+  grid-privilege div[kendo-grid] table tbody tr td:first-of-type {
+    text-align: left; }
+  grid-privilege div[kendo-grid] table tbody tr td:nth-last-child(2) md-radio-button {
+    text-align: left; }
+    grid-privilege div[kendo-grid] table tbody tr td:nth-last-child(2) md-radio-button:nth-child(odd) {
+      min-width: 125px; }
+    grid-privilege div[kendo-grid] table tbody tr td:nth-last-child(2) md-radio-button:nth-child(even) {
+      min-width: 100px; }
+
+grid-user-group div[kendo-grid] table colgroup col:first-of-type {
+  width: 35px; }
+  @media (max-width: 1366px) {
+    grid-user-group div[kendo-grid] table colgroup col:first-of-type {
+      width: 35px; } }
+
+grid-user-group div[kendo-grid] table colgroup col:nth-child(2) {
+  width: 30px; }
+  @media (max-width: 1366px) {
+    grid-user-group div[kendo-grid] table colgroup col:nth-child(2) {
+      width: 30px; } }
+
+grid-user-group div[kendo-grid] table colgroup col:last-of-type {
+  width: auto; }
+  @media (max-width: 1366px) {
+    grid-user-group div[kendo-grid] table colgroup col:last-of-type {
+      width: auto; } }
+
+grid-user-group div[kendo-grid] table thead tr th {
+  border-color: transparent; }
+  grid-user-group div[kendo-grid] table thead tr th:first-of-type {
+    padding: 0px 0rem 0px 10px !important; }
+  grid-user-group div[kendo-grid] table thead tr th:nth-child(2) {
+    padding: 0px 0rem !important; }
+  grid-user-group div[kendo-grid] table thead tr th:last-of-type {
+    width: auto; }
+    @media (max-width: 1366px) {
+      grid-user-group div[kendo-grid] table thead tr th:last-of-type {
+        width: auto; } }
+
+grid-user-group div[kendo-grid] table tbody tr td {
+  border-left-width: 0; }
+  grid-user-group div[kendo-grid] table tbody tr td:first-of-type {
+    padding: 0px 0rem 0px 10px !important; }
+    grid-user-group div[kendo-grid] table tbody tr td:first-of-type .k-icon {
+      position: absolute;
+      left: 15px;
+      margin-top: -7px; }
+  grid-user-group div[kendo-grid] table tbody tr td:nth-child(2) {
+    padding: 0px 0rem !important; }
+  grid-user-group div[kendo-grid] table tbody tr td:last-of-type {
+    text-align: left; }
+
+grid-user-group div[kendo-grid] table tbody .k-master-row:nth-child(odd) td {
+  background-color: #fff !important; }
+
+grid-user-group div[kendo-grid] table tbody .k-master-row:nth-child(even) td {
+  background-color: #fff !important; }
+
+grid-user-group div[kendo-grid] table tbody .k-detail-row table thead tr th {
+  border-left: 1px solid rgba(83, 101, 145, 0.3); }
+
+grid-user-group div[kendo-grid] table tbody .k-detail-row table tbody tr:nth-child(odd) td {
+  background-color: #F1F2F2 !important; }
+
+grid-user-group div[kendo-grid] table tbody .k-detail-row table tbody tr:nth-child(even) td {
+  background-color: #E6E7E8 !important; }
+
+grid-user-group div[kendo-grid] table tbody .k-detail-row table tbody tr td {
+  border-left: 1px solid rgba(83, 101, 145, 0.3); }
+  grid-user-group div[kendo-grid] table tbody .k-detail-row table tbody tr td:first-of-type {
+    text-align: left; }
+  grid-user-group div[kendo-grid] table tbody .k-detail-row table tbody tr td:nth-child(2) {
+    padding: 0px 1rem !important; }
+
+#grid-shared-user div[kendo-grid] table colgroup col:first-of-type {
+  width: 47px; }
+  @media (max-width: 1366px) {
+    #grid-shared-user div[kendo-grid] table colgroup col:first-of-type {
+      width: 47px; } }
+
+#grid-shared-user div[kendo-grid] table colgroup col:nth-last-child(2) {
+  width: 290px; }
+  @media (max-width: 1366px) {
+    #grid-shared-user div[kendo-grid] table colgroup col:nth-last-child(2) {
+      width: 290px; } }
+
+#grid-shared-user div[kendo-grid] table colgroup col:last-of-type {
+  width: 425px; }
+  @media (max-width: 1366px) {
+    #grid-shared-user div[kendo-grid] table colgroup col:last-of-type {
+      width: 425px; } }
+
+#grid-shared-user div[kendo-grid] table thead tr th:first-of-type {
+  padding: 0px 0rem !important; }
+
+#grid-shared-user div[kendo-grid] table tbody tr td:first-of-type {
+  padding: 0px 0rem !important; }
+
+#grid-shared-user div[kendo-grid] table tbody tr td:nth-child(2) {
+  text-align: left; }
+
+#grid-shared-user div[kendo-grid] table tbody tr td:nth-last-child(2) {
+  text-align: left; }
+
+#grid-shared-user div[kendo-grid] table tbody tr td:last-of-type {
+  text-align: left; }
+
+#newsDeskManage div[kendo-grid] table colgroup col:first-of-type {
+  width: auto; }
+  @media (max-width: 1366px) {
+    #newsDeskManage div[kendo-grid] table colgroup col:first-of-type {
+      width: auto; } }
+
+#newsDeskManage div[kendo-grid] table colgroup col:nth-child(2) {
+  width: 350px; }
+  @media (max-width: 1366px) {
+    #newsDeskManage div[kendo-grid] table colgroup col:nth-child(2) {
+      width: 300px; } }
+
+#newsDeskManage div[kendo-grid] table colgroup col:nth-last-child(2) {
+  width: 140px; }
+  @media (max-width: 1366px) {
+    #newsDeskManage div[kendo-grid] table colgroup col:nth-last-child(2) {
+      width: 140px; } }
+
+#newsDeskManage div[kendo-grid] table tbody tr td {
+  word-wrap: break-word; }
+  #newsDeskManage div[kendo-grid] table tbody tr td:first-of-type {
+    text-align: left; }
+  #newsDeskManage div[kendo-grid] table tbody tr td:nth-last-child(2) {
+    text-align: center; }
+
+/*# sourceMappingURL=style.css.map */

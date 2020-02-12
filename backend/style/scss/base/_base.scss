@@ -1,0 +1,50 @@
+.nav-link {
+    cursor: pointer;
+}
+
+.nav-item:hover,
+.active {
+    background: #6b6e7b;
+}
+
+.card-body {
+    background-color: rgb(250, 250, 250);
+    color: black;
+}
+
+.selectdemoSelectHeader .demo-header-searchbox {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.selectdemoSelectHeader .demo-select-header {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+    padding-left: 10.667px;
+    height: 48px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+.selectdemoSelectHeader md-content._md {
+    max-height: 240px;
+}
+
+.header-search-input {
+    height: 18px;
+    width: 100%;
+    font-size: 18px;
+    line-height: 2rem;
+    color: #808080;
+    padding: 10px 10px;
+    border: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    padding-right: 20px;
+}
+
+////@extend

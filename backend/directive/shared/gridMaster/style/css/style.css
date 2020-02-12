@@ -1,0 +1,967 @@
+/**
+ * Functions for z-index management
+ *
+ * @author      paul 
+ * @package     z-manager
+ * @date        25/11/15
+ */
+/**
+ * Spin through the z-indexes and get the highest value
+ *
+ * @return int
+ */
+/**
+ * Spin through the z-indexes and get the lowest value
+ *
+ * @return int
+ */
+/**
+ * Get the z-dex of a layer
+ *
+ * @param $target {string} layer name
+ */
+/**
+ * Work out the z-index for an element.
+ * By default will assume we want to get the value above the layer target.
+ *
+ * Example:
+ *	z-index-manager( 'modal' ); // 25
+ *
+ * @param $target {string} layer target.
+ * @param $insert-above {boolean} get the z-index valuer of above or below the layer target. Set to false to insert below.
+ * @param $layer {string} if specified will store the new layer in our
+ *
+ * @return {int}
+ */
+/**
+ * Helper mixins for z-index management
+ *
+ * @author      paul 
+ * @package     z-manager
+ * @date        25/11/15
+ */
+/**
+ * Sets the z-index to above a specific target.
+ *
+ * @param $target {string}
+ * @param $layerName {string}
+ */
+/**
+ * Sets the z-index to below a specific target.
+ *
+ * @param $target {string}
+ * @param $layer-name {string}
+ */
+/**
+ * Sets the z-index to above all layers.
+ */
+/**
+ * Sets the z-index to below all layers.
+ */
+/*
+// ----- fix kendo ui
+*/
+div[kendo-grid] .k-grid-header {
+  padding-right: 0px !important;
+}
+div[kendo-grid] .k-grid-content {
+  overflow-y: auto !important;
+}
+div[kendo-grid] table {
+  border-collapse: collapse;
+  width: 100%;
+}
+div[kendo-grid] table thead {
+  background-color: #263656;
+}
+div[kendo-grid] table thead tr:hover {
+  background-color: rgba(83, 101, 145, 0) !important;
+}
+div[kendo-grid] table thead tr th {
+  background-color: #263656 !important;
+  text-align: center !important;
+  padding: 0px 1rem 0px 1rem !important;
+  color: #FFFFFF !important;
+  border-color: rgba(83, 101, 145, 0.3);
+  font-size: 18px !important;
+}
+div[kendo-grid] table thead tr th a {
+  color: #FFFFFF !important;
+}
+div[kendo-grid] table tbody {
+  color: #263656 !important;
+}
+div[kendo-grid] table tbody tr:nth-child(odd) td {
+  background-color: #F1F2F2 !important;
+}
+div[kendo-grid] table tbody tr:nth-child(even) td {
+  background-color: #E6E7E8 !important;
+}
+div[kendo-grid] table tbody tr td {
+  border-left: 1px solid rgba(83, 101, 145, 0.3);
+  padding: 0px 1rem !important;
+}
+div[kendo-grid] table tbody tr td:first-child {
+  text-align: center;
+}
+div[kendo-grid] .k-pager-info {
+  display: none;
+}
+div[kendo-grid] .k-pager-wrap {
+  padding: 0px !important;
+  float: right;
+  margin-top: 10px;
+}
+div[kendo-grid] .k-pager-wrap .k-link {
+  min-width: auto !important;
+  padding: 0px 2px !important;
+  margin-top: -1px;
+  margin: 0px 11px;
+  height: 35px;
+  line-height: initial;
+  border-color: transparent;
+  font-size: 1.625rem;
+  font-family: "THSarabunPSK-Bold";
+}
+div[kendo-grid] .k-pager-wrap .k-pager-nav {
+  background-color: #263656;
+  color: #FFFFFF;
+  margin-top: -1px;
+  margin: 0px 3px;
+}
+div[kendo-grid] .k-pager-wrap .k-pager-nav .k-icon {
+  opacity: 1;
+  font: 30px/1 "WebComponentsIcons";
+}
+div[kendo-grid] .k-pager-wrap .k-pager-numbers .k-state-selected {
+  min-width: 20px;
+  min-height: 35px;
+  padding: 1px 9px;
+  background-color: #263656;
+  color: #FFFFFF;
+  margin-top: auto;
+  line-height: initial;
+  border-width: 0px;
+  font-size: 1.625rem;
+}
+
+.k-grid td {
+  line-height: normal;
+}
+
+.k-widget {
+  border: none !important;
+}
+
+.k-pager-first,
+.k-pager-last {
+  display: none;
+}
+
+div[kendo-scheduler].k-scheduler {
+  color: #222;
+  background-color: transparent;
+  border-bottom: 1px solid #e6e6e6 !important;
+}
+div[kendo-scheduler].k-scheduler .k-header {
+  background-color: transparent;
+}
+div[kendo-scheduler].k-scheduler .k-header li {
+  border-color: transparent;
+}
+div[kendo-scheduler].k-scheduler .k-header .k-link {
+  color: #747474;
+  font-size: 1.5rem;
+  background-color: transparent;
+  line-height: normal;
+  padding: 0;
+}
+div[kendo-scheduler].k-scheduler .k-header .k-link:hover {
+  color: #222;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar {
+  line-height: normal;
+  padding-bottom: 10px;
+  padding-left: 22px;
+  padding-right: 0px;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li {
+  background: #f2f2f2;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0px 15px;
+  border-radius: 2px;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li:hover {
+  background: #f8f8f8;
+  background-image: linear-gradient(top, #f8f8f8, #f1f1f1);
+  border: 1px solid #c6c6c6;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li:hover .k-link {
+  color: #222;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-today {
+  margin-right: 15px;
+  text-transform: capitalize;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-prev {
+  border-radius: 2px 0px 0px 2px;
+  border-right: none;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-next {
+  border-radius: 0px 2px 2px 0px;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-current {
+  background-color: transparent;
+  border: none;
+  margin: 0 30px;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul li.k-nav-current .k-link {
+  color: #222;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li {
+  text-transform: capitalize;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li:nth-child(n+3) {
+  border-left: none;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li:nth-child(n+1):nth-last-child(n+1) {
+  border-radius: 0px;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li.k-state-selected {
+  border-bottom: 1px solid #00b0ff !important;
+  box-shadow: inset 0 2x 4px rgba(0, 0, 0, 0.1);
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li.k-state-selected .k-link {
+  color: #222;
+}
+div[kendo-scheduler].k-scheduler .k-scheduler-toolbar ul.k-scheduler-views li.k-state-hover .k-link {
+  background-color: transparent;
+  border: none;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout {
+  color: #555;
+  font-size: 1rem;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-state-selected {
+  background-color: #b8c0c7;
+  color: #fcee21;
+  box-shadow: none;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-state-selected .k-link {
+  color: #fcee21;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-header {
+  color: #333;
+  font-size: 1.25rem;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-other-month .k-nav-day {
+  color: #d4d4d4;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event {
+  background-color: #435369;
+  border-color: #194886;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event .custom-event {
+  position: absolute;
+  top: 2px;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event .k-event-actions {
+  top: 1px;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event .k-event-actions .k-link {
+  color: #dd2c00;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-event .k-event-actions:first-child {
+  margin-top: 0;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-layout .k-scheduler-content .k-more-events span {
+  margin-top: 0;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-table .k-today {
+  background: #9ba0a5;
+  border: 1px solid #263656;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-dayview .k-scheduler-header-wrap .k-event {
+  background-color: #435369;
+  border-color: #194886;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-dayview .k-scheduler-header-wrap .k-event .k-event-actions {
+  top: 0px;
+}
+div[kendo-scheduler].k-scheduler table.k-scheduler-dayview .k-scheduler-header-wrap .k-event .k-event-actions .k-link {
+  color: #dd2c00;
+}
+div[kendo-scheduler].k-scheduler .k-window-titlebar {
+  border-radius: 0;
+}
+div[kendo-scheduler].k-scheduler .k-window-titlebar .k-header {
+  background-color: #326499;
+}
+div[kendo-scheduler].k-scheduler .k-window-titlebar .k-window-title {
+  font-size: 1.75rem;
+  top: 4px;
+  left: 15px;
+}
+div[kendo-scheduler].k-scheduler .k-window-titlebar .k-window-actions {
+  right: 10px;
+}
+div[kendo-scheduler].k-scheduler .k-window-content .k-dropdown,
+div[kendo-scheduler].k-scheduler .k-window-content .k-datepicker {
+  width: 100%;
+}
+div[kendo-scheduler].k-scheduler .k-window-content .k-popup-message {
+  padding: 15px;
+  min-height: 85px;
+  text-align: center;
+  position: relative;
+  font-size: 1.75rem !important;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div[kendo-scheduler].k-scheduler .k-list .k-state-selected.k-state-focused {
+  color: #4d4d4d;
+}
+div[kendo-scheduler].k-scheduler .k-list .k-item {
+  background-color: transparent;
+  font-family: "THSarabunPSK";
+  font-size: 1.6875rem;
+  min-height: auto !important;
+  line-height: normal !important;
+}
+div[kendo-scheduler].k-scheduler .k-picker-wrap,
+div[kendo-scheduler].k-scheduler .k-dropdown-wrap {
+  padding: 0 2em 0 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+div[kendo-scheduler].k-scheduler .k-picker-wrap.k-state-default,
+div[kendo-scheduler].k-scheduler .k-dropdown-wrap.k-state-default {
+  background-color: transparent;
+  color: #4d4d4d;
+  border-color: rgba(0, 0, 0, 0.12);
+  font-family: "THSarabunPSK";
+  font-size: 1.6875rem;
+  background-color: transparent;
+  color: #4d4d4d;
+  font-family: "THSarabunPSK";
+  font-size: 1.6875rem;
+}
+div[kendo-scheduler].k-scheduler .k-picker-wrap.k-state-default .k-select,
+div[kendo-scheduler].k-scheduler .k-dropdown-wrap.k-state-default .k-select {
+  border: none;
+}
+div[kendo-scheduler].k-scheduler .k-picker-wrap.k-state-hover, div[kendo-scheduler].k-scheduler .k-picker-wrap.k-state-focused,
+div[kendo-scheduler].k-scheduler .k-dropdown-wrap.k-state-hover,
+div[kendo-scheduler].k-scheduler .k-dropdown-wrap.k-state-focused {
+  box-shadow: none;
+}
+div[kendo-scheduler].k-scheduler .k-picker-wrap .k-select,
+div[kendo-scheduler].k-scheduler .k-dropdown-wrap .k-select {
+  line-height: normal;
+  width: 40px;
+  min-height: 37px;
+}
+div[kendo-scheduler].k-scheduler .k-picker-wrap:before,
+div[kendo-scheduler].k-scheduler .k-dropdown-wrap:before {
+  padding-bottom: 0 !important;
+}
+div[kendo-scheduler].k-scheduler .k-picker-wrap .k-input,
+div[kendo-scheduler].k-scheduler .k-dropdown-wrap .k-input {
+  height: 2.2rem;
+  line-height: normal;
+  background-color: transparent;
+  text-indent: 4px;
+  padding: 0;
+}
+div[kendo-scheduler].k-scheduler .k-datepicker,
+div[kendo-scheduler].k-scheduler .k-dropdown {
+  background-color: transparent;
+}
+div[kendo-scheduler].k-scheduler .k-dropdown-wrap {
+  padding: 0 40px 0 0;
+}
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons {
+  background-color: transparent;
+  border: none;
+  padding: 0px 0 15px 0;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  max-width: 100%;
+  justify-content: center;
+}
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button {
+  background-color: #00538C;
+  color: #FFFFFF;
+  border-radius: 8px;
+  min-height: 38px;
+  min-width: 112px;
+  max-height: 38px;
+  max-width: 112px;
+  font-size: 1.6875rem;
+  line-height: normal;
+  padding: 0px 0px;
+  transition: all 0.2s;
+}
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button:hover {
+  color: #FFFFFF;
+  background-color: #0062a6;
+}
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-update {
+  order: 1;
+}
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-cancel {
+  order: 2;
+  background-color: #D0D2D3;
+  color: #00538C;
+}
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-cancel:hover {
+  background-color: #c3c5c7;
+}
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-delete {
+  order: 0;
+  background-color: #818689;
+}
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-edit-buttons .k-button.k-scheduler-delete:hover {
+  background-color: #747a7c;
+}
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-button:focus,
+div[kendo-scheduler].k-scheduler .k-edit-form-container .k-button:focus:not(.k-state-disabled):not([disabled]) {
+  box-shadow: none;
+}
+div[kendo-scheduler].k-scheduler .wiki-editor .k-combobox .k-dropdown-wrap:before,
+div[kendo-scheduler].k-scheduler .wiki-editor .k-picker-wrap:before,
+div[kendo-scheduler].k-scheduler .wiki-editor .k-numeric-wrap:before,
+div[kendo-scheduler].k-scheduler .event-editor .k-combobox .k-dropdown-wrap:before,
+div[kendo-scheduler].k-scheduler .event-editor .k-picker-wrap:before,
+div[kendo-scheduler].k-scheduler .event-editor .k-numeric-wrap:before {
+  height: 1rem;
+}
+div[kendo-scheduler].k-scheduler .wiki-editor .k-colorpicker .k-picker-wrap,
+div[kendo-scheduler].k-scheduler .event-editor .k-colorpicker .k-picker-wrap {
+  line-height: normal;
+}
+div[kendo-scheduler].k-scheduler .wiki-editor .k-picker-wrap .k-select,
+div[kendo-scheduler].k-scheduler .wiki-editor .k-numeric-wrap .k-select,
+div[kendo-scheduler].k-scheduler .wiki-editor .k-dropdown-wrap .k-select,
+div[kendo-scheduler].k-scheduler .event-editor .k-picker-wrap .k-select,
+div[kendo-scheduler].k-scheduler .event-editor .k-numeric-wrap .k-select,
+div[kendo-scheduler].k-scheduler .event-editor .k-dropdown-wrap .k-select {
+  min-height: auto;
+  line-height: normal;
+}
+div[kendo-scheduler].k-scheduler .wiki-editor .k-combobox-clearable .k-input,
+div[kendo-scheduler].k-scheduler .event-editor .k-combobox-clearable .k-input {
+  height: auto;
+}
+div[kendo-scheduler].k-scheduler .wiki-editor .k-dropdown-wrap .k-input,
+div[kendo-scheduler].k-scheduler .event-editor .k-dropdown-wrap .k-input {
+  line-height: normal;
+  height: auto;
+  color: #444;
+}
+div[kendo-scheduler].k-scheduler .wiki-editor span[title=Format],
+div[kendo-scheduler].k-scheduler .event-editor span[title=Format] {
+  width: 160px !important;
+}
+div[kendo-scheduler].k-scheduler .wiki-editor .k-combobox,
+div[kendo-scheduler].k-scheduler .event-editor .k-combobox {
+  width: 12rem;
+  margin-right: 3px;
+}
+div[kendo-scheduler].k-scheduler .wiki-editor .k-combobox .k-dropdown-wrap .k-i-close,
+div[kendo-scheduler].k-scheduler .event-editor .k-combobox .k-dropdown-wrap .k-i-close {
+  right: 1.8rem;
+  font-size: 14px;
+}
+div[kendo-scheduler].k-scheduler .k-editor .k-editor-toolbar-wrap {
+  background-color: #e6e6e6;
+  padding-bottom: 2px;
+}
+div[kendo-scheduler].k-scheduler .k-editor-toolbar {
+  line-height: normal;
+}
+div[kendo-scheduler].k-scheduler .k-editor-toolbar .k-button-group .k-tool {
+  width: 40px;
+  height: 40px;
+}
+div[kendo-scheduler].k-scheduler .k-editor-toolbar .k-editor-dropdown {
+  background-color: #fff;
+}
+
+.k-editor-toolbar-wrap .k-editor-dropdown .k-dropdown-wrap,
+.k-editor-toolbar-wrap .k-editor-dropdown .k-picker-wrap,
+.k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap,
+.k-editor-toolbar-wrap .k-combobox .k-picker-wrap {
+  height: 37px;
+}
+.k-editor-toolbar-wrap .k-editor-dropdown .k-dropdown-wrap > .k-i-close,
+.k-editor-toolbar-wrap .k-editor-dropdown .k-picker-wrap > .k-i-close,
+.k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap > .k-i-close,
+.k-editor-toolbar-wrap .k-combobox .k-picker-wrap > .k-i-close {
+  right: 25px;
+}
+.k-editor-toolbar-wrap .k-editor-dropdown .k-dropdown-wrap .k-input,
+.k-editor-toolbar-wrap .k-editor-dropdown .k-picker-wrap .k-input,
+.k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap .k-input,
+.k-editor-toolbar-wrap .k-combobox .k-picker-wrap .k-input {
+  height: auto;
+}
+.k-editor-toolbar-wrap .k-editor-dropdown .k-dropdown-wrap .k-select,
+.k-editor-toolbar-wrap .k-editor-dropdown .k-picker-wrap .k-select,
+.k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap .k-select,
+.k-editor-toolbar-wrap .k-combobox .k-picker-wrap .k-select {
+  width: 15px;
+  position: absolute;
+  right: 3px;
+  min-height: auto;
+}
+.k-editor-toolbar-wrap .k-combobox .k-dropdown-wrap:before,
+.k-editor-toolbar-wrap .k-picker-wrap:before,
+.k-editor-toolbar-wrap .k-numeric-wrap:before {
+  height: auto !important;
+}
+
+.k-window-content span.k-datepicker,
+.k-window-content span.k-dropdown {
+  width: 100%;
+  background-color: transparent;
+}
+.k-window-content span.k-datepicker .k-input,
+.k-window-content span.k-dropdown .k-input {
+  background-color: transparent;
+}
+.k-window-content .k-picker-wrap,
+.k-window-content .k-dropdown-wrap {
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  font-family: "THSarabunPSK";
+  font-size: 1.6875rem;
+  line-height: normal;
+  height: 35px;
+}
+.k-window-content .k-picker-wrap.k-state-hover,
+.k-window-content .k-dropdown-wrap.k-state-hover {
+  box-shadow: none;
+}
+.k-window-content .k-picker-wrap.k-state-focused,
+.k-window-content .k-dropdown-wrap.k-state-focused {
+  box-shadow: none;
+  border-bottom: 2px solid #3f51b5;
+}
+.k-window-content .k-picker-wrap .k-input,
+.k-window-content .k-picker-wrap .k-select,
+.k-window-content .k-dropdown-wrap .k-input,
+.k-window-content .k-dropdown-wrap .k-select {
+  padding: 0;
+  text-indent: 3px;
+  height: 35px;
+  line-height: normal;
+}
+.k-window-content .k-picker-wrap .k-select,
+.k-window-content .k-dropdown-wrap .k-select {
+  width: auto;
+  border: none;
+}
+
+.k-window-titlebar {
+  padding: 5px 0px 15px 0px;
+}
+.k-window-titlebar .k-window-title {
+  font-size: 1.6875rem;
+  padding: 0;
+}
+
+.k-edit-form-container .k-edit-buttons {
+  border-style: none;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.k-edit-form-container .k-edit-buttons .k-scheduler-update,
+.k-edit-form-container .k-edit-buttons .k-scheduler-cancel,
+.k-edit-form-container .k-edit-buttons .k-scheduler-delete {
+  border-radius: 8px;
+  border: none;
+  min-height: 38px;
+  min-width: 112px;
+  font-size: 1.375rem;
+}
+.k-edit-form-container .k-edit-buttons .k-scheduler-update {
+  background-color: #00538C;
+  color: #FFFFFF;
+}
+.k-edit-form-container .k-edit-buttons .k-scheduler-cancel {
+  background-color: #D0D2D3;
+  color: #00538C;
+}
+.k-edit-form-container .k-edit-buttons .k-scheduler-delete {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.k-popup .k-list .k-item {
+  font-family: "THSarabunPSK";
+  font-size: 1.6875rem;
+}
+
+/**
+ * Functions for z-index management
+ *
+ * @author      paul 
+ * @package     z-manager
+ * @date        25/11/15
+ */
+/**
+ * Spin through the z-indexes and get the highest value
+ *
+ * @return int
+ */
+/**
+ * Spin through the z-indexes and get the lowest value
+ *
+ * @return int
+ */
+/**
+ * Get the z-dex of a layer
+ *
+ * @param $target {string} layer name
+ */
+/**
+ * Work out the z-index for an element.
+ * By default will assume we want to get the value above the layer target.
+ *
+ * Example:
+ *	z-index-manager( 'modal' ); // 25
+ *
+ * @param $target {string} layer target.
+ * @param $insert-above {boolean} get the z-index valuer of above or below the layer target. Set to false to insert below.
+ * @param $layer {string} if specified will store the new layer in our
+ *
+ * @return {int}
+ */
+/**
+ * Helper mixins for z-index management
+ *
+ * @author      paul 
+ * @package     z-manager
+ * @date        25/11/15
+ */
+/**
+ * Sets the z-index to above a specific target.
+ *
+ * @param $target {string}
+ * @param $layerName {string}
+ */
+/**
+ * Sets the z-index to below a specific target.
+ *
+ * @param $target {string}
+ * @param $layer-name {string}
+ */
+/**
+ * Sets the z-index to above all layers.
+ */
+/**
+ * Sets the z-index to below all layers.
+ */
+.btn-main:not([disabled]) {
+  background-color: #00538C;
+  color: #FFFFFF;
+  border-radius: 8px;
+  min-height: 38px;
+  min-width: 112px;
+  font-size: 1.6875rem;
+}
+.btn-main:not([disabled]).md-focused {
+  background-color: #00538C;
+}
+.btn-main:not([disabled]).md-button:not([disabled]):hover {
+  background-color: #0062a6;
+}
+
+.md-button:not([disabled]).md-focused {
+  background-color: #00538C;
+}
+
+.btn-cancel:not([disabled]) {
+  background-color: #D0D2D3;
+  color: #00538C;
+  border-radius: 8px;
+  min-height: 38px;
+  min-width: 112px;
+  font-size: 1.6875rem;
+}
+.btn-cancel:not([disabled]).md-focused {
+  background-color: #D0D2D3;
+}
+.btn-cancel:not([disabled]).md-button:not([disabled]):hover {
+  background-color: #c3c5c7;
+}
+
+#block-login .btn-cancel:not([disabled]) {
+  background-color: #dbc37d;
+  color: #603a16;
+  border-radius: 8px;
+  min-height: 38px;
+  min-width: 112px;
+  font-size: 1.6875rem;
+}
+#block-login .btn-cancel:not([disabled]).md-focused {
+  background-color: #dbc37d;
+}
+#block-login .btn-cancel:not([disabled]).md-button:not([disabled]):hover {
+  background-color: #d5ba69;
+}
+#block-login .btn-login {
+  background-color: #441400;
+  color: #fff;
+  border-radius: 8px;
+  min-height: 38px;
+  min-width: 112px;
+  font-size: 1.6875rem;
+}
+#block-login .btn-login.md-focused {
+  background-color: #441400;
+}
+#block-login .btn-login.md-button:not([disabled]):hover {
+  background-color: #2b0d00;
+}
+#block-login .btn-login[disabled] {
+  background-color: rgba(53, 51, 50, 0.5);
+  color: rgba(255, 255, 255, 0.2);
+  cursor: not-allowed;
+}
+
+.btn-as-img:hover {
+  cursor: pointer;
+}
+
+.btn-pin-input {
+  margin-left: 10px;
+  margin-top: 0px;
+}
+.btn-pin-input:hover {
+  cursor: pointer;
+}
+
+.header-btn {
+  font-family: "THSarabunPSK-Bold";
+  font-size: 1.6875rem;
+}
+.header-btn:first-child {
+  margin-left: 0px;
+  margin-right: 20px;
+}
+.header-btn:nth-last-child(-n+1) {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.header-btn:nth-last-child(1):first-child {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.header-btn:hover {
+  cursor: pointer;
+}
+
+.btn-grid,
+.btn-edit-newsfeed {
+  filter: grayscale(100%);
+  opacity: 0.7;
+  outline: none;
+  transition: all 0.2s;
+}
+.btn-grid:hover,
+.btn-edit-newsfeed:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.btn-back {
+  border: 3px solid #00538C;
+  border-radius: 100px;
+  min-width: 38px;
+  min-height: 38px;
+  position: absolute;
+  margin-top: 1px;
+  margin-left: -55px;
+}
+.btn-back:hover {
+  cursor: pointer;
+}
+@media (max-width: 1366px) {
+  .btn-back {
+    border: 2px solid #00538C;
+    min-width: 30px;
+    min-height: 30px;
+    margin-top: 5px;
+    margin-left: -35px;
+  }
+}
+
+div#gridSearchInventory[kendo-grid] table colgroup col:first-of-type {
+  width: 125px;
+}
+div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(2) {
+  width: 125px;
+}
+div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(3) {
+  width: 125px;
+}
+div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(4) {
+  width: 300px;
+}
+div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(5) {
+  width: 125px;
+}
+div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(6) {
+  width: 125px;
+}
+div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(7) {
+  width: 125px;
+}
+div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(8) {
+  width: 200px;
+}
+div#gridSearchInventory[kendo-grid] table colgroup col:last-of-type {
+  width: 125px;
+}
+div#gridSearchInventory[kendo-grid] table tbody tr td {
+  word-wrap: break-word;
+}
+div#gridSearchInventory[kendo-grid] table tbody tr td:first-of-type {
+  text-align: left;
+}
+
+div#gridSearchDevice[kendo-grid] table colgroup col:first-of-type {
+  width: 125px;
+}
+div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(2) {
+  width: 125px;
+}
+div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(3) {
+  width: 300px;
+}
+div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(4) {
+  width: 200px;
+}
+div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(5) {
+  width: 125px;
+}
+div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(6) {
+  width: 200px;
+}
+div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(7) {
+  width: 150px;
+}
+div#gridSearchDevice[kendo-grid] table colgroup col:last-of-type {
+  width: 125px;
+}
+div#gridSearchDevice[kendo-grid] table tbody tr td {
+  word-wrap: break-word;
+}
+div#gridSearchDevice[kendo-grid] table tbody tr td:first-of-type {
+  text-align: left;
+}
+
+div#gridSearchRequest[kendo-grid] table colgroup col:first-of-type {
+  width: 125px;
+}
+div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(2) {
+  width: 300px;
+}
+div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(3) {
+  width: 175px;
+}
+div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(4) {
+  width: 225px;
+}
+div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(5) {
+  width: 175px;
+}
+div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(6) {
+  width: 200px;
+}
+div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(7) {
+  width: 175px;
+}
+div#gridSearchRequest[kendo-grid] table colgroup col:last-of-type {
+  width: 125px;
+}
+div#gridSearchRequest[kendo-grid] table tbody tr td {
+  word-wrap: break-word;
+}
+div#gridSearchRequest[kendo-grid] table tbody tr td:first-of-type {
+  text-align: left;
+}
+
+div#gridSearchService[kendo-grid] table colgroup col:first-of-type {
+  width: 125px;
+}
+div#gridSearchService[kendo-grid] table colgroup col:nth-child(2) {
+  width: 300px;
+}
+div#gridSearchService[kendo-grid] table colgroup col:nth-child(3) {
+  width: 175px;
+}
+div#gridSearchService[kendo-grid] table colgroup col:nth-child(4) {
+  width: 225px;
+}
+div#gridSearchService[kendo-grid] table colgroup col:nth-child(5) {
+  width: 175px;
+}
+div#gridSearchService[kendo-grid] table colgroup col:nth-child(6) {
+  width: 200px;
+}
+div#gridSearchService[kendo-grid] table colgroup col:nth-child(7) {
+  width: 175px;
+}
+div#gridSearchService[kendo-grid] table colgroup col:last-of-type {
+  width: 125px;
+}
+div#gridSearchService[kendo-grid] table tbody tr td {
+  word-wrap: break-word;
+}
+div#gridSearchService[kendo-grid] table tbody tr td:first-of-type {
+  text-align: left;
+}
+
+div#gridSearchReport[kendo-grid] table colgroup col:first-of-type {
+  width: 100px;
+}
+div#gridSearchReport[kendo-grid] table colgroup col:nth-child(2) {
+  width: 150px;
+}
+div#gridSearchReport[kendo-grid] table colgroup col:nth-child(3) {
+  width: 200px;
+}
+div#gridSearchReport[kendo-grid] table colgroup col:nth-child(4) {
+  width: 200px;
+}
+div#gridSearchReport[kendo-grid] table colgroup col:nth-child(5) {
+  width: 150px;
+}
+div#gridSearchReport[kendo-grid] table colgroup col:nth-child(6) {
+  width: 150px;
+}
+div#gridSearchReport[kendo-grid] table colgroup col:last-of-type {
+  width: 150px;
+}
+div#gridSearchReport[kendo-grid] table tbody tr td {
+  word-wrap: break-word;
+}
+div#gridSearchReport[kendo-grid] table tbody tr td:first-of-type {
+  text-align: left;
+}

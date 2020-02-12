@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html ng-app="MyApp" lang="en">
+
+<head>
+    <title>CTI Logistics co.,Lt</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" type="image/png" href="./images/ctiLogo.png" />
+    <link href="script/css/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="script/css/css/sb-admin-2.css" rel="stylesheet">
+    <link href="style/normalize.css" rel="stylesheet">
+    <link href="script/angular-material/angular-material.css" rel="stylesheet">
+    <link href="script/loadingTopJS/loadingTopJS.css" rel="stylesheet">
+    <link href="script/kendo-ui/kendo.common-material.css" rel="stylesheet">
+    <link href="script/kendo-ui/kendo.material.css" rel="stylesheet">
+    <link href="script/angular-colorpicker/css/color-picker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="script/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="script/v-accordion.min.css">
+    <link href="style/main.css" rel="stylesheet">
+
+</head>
+
+<body ng-cloak ng-controller="appController as ctrl" id="page-top" ng-init="ctrl.init()">
+
+    <div id="wrapper">
+
+        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar" ng-show="showMenu()">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon ">
+                    <img src="./images/ctiLogo.png" width="50%">
+                </div>
+            </a>
+            <hr class="sidebar-divider my-0">
+            <div ng-repeat="item in menuShow">
+                <li class="nav-item " ng-class="{'active': item.ROUTEP == states.activeItem}">
+                    <a class="nav-link" ng-click="routep(item.ROUTEP)">
+                        <i class="{{item.MENU_ICON}}"></i>
+                        <span>{{item.MENU_NAME}} </span></a>
+                </li>
+                <hr class="sidebar-divider my-0">
+            </div>
+            <div class="text-center d-none d-md-inline pt-3">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" ng-show="showMenu()">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a href="" class="dropdown-item" data-toggle="modal" data-target="#logoutModal" ng-click="logOut()"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout</a>
+                        </li>
+                    </ul>
+                </nav>
+                <main class="container-fluid">
+                    <article ng-view></article>
+                </main>
+            </div>
+        </div>
+
+    </div>
+    <!--Map Libraries-->
+    <script src="script/jquery-2-2.4.min.js"></script>
+    <script src="script/md5.min.js"></script>
+    <script src="script/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="script/css/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="script/css/js/sb-admin-2.min.js"></script>
+
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="script/js/plugins/pace.min.js"></script>
+    <script src="script/js/sweetalert/sweetalert.min.js"></script>
+    <script src="script/angular/angular.js"></script>
+    <script src="script/angular/angular-animate.js"></script>
+    <script src="script/angular/angular-aria.js"></script>
+    <script src="script/angular-material/angular-material.min.js"></script>
+    <script src="script/angular/angular-cookies.js"></script>
+    <script src="script/angular/angular-loader.js"></script>
+    <script src="script/angular/angular-route.js"></script>
+    <script src="script/angular/angular-messages.js"></script>
+    <script src="script/angular/angular-sanitize.js"></script>
+    <script src="script/loadingTopJS/loadingTopJS.min.js"></script>
+    <script src="script/v-accordion.js"></script>
+    <script src="script/kendo-ui/kendo.all.js"></script>
+    <script src="script/kendo-ui/cultures/kendo.culture.th-TH.js"></script>
+    <script src="script/kendo-ui/cultures/kendo.culture.th.js"></script>
+
+    <script src="script/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="script/moment.min.js"></script>
+    <script src="script/svg-assets-cache.js"></script>
+    <script src="script/underscore-min.js"></script>
+    <script src="script/ngInfiniteScroll.js"></script>
+    <script src="script/angular-colorpicker/js/color-picker.min.js"></script>
+
+
+
+    <!-- Load app main script -->
+    <script src="app.js"></script>
+    <script src="index.js"></script>
+
+    <!-- Load services -->
+    <script src="service/appMenuService.js"></script>
+    <script src="service/userService.js"></script>
+    <script src="service/dialogService.js"></script>
+    <script src="service/commonService.js"></script>
+
+    <!-- Load Controller-->
+    <script src="app/login/loginController.js"></script>
+    <script src="app/account/accountController.js"></script>
+    <script src="app/deviceMe/deviceMeController.js"></script>
+    <script src="app/inventory/searchInventory/inventoryController.js"></script>
+    <script src="app/inventory/addEditInventory/addEditInventoryController.js"></script>
+    <script src="app/device/searchDevice/deviceController.js"></script>
+    <script src="app/device/addEditDevice/addEditDeviceController.js"></script>
+    <script src="app/request/searchRequest/requestController.js"></script>
+    <script src="app/request/viewRequest/viewRequestController.js"></script>
+    <script src="app/service/searchService/serviceController.js"></script>
+    <script src="app/service/addEditService/addEditServiceController.js"></script>
+    <script src="app/manager/searchManager/managerController.js"></script>
+    <script src="app/manager/viewManager/viewManagerController.js"></script>
+    <script src="app/report/searchReport/reportController.js"></script>
+
+    <!-- Load directive -->
+    <script src="directive/demo/demoTest/demoTestController.js"></script>
+    <script src="directive/shared/gridMaster/gridMaster.js"></script>
+    <script src="directive/shared/gridMaster/gridPrivilege.js"></script>
+    <script src="directive/shared/gridMaster/gridUserGroup.js"></script>
+    <script src="directive/shared/gridMaster/gridSelection.js"></script>
+    <script src="directive/shared/gridMaster/gridSearch.js"></script>
+
+
+</body>
+
+</html>
