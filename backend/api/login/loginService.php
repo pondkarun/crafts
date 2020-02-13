@@ -6,33 +6,30 @@ header('Access-Control-Allow-Headers: *');
 $input = file_get_contents("php://input");
 $postRequest = json_decode($input);
 
-$USERNAME = $postRequest->USERNAME;
-$PASSWORD = $condb->real_escape_string($postRequest->PASSWORD);
+$username = $postRequest->username;
+$password = $condb->real_escape_string($postRequest->password);
 
 $sql = "SELECT 
-e.ID,
-e.USERNAME,
-e.EMPLOYEE_CODE,
-e.STATUS_ID, 
-dt.DATA_TOPICS AS STATUS
-FROM employees AS e 
-INNER JOIN data_topics AS dt ON dt.ID = e.STATUS_ID 
-WHERE USERNAME = '" . $USERNAME . "' AND PASSWORD = '" . $PASSWORD . "' ";
+e.id,
+e.username,
+e.id_card,
+e.id_position, 
+p.position
+FROM employed AS e 
+INNER JOIN position AS p ON p.id = e.id_position 
+WHERE username = '" . $username . "' AND password = '" . $password . "' ";
 $result = $condb->query($sql);
 
 if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_array($result);
-    $response['ID'] = $row["ID"];
-    $response['USERNAME'] = $row["USERNAME"];
-    $response['EMPLOYEE_CODE'] = $row["EMPLOYEE_CODE"];
-    $response['STATUS_ID'] = $row["STATUS_ID"];
-    $response['STATUS'] = $row["STATUS"];
-    $response['statusLogin'] = 'loggedin';
+    $response['id'] = $row["id"];
+    $response['username'] = $row["username"];
+    $response['id_card'] = $row["id_card"];
+    $response['id_position'] = $row["id_position"];
+    $response['position'] = $row["position"];
+    $response['loginStatus'] = '200';
 } else {
-    $response['status'] = 'error';
+    $response['loginStatus'] = '404';
 }
 
 echo json_encode($response);
-/*
-print_r($_POST);*/
-// }

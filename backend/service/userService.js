@@ -1,38 +1,38 @@
 'use strict'
 
-app.service('userService', function () {
-    var USERNAME;
-    var EMPLOYEE_CODE;
-    var STATUS;
-    var STATUS_ID;
+app.service('userService', function() {
+    var username;
+    var id_card;
+    var position;
+    var id_position;
     var loggedin = false;
-    var ID;
+    var id;
 
 
 
-    this.saveData = function (data) {
-        USERNAME = data.USERNAME;
-        EMPLOYEE_CODE = data.EMPLOYEE_CODE;
-        STATUS = data.STATUS;
-        STATUS_ID = data.STATUS_ID;
-        ID = data.ID;
+    this.saveData = function(data) {
+        username = data.username;
+        id_card = data.id_card;
+        position = data.position;
+        id_position = data.id_position;
+        id = data.id;
         loggedin = true;
-        localStorage.setItem('login', JSON.stringify({
-            USERNAME: USERNAME,
-            EMPLOYEE_CODE: EMPLOYEE_CODE,
-            STATUS_ID: STATUS_ID,
-            STATUS: STATUS,
-            ID: ID,
+        localStorage.setItem('loginCrafts', JSON.stringify({
+            username: username,
+            id_card: id_card,
+            id_position: id_position,
+            position: position,
+            id: id,
             loggedin: loggedin
         }));
     };
 
-    this.isUserLoggedIn = function () {
-        if (localStorage.getItem('login')) {
+    this.isUserLoggedIn = function() {
+        if (localStorage.getItem('loginCrafts')) {
             loggedin = true;
-            var data = JSON.parse(localStorage.getItem('login'));
-            USERNAME = data.USERNAME;
-            ID = data.ID;
+            var data = JSON.parse(localStorage.getItem('loginCrafts'));
+            username = data.username;
+            id = data.id;
         } else {
             loggedin = false;
         }
@@ -40,24 +40,24 @@ app.service('userService', function () {
     };
 
 
-    this.getName = function () {
-        return USERNAME;
+    this.getName = function() {
+        return username;
     };
 
-    this.setID = function (userID) {
-        ID = userID;
+    this.setID = function(userID) {
+        id = userID;
     };
-    this.getID = function () {
-        return ID;
+    this.getID = function() {
+        return id;
     };
-    this.getLoggedin = function () {
+    this.getLoggedin = function() {
         return loggedin;
     };
-    this.getStatusID = function () {
+    this.getStatusID = function() {
         let STATUS_MENU = null;
-        if (localStorage.getItem('login')) {
-            let STATUS = JSON.parse(localStorage.getItem('login'));
-            STATUS_MENU = STATUS.STATUS_ID
+        if (localStorage.getItem('loginCrafts')) {
+            let position = JSON.parse(localStorage.getItem('loginCrafts'));
+            STATUS_MENU = position.id_position
         }
         return STATUS_MENU;
     };

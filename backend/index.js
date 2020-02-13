@@ -1,16 +1,16 @@
 ﻿'use strict'
 
-app.controller("appController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http',
+app.controller("craftsController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http',
     function($scope, $rootScope, $location, $routeParams, userService, $http) {
         $scope.menuShow = [];
         this.init = () => {
-            $rootScope.getMenu();
+            //$rootScope.getMenu();
         }
         $scope.states = {};
         $scope.states.activeItem = 'account';
         $scope.showMenu = () => {
             if (!userService.isUserLoggedIn()) {
-                localStorage.removeItem("login");
+                localStorage.removeItem("loginCrafts");
                 $location.path("login");
             }
             return userService.isUserLoggedIn()
@@ -24,8 +24,8 @@ app.controller("appController", ['$scope', '$rootScope', '$location', '$routePar
 
         $scope.logOut = () => {
             location.reload();
-            localStorage.removeItem("login");
-            $location.path("login");
+            localStorage.removeItem("loginCrafts");
+            $location.path("loginCrafts");
         }
 
         /** เรียก sidebar */
@@ -45,11 +45,6 @@ app.controller("appController", ['$scope', '$rootScope', '$location', '$routePar
             })
         }
 
-
-        // $scope.$watch($scope.menuShow, function(newValue, oldValue) {
-        //     console.log("menuShow", $scope.menuShow);
-        //     $scope.menuShow = $scope.menuShow;
-        // });
 
     }
 ]);
