@@ -2,9 +2,11 @@
   cursor: pointer;
 }
 
-.nav-item:hover,
-.active {
-  background: #6b6e7b;
+.sidebar-dark .nav-item.active .nav-link i {
+  color: #ffe000;
+}
+.sidebar-dark .nav-item.active .nav-link .ng-binding {
+  color: #ffe000;
 }
 
 .card-body {
@@ -111,9 +113,11 @@
   cursor: pointer;
 }
 
-.nav-item:hover,
-.active {
-  background: #6b6e7b;
+.sidebar-dark .nav-item.active .nav-link i {
+  color: #ffe000;
+}
+.sidebar-dark .nav-item.active .nav-link .ng-binding {
+  color: #ffe000;
 }
 
 .card-body {

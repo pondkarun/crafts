@@ -2,9 +2,17 @@
     cursor: pointer;
 }
 
-.nav-item:hover,
-.active {
-    background: #6b6e7b;
+.sidebar-dark {
+    .nav-item.active {
+        .nav-link {
+            i {
+                color: #ffe000;
+            }
+            .ng-binding {
+                color: #ffe000;
+            }
+        }
+    }
 }
 
 .card-body {
