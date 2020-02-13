@@ -4,10 +4,10 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
     function($scope, $rootScope, $location, $routeParams, userService, $http) {
         $scope.menuShow = [];
         this.init = () => {
-            //$rootScope.getMenu();
+            $rootScope.getMenu();
         }
         $scope.states = {};
-        $scope.states.activeItem = 'account';
+        $scope.states.activeItem = 'employed';
         $scope.showMenu = () => {
             if (!userService.isUserLoggedIn()) {
                 localStorage.removeItem("loginCrafts");
@@ -34,7 +34,7 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
             loading.open();
             let StatusID = userService.getStatusID()
             $http.post(webURL.webApi + "menu/menuService.php", StatusID).then((res) => {
-                // console.log("res.data", res.data);
+                console.log("res.data", res.data);
                 for (let i = 0; i < res.data.length; i++) {
                     $scope.menuShow.push(res.data[i]);
                 }

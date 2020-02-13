@@ -15,7 +15,7 @@ try {
     $query = "  SELECT COUNT(m.ID) AS COUNT_ID FROM menu AS m 
     INNER JOIN menu_map AS mm ON m.ID = mm.MENU_ID
     WHERE m.ROUTEP = '" . $ROUTEP . "'
-    AND mm.ID_STATUS_EM = '" . $ID_STATUS_EM . "'
+    AND mm.id_position = '" . $ID_STATUS_EM . "'
     AND m.IS_USE = 'true' ";
     $result = $condb->query($query) or die($condb->error);
 

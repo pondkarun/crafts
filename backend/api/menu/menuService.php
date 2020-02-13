@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
 
 
-$ID_STATUS_EM = file_get_contents("php://input");
+$id_position = file_get_contents("php://input");
 
 try {
 
@@ -14,7 +14,7 @@ try {
     ROUTEP
     FROM menu AS a
     INNER JOIN menu_map AS b ON a.ID = b.MENU_ID
-    WHERE b.ID_STATUS_EM = '" . $ID_STATUS_EM . "'
+    WHERE b.id_position = '" . $id_position . "'
     AND a.IS_USE = 'true'";
     $result = $condb->query($query) or die($condb->error);
 
