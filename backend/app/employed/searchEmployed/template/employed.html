@@ -1,7 +1,7 @@
 <div ng-controller="employedController as ctrl" ng-init="ctrl.init()">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">จัดการผู้รับจ้าง</h1>
-        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ng-click="ctrl.addDevice()"><i class="fas fa-plus fa-sm text-white-50"></i> เพิ่มผู้รับจ้าง
+        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ng-click="ctrl.addEmployed()"><i class="fas fa-plus fa-sm text-white-50"></i> เพิ่มผู้รับจ้าง
         </button>
     </div>
 
@@ -38,10 +38,10 @@
                         </md-input-container>
 
                         <md-input-container flex="" class="pl-3">
-                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="ctrl.searchDevice()">
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="ctrl.searchEmployed()">
                                 <i class="fas fa-search fa-sm text-white-50"></i> ค้นหา
                             </button>
-                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm" ng-click="ctrl.clearDevice()">
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm" ng-click="ctrl.clearEmployed()">
                                 <i class="fas fa-repeat fa-sm text-white-50"></i> ค่าเริ่มต้น
                             </button>
                         </md-input-container>

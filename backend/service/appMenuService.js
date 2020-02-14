@@ -25,9 +25,39 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
         templateUrl: "app/employed/searchEmployed/template/employed.html",
         controller: "employedController",
         resolve: {
-            check: function($location, userService) {
-                if (userService.isUserLoggedIn()) {
-                    $location.path("employed");
+            check: function($location, userService, $http) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path('/login');
+                } else {
+                    let model = {
+                        ROUTEP: "employed",
+                        ID_STATUS_EM: userService.getStatusID()
+                    }
+                    $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
+                        if (Number(res.data.COUNT_ID) <= 0) {
+                            $location.path('/employed');
+                        }
+                    })
+                }
+            },
+        },
+    }).when("/employed/:Type/:ID", {
+        templateUrl: "app/employed/addEditEmployed/template/addEditEmployed.html",
+        controller: "employedController",
+        resolve: {
+            check: function($location, userService, $http) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path('/login');
+                } else {
+                    let model = {
+                        ROUTEP: "employed",
+                        ID_STATUS_EM: userService.getStatusID()
+                    }
+                    $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
+                        if (Number(res.data.COUNT_ID) <= 0) {
+                            $location.path('/employed');
+                        }
+                    })
                 }
             },
         },

@@ -1,7 +1,7 @@
 'use strict'
 
-app.controller("addEditDeviceController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings', 'commonService',
-    function ($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
+app.controller("addEditEmployedController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings', 'commonService',
+    function($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
         let _this = this;
         this.modelSaveAdd = [];
         this.model = {};
@@ -9,12 +9,12 @@ app.controller("addEditDeviceController", ['$scope', '$rootScope', '$location', 
         this.Inventory = [];
         this.Users = [];
 
-        this.init = function () {
-            checkRouteParams()
-            if ($scope.typeAdd) {
-                getUsers();
-                getInventory();
-            }
+        this.init = function() {
+            // checkRouteParams()
+            // if ($scope.typeAdd) {
+            //     getUsers();
+            //     getInventory();
+            // }
 
         }
 
@@ -24,60 +24,60 @@ app.controller("addEditDeviceController", ['$scope', '$rootScope', '$location', 
             sortable: true,
             pageable: true,
             columns: [{
-                field: "INVENTORY_CODE",
-                title: "ID",
-                attributes: {
-                    class: "text-center"
-                }
-            },
+                    field: "INVENTORY_CODE",
+                    title: "ID",
+                    attributes: {
+                        class: "text-center"
+                    }
+                },
 
-            {
-                field: "TYPE",
-                title: "Type",
-                attributes: {
-                    class: "text-center"
-                }
-            },
+                {
+                    field: "TYPE",
+                    title: "Type",
+                    attributes: {
+                        class: "text-center"
+                    }
+                },
 
-            {
-                field: "NAME_TH",
-                title: "Name",
-                attributes: {
-                    class: "text-center"
-                }
-            },
+                {
+                    field: "NAME_TH",
+                    title: "Name",
+                    attributes: {
+                        class: "text-center"
+                    }
+                },
 
-            {
-                field: "DEPARTMENT",
-                title: "Department",
-                attributes: {
-                    class: "text-center"
-                }
-            },
+                {
+                    field: "DEPARTMENT",
+                    title: "Department",
+                    attributes: {
+                        class: "text-center"
+                    }
+                },
 
-            {
-                field: "ID_Staff",
-                title: "ID Staff",
-                attributes: {
-                    class: "text-center"
-                }
-            },
+                {
+                    field: "ID_Staff",
+                    title: "ID Staff",
+                    attributes: {
+                        class: "text-center"
+                    }
+                },
 
-            {
-                field: "CREATE_DATE",
-                title: "Create Date",
-                attributes: {
-                    class: "text-center"
-                }
-            },
+                {
+                    field: "CREATE_DATE",
+                    title: "Create Date",
+                    attributes: {
+                        class: "text-center"
+                    }
+                },
 
-            {
-                field: "STATUS",
-                title: "Status",
-                attributes: {
-                    class: "text-center"
+                {
+                    field: "STATUS",
+                    title: "Status",
+                    attributes: {
+                        class: "text-center"
+                    }
                 }
-            }
             ],
             management: true,
             operation: {
