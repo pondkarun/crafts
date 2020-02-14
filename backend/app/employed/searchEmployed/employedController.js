@@ -62,9 +62,9 @@ app.controller("employedController", ['$scope', '$rootScope', '$location', '$rou
             ],
             management: true,
             operation: {
-                view: false,
-                del: true,
-                edit: false
+                view: true,
+                del: false,
+                edit: true
             },
             showIndex: false,
         };
@@ -77,27 +77,27 @@ app.controller("employedController", ['$scope', '$rootScope', '$location', '$rou
 
         this.searchEmployed = () => {
             console.log("modelSearch", _this.modelSearch);
-            // loading.open();
-            // $http.post(webURL.webApi + "device/searchDeviceService.php", _this.modelSearch).then((res) => {
-            //     // console.log("res.data", res.data);
+            loading.open();
+            $http.post(webURL.webApi + "employed/searchEmployedService.php", _this.modelSearch).then((res) => {
+                // console.log("res.data", res.data);
 
-            //     res.data.filter((e) => {
-            //         e.PurchaseDate = commonService.formatDate(e.PurchaseDate)
-            //         e.STATUS = (e.STATUS == 'ใช้งาน') ? "Active" : "Inactive";
-            //         if (e.DisposedDate && e.DisposedDate != "0000-00-00") {
-            //             e.DisposedDate = commonService.formatDate(e.DisposedDate)
-            //         } else {
-            //             e.DisposedDate = "-"
-            //         }
-            //     })
+                res.data.filter((e) => {
+                    e.PurchaseDate = commonService.formatDate(e.PurchaseDate)
+                    e.STATUS = (e.STATUS == 'ใช้งาน') ? "Active" : "Inactive";
+                    if (e.DisposedDate && e.DisposedDate != "0000-00-00") {
+                        e.DisposedDate = commonService.formatDate(e.DisposedDate)
+                    } else {
+                        e.DisposedDate = "-"
+                    }
+                })
 
-            //     _this.gridOptions.dataSource.data(res.data);
-            //     loading.close();
-            // }).catch((err) => {
-            //     console.log("Error");
-            //     loading.close();
-            //     showAlertBox(msgSettings.msgErrorApi, null);
-            // })
+                _this.gridOptions.dataSource.data(res.data);
+                loading.close();
+            }).catch((err) => {
+                console.log("Error");
+                loading.close();
+                showAlertBox(msgSettings.msgErrorApi, null);
+            })
         }
 
         this.clearEmployed = () => {
@@ -106,7 +106,7 @@ app.controller("employedController", ['$scope', '$rootScope', '$location', '$rou
                 Name: null,
                 status: "ปกติ"
             };
-            _this.searchDevice();
+            _this.searchEmployed();
         }
 
         //************dialog func***************//

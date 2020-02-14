@@ -34,7 +34,7 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
             loading.open();
             let StatusID = userService.getStatusID()
             $http.post(webURL.webApi + "menu/menuService.php", StatusID).then((res) => {
-                console.log("res.data", res.data);
+                // console.log("res.data", res.data);
                 for (let i = 0; i < res.data.length; i++) {
                     $scope.menuShow.push(res.data[i]);
                 }

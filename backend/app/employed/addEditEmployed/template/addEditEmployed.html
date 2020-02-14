@@ -1,6 +1,6 @@
 <div ng-controller="addEditEmployedController as ctrl" ng-init="ctrl.init()">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Device Profile</h1>
+        <h1 class="h3 mb-0 text-gray-800">{{title}}</h1>
     </div>
 
     <div class="row">
@@ -11,15 +11,46 @@
                 <div class="card-body">
 
 
-                    <form name="deviceForm" class="container" novalidate>
-                        <div layout="row">
+                    <form name="employedForm" class="container" novalidate>
+                        <md-content layout-padding>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>ชื่อจริง</label>
+                                    <input type="text" required ng-model="ctrl.modelSave.name" ng-disabled="isView">
+                                </md-input-container>
 
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>นามสกุล</label>
+                                    <input type="text" required ng-model="ctrl.modelSave.surname" ng-disabled="isView">
+                                </md-input-container>
+                            </div>
 
-                        </div>
+                            <md-input-container class="md-block">
+                                <label>เลขบัตรประชาชน</label>
+                                <input type="text" ng-model="ctrl.modelSave.id_card" required pattern="\d{13}" md-maxlength="13" ng-disabled="isView">
+                            </md-input-container>
 
-                        <section class="pt-3">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>เบอร์โทร</label>
+                                    <input type="tel" ng-model="ctrl.modelSave.tel" required pattern="\d+" ng-disabled="isView">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>E-mail</label>
+                                    <input type="email" required ng-model="ctrl.modelSave.email" ng-disabled="isView">
+                                </md-input-container>
+                            </div>
+
+                            <md-input-container class="md-block">
+                                <label>ที่อยู่</label>
+                                <textarea ng-model="ctrl.modelSave.address" rows="5" md-select-on-focus ng-disabled="isView"></textarea>
+                            </md-input-container>
+                        </md-content>
+
+                        <section>
                             <div class="footer-form-button pt-5" layout="row" layout-align="center center">
-                                <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveFormAdd()">
+                                <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveFormAdd()" ng-if="!isView">
                                     Save
                                 </md-button>
                                 <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancelForm()">
@@ -27,7 +58,6 @@
                                 </md-button>
                             </div>
                         </section>
-
 
                     </form>
 

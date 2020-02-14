@@ -4,7 +4,7 @@ var app = angular.module('crafts', ['ngMaterial', 'ngMessages', 'material.svgAss
 var loading = new loadingTopJS();
 
 var webURL = {
-    webApi: "http://127.0.0.1/crafts/backend/api/"
+    webApi: "http://127.0.0.1/crafts/api/"
 }
 
 
