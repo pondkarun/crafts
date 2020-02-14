@@ -17,11 +17,21 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
         resolve: {
             check: function($location, userService) {
                 if (userService.isUserLoggedIn()) {
-                    $location.path("account");
+                    $location.path("employed");
                 }
             },
         },
-    }).otherwise({ redirectTo: '/account' });
+    }).when("/employed", {
+        templateUrl: "app/employed/searchEmployed/template/employed.html",
+        controller: "employedController",
+        resolve: {
+            check: function($location, userService) {
+                if (userService.isUserLoggedIn()) {
+                    $location.path("employed");
+                }
+            },
+        },
+    }).otherwise({ redirectTo: '/employed' });
 
 });
 

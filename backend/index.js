@@ -7,7 +7,7 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
             $rootScope.getMenu();
         }
         $scope.states = {};
-        $scope.states.activeItem = 'account';
+        $scope.states.activeItem = 'employed';
         $scope.showMenu = () => {
             if (!userService.isUserLoggedIn()) {
                 localStorage.removeItem("loginCrafts");

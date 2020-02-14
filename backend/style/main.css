@@ -2514,158 +2514,28 @@ div[kendo-scheduler].k-scheduler .k-editor-toolbar .k-editor-dropdown {
   }
 }
 
-div#gridSearchInventory[kendo-grid] table colgroup col:first-of-type {
-  width: 125px;
-}
-div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(2) {
-  width: 125px;
-}
-div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(3) {
-  width: 125px;
-}
-div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(4) {
-  width: 300px;
-}
-div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(5) {
-  width: 125px;
-}
-div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(6) {
-  width: 125px;
-}
-div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(7) {
-  width: 125px;
-}
-div#gridSearchInventory[kendo-grid] table colgroup col:nth-child(8) {
-  width: 200px;
-}
-div#gridSearchInventory[kendo-grid] table colgroup col:last-of-type {
-  width: 125px;
-}
-div#gridSearchInventory[kendo-grid] table tbody tr td {
-  word-wrap: break-word;
-}
-div#gridSearchInventory[kendo-grid] table tbody tr td:first-of-type {
-  text-align: left;
-}
-
-div#gridSearchDevice[kendo-grid] table colgroup col:first-of-type {
-  width: 125px;
-}
-div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(2) {
-  width: 125px;
-}
-div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(3) {
-  width: 300px;
-}
-div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(4) {
-  width: 200px;
-}
-div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(5) {
-  width: 125px;
-}
-div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(6) {
-  width: 200px;
-}
-div#gridSearchDevice[kendo-grid] table colgroup col:nth-child(7) {
+div#gridSearchEmployed[kendo-grid] table colgroup col:first-of-type {
   width: 150px;
 }
-div#gridSearchDevice[kendo-grid] table colgroup col:last-of-type {
-  width: 125px;
+div#gridSearchEmployed[kendo-grid] table colgroup col:nth-child(2) {
+  width: 250px;
 }
-div#gridSearchDevice[kendo-grid] table tbody tr td {
-  word-wrap: break-word;
-}
-div#gridSearchDevice[kendo-grid] table tbody tr td:first-of-type {
-  text-align: left;
-}
-
-div#gridSearchRequest[kendo-grid] table colgroup col:first-of-type {
-  width: 125px;
-}
-div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(2) {
-  width: 300px;
-}
-div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(3) {
-  width: 175px;
-}
-div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(4) {
-  width: 225px;
-}
-div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(5) {
-  width: 175px;
-}
-div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(6) {
-  width: 200px;
-}
-div#gridSearchRequest[kendo-grid] table colgroup col:nth-child(7) {
-  width: 175px;
-}
-div#gridSearchRequest[kendo-grid] table colgroup col:last-of-type {
-  width: 125px;
-}
-div#gridSearchRequest[kendo-grid] table tbody tr td {
-  word-wrap: break-word;
-}
-div#gridSearchRequest[kendo-grid] table tbody tr td:first-of-type {
-  text-align: left;
-}
-
-div#gridSearchService[kendo-grid] table colgroup col:first-of-type {
-  width: 125px;
-}
-div#gridSearchService[kendo-grid] table colgroup col:nth-child(2) {
-  width: 300px;
-}
-div#gridSearchService[kendo-grid] table colgroup col:nth-child(3) {
-  width: 175px;
-}
-div#gridSearchService[kendo-grid] table colgroup col:nth-child(4) {
-  width: 225px;
-}
-div#gridSearchService[kendo-grid] table colgroup col:nth-child(5) {
-  width: 175px;
-}
-div#gridSearchService[kendo-grid] table colgroup col:nth-child(6) {
-  width: 200px;
-}
-div#gridSearchService[kendo-grid] table colgroup col:nth-child(7) {
-  width: 175px;
-}
-div#gridSearchService[kendo-grid] table colgroup col:last-of-type {
-  width: 125px;
-}
-div#gridSearchService[kendo-grid] table tbody tr td {
-  word-wrap: break-word;
-}
-div#gridSearchService[kendo-grid] table tbody tr td:first-of-type {
-  text-align: left;
-}
-
-div#gridSearchReport[kendo-grid] table colgroup col:first-of-type {
-  width: 100px;
-}
-div#gridSearchReport[kendo-grid] table colgroup col:nth-child(2) {
+div#gridSearchEmployed[kendo-grid] table colgroup col:nth-child(3) {
   width: 150px;
 }
-div#gridSearchReport[kendo-grid] table colgroup col:nth-child(3) {
-  width: 200px;
-}
-div#gridSearchReport[kendo-grid] table colgroup col:nth-child(4) {
-  width: 200px;
-}
-div#gridSearchReport[kendo-grid] table colgroup col:nth-child(5) {
+div#gridSearchEmployed[kendo-grid] table colgroup col:nth-child(4) {
   width: 150px;
 }
-div#gridSearchReport[kendo-grid] table colgroup col:nth-child(6) {
-  width: 150px;
+div#gridSearchEmployed[kendo-grid] table colgroup col:nth-child(5) {
+  width: 125px;
 }
-div#gridSearchReport[kendo-grid] table colgroup col:last-of-type {
-  width: 150px;
+div#gridSearchEmployed[kendo-grid] table colgroup col:last-of-type {
+  width: 125px;
 }
-div#gridSearchReport[kendo-grid] table tbody tr td {
+div#gridSearchEmployed[kendo-grid] table tbody tr td {
   word-wrap: break-word;
 }
-div#gridSearchReport[kendo-grid] table tbody tr td:first-of-type {
+div#gridSearchEmployed[kendo-grid] table tbody tr td:first-of-type {
   text-align: left;
 }
 

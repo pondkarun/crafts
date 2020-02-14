@@ -17,210 +17,28 @@
 @import "../../base/fix-kendoui.scss";
 // button
 @import "../../component/button/button.scss";
-//Inventory
-div#gridSearchInventory[kendo-grid] {
-    table {
-        colgroup {
-            col {
-                @include first-child() {
-                    width: 125px;
-                }
-                &:nth-child(2) {
-                    width: 125px;
-                }
-                &:nth-child(3) {
-                    width: 125px;
-                }
-                &:nth-child(4) {
-                    width: 300px;
-                }
-                &:nth-child(5) {
-                    width: 125px;
-                }
-                &:nth-child(6) {
-                    width: 125px;
-                }
-                &:nth-child(7) {
-                    width: 125px;
-                }
-                &:nth-child(8) {
-                    width: 200px;
-                }
-                @include last-child() {
-                    width: 125px;
-                }
-            }
-        }
-        tbody {
-            tr {
-                td {
-                    word-wrap: break-word;
-                    @include first-child() {
-                        text-align: left;
-                    }
-                }
-            }
-        }
-    }
-}
-
 //Device
-div#gridSearchDevice[kendo-grid] {
+div#gridSearchEmployed[kendo-grid] {
     table {
         colgroup {
             col {
                 @include first-child() {
-                    width: 125px;
+                    width: 150px;
                 }
                 &:nth-child(2) {
-                    width: 125px;
+                    width: 250px;
                 }
                 &:nth-child(3) {
-                    width: 300px;
+                    width: 150px;
                 }
                 &:nth-child(4) {
-                    width: 200px;
+                    width: 150px;
                 }
                 &:nth-child(5) {
                     width: 125px;
                 }
-                &:nth-child(6) {
-                    width: 200px;
-                }
-                &:nth-child(7) {
-                    width: 150px;
-                }
                 @include last-child() {
                     width: 125px;
-                }
-            }
-        }
-        tbody {
-            tr {
-                td {
-                    word-wrap: break-word;
-                    @include first-child() {
-                        text-align: left;
-                    }
-                }
-            }
-        }
-    }
-}
-
-//Request
-div#gridSearchRequest[kendo-grid] {
-    table {
-        colgroup {
-            col {
-                @include first-child() {
-                    width: 125px;
-                }
-                &:nth-child(2) {
-                    width: 300px;
-                }
-                &:nth-child(3) {
-                    width: 175px;
-                }
-                &:nth-child(4) {
-                    width: 225px;
-                }
-                &:nth-child(5) {
-                    width: 175px;
-                }
-                &:nth-child(6) {
-                    width: 200px;
-                }
-                &:nth-child(7) {
-                    width: 175px;
-                }
-                @include last-child() {
-                    width: 125px;
-                }
-            }
-        }
-        tbody {
-            tr {
-                td {
-                    word-wrap: break-word;
-                    @include first-child() {
-                        text-align: left;
-                    }
-                }
-            }
-        }
-    }
-}
-
-//Service
-div#gridSearchService[kendo-grid] {
-    table {
-        colgroup {
-            col {
-                @include first-child() {
-                    width: 125px;
-                }
-                &:nth-child(2) {
-                    width: 300px;
-                }
-                &:nth-child(3) {
-                    width: 175px;
-                }
-                &:nth-child(4) {
-                    width: 225px;
-                }
-                &:nth-child(5) {
-                    width: 175px;
-                }
-                &:nth-child(6) {
-                    width: 200px;
-                }
-                &:nth-child(7) {
-                    width: 175px;
-                }
-                @include last-child() {
-                    width: 125px;
-                }
-            }
-        }
-        tbody {
-            tr {
-                td {
-                    word-wrap: break-word;
-                    @include first-child() {
-                        text-align: left;
-                    }
-                }
-            }
-        }
-    }
-}
-
-//Report
-div#gridSearchReport[kendo-grid] {
-    table {
-        colgroup {
-            col {
-                @include first-child() {
-                    width: 100px;
-                }
-                &:nth-child(2) {
-                    width: 150px;
-                }
-                &:nth-child(3) {
-                    width: 200px;
-                }
-                &:nth-child(4) {
-                    width: 200px;
-                }
-                &:nth-child(5) {
-                    width: 150px;
-                }
-                &:nth-child(6) {
-                    width: 150px;
-                }
-                @include last-child() {
-                    width: 150px;
                 }
             }
         }
