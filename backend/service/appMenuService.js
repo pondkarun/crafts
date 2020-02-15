@@ -17,10 +17,20 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
         resolve: {
             check: function($location, userService) {
                 if (userService.isUserLoggedIn()) {
-                    $location.path("employed");
+                    $location.path("/account");
                 }
             },
         },
+    }).when("/account", {
+        templateUrl: "app/account/account/template/account.html",
+        controller: "accountController",
+        resolve: {
+            check: function($location, userService) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path("/login");
+                }
+            },
+        }
     }).when("/employed", {
         templateUrl: "app/employed/searchEmployed/template/employed.html",
         controller: "employedController",
@@ -35,7 +45,7 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                     }
                     $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
                         if (Number(res.data.COUNT_ID) <= 0) {
-                            $location.path('/employed');
+                            $location.path('/account');
                         }
                     })
                 }
@@ -55,13 +65,13 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                     }
                     $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
                         if (Number(res.data.COUNT_ID) <= 0) {
-                            $location.path('/employed');
+                            $location.path('/account');
                         }
                     })
                 }
             },
         },
-    }).otherwise({ redirectTo: '/employed' });
+    }).otherwise({ redirectTo: '/account' });
 
 });
 

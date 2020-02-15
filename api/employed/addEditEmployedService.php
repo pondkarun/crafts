@@ -14,9 +14,11 @@ $id_card = @$postRequest->id_card;
 $tel = @$postRequest->tel;
 $email = @$postRequest->email;
 $address = @$postRequest->address;
+$passwordNew = @$postRequest->passwordNew;
+$id_position = @$postRequest->id_position;
 $username = $id_card;
 $id_position = ($id_position) ? $id_position : 1;
-
+$password = ($passwordNew) ? $passwordNew : md5("1234");
 if ($id) {
 
     $sql = "SELECT COUNT(id) AS chkUser  FROM employed WHERE (username = '" . $username . "' OR id_card = '" . $username . "') AND id != '" . $id . "'";
@@ -29,6 +31,7 @@ if ($id) {
         $sql = "UPDATE `employed` SET
         
         `username` = '" . $username . "',
+        `password` = '" . $password . "',
         `id_card` = '" . $id_card . "',
         `name` = '" . $name . "',
         `surname` = '" . $surname . "',
@@ -56,7 +59,6 @@ if ($id) {
 
     if ($chkUser == 0 && $id_card) {
         $id = GUID();
-        $password = md5("1234");
 
         $sql = "INSERT INTO employed 
         (

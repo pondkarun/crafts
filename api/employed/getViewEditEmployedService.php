@@ -11,6 +11,7 @@ try {
     $sql = "SELECT 
      id,
      id_card,
+     password,
      name,
      surname,
      email,
@@ -26,6 +27,7 @@ try {
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
         $response['id'] = $row["id"];
+        $response['password'] = $row["password"];
         $response['id_card'] = $row["id_card"];
         $response['name'] = $row["name"];
         $response['surname'] = $row["surname"];

@@ -33,7 +33,7 @@
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex-gt-sm>
                                     <label>เบอร์โทร</label>
-                                    <input type="tel" ng-model="ctrl.modelSave.tel" required pattern="\d+" ng-disabled="isView">
+                                    <input type="tel" ng-model="ctrl.modelSave.tel" required ng-disabled="isView">
                                 </md-input-container>
 
                                 <md-input-container class="md-block" flex-gt-sm>
@@ -43,7 +43,7 @@
                             </div>
 
                             <md-input-container class="md-block">
-                                <label>ที่อยู่ก</label>
+                                <label>ที่อยู่</label>
                                 <textarea ng-model="ctrl.modelSave.address" rows="5" md-select-on-focus ng-disabled="isView"></textarea>
                             </md-input-container>
 
