@@ -69,7 +69,7 @@ app.controller("addEditEmployedController", ['$scope', '$rootScope', '$location'
         const getEmployedEdit = (ID) => {
             loading.open();
             $http.post(webURL.webApi + "employed/getViewEditEmployedService.php", ID).then((res) => {
-                console.log("res.data", res.data);
+                // console.log("res.data", res.data);
                 if (res.data.status == "200") {
                     this.modelSave = res.data;
                 } else {
