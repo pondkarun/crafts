@@ -27,8 +27,8 @@ app.controller("addEditEmployedController", ['$scope', '$rootScope', '$location'
                 showAlertBox(msgSettings.msgValidForm, null);
             } else {
 
-                $http.post(webURL.webApi + "employed/addEmployedService.php", _this.modelSave).then((res) => {
-                    console.log("res.data", res.data);
+                $http.post(webURL.webApi + "employed/addEditEmployedService.php", _this.modelSave).then((res) => {
+                    // console.log("res.data", res.data);
                     showAlertBox(msgSettings.msgSaveSucc, null);
                 }).catch((err) => {
                     showAlertBox(msgSettings.msgNotSave, null);
@@ -55,6 +55,7 @@ app.controller("addEditEmployedController", ['$scope', '$rootScope', '$location'
                 $scope.title = "เพิ่มผู้รับจ้าง";
             } else if (_this.typePage.Type == "view") {
                 $scope.title = "ข้อมูลผู้รับจ้าง";
+                getEmployedEdit(_this.typePage.ID);
                 $scope.isView = true;
             } else {
                 $location.path("employed");
@@ -62,14 +63,20 @@ app.controller("addEditEmployedController", ['$scope', '$rootScope', '$location'
         }
 
         const getEmployedEdit = (ID) => {
-            // $http.get(webURL.webApi + "inventory/getInventoryService.php" , ID).then((res) => {
-            //     // console.log("res.data", res.data);
-            //     loading.close();
-            // }).catch((err) => {
-            //     console.log("Error");
-            //     loading.close();
-            //     showAlertBox(msgSettings.msgErrorApi, null);
-            // })
+            loading.open();
+            $http.post(webURL.webApi + "employed/getViewEditEmployedService.php", ID).then((res) => {
+                console.log("res.data", res.data);
+                if (res.data.status == "200") {
+                    this.modelSave = res.data;
+                } else {
+                    showAlertBox(msgSettings.msgErrorApi, null);
+                }
+                loading.close();
+            }).catch((err) => {
+                console.log("Error");
+                loading.close();
+                showAlertBox(msgSettings.msgErrorApi, null);
+            })
         }
 
     }

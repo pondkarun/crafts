@@ -27,7 +27,7 @@
 
                             <md-input-container class="md-block">
                                 <label>เลขบัตรประชาชน</label>
-                                <input type="text" ng-model="ctrl.modelSave.id_card" required pattern="\d{13}" md-maxlength="13" ng-disabled="isView">
+                                <input type="text" ng-model="ctrl.modelSave.id_card" required pattern="\d{13}" md-maxlength="13" ng-disabled="ctrl.typePage.Type != 'add'">
                             </md-input-container>
 
                             <div layout-gt-sm="row">

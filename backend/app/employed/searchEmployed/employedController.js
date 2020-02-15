@@ -73,10 +73,16 @@ app.controller("employedController", ['$scope', '$rootScope', '$location', '$rou
             $location.path("employed" + "/add/" + 0);
         }
 
+        this.gridCallbackView = (item) => {
+            $location.path("employed" + "/view/" + item.id);
+        }
 
+        this.gridCallbackEdit = (item) => {
+            $location.path("employed" + "/edit/" + item.id);
+        }
 
         this.searchEmployed = () => {
-            console.log("modelSearch", _this.modelSearch);
+            // console.log("modelSearch", _this.modelSearch);
             loading.open();
             $http.post(webURL.webApi + "employed/searchEmployedService.php", _this.modelSearch).then((res) => {
                 // console.log("res.data", res.data);
