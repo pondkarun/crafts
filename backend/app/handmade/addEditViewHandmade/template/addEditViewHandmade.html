@@ -1,0 +1,85 @@
+<div ng-controller="addEditViewHandmadeController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{title}}</h1>
+    </div>
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+
+
+                    <form name="employedForm" class="container" novalidate>
+                        <md-content layout-padding>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>ชื่อจริง</label>
+                                    <input type="text" required ng-model="ctrl.modelSave.name" ng-disabled="isView">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>นามสกุล</label>
+                                    <input type="text" required ng-model="ctrl.modelSave.surname" ng-disabled="isView">
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>เลขบัตรประชาชน</label>
+                                    <input type="text" ng-model="ctrl.modelSave.id_card" required pattern="\d{13}" md-maxlength="13" ng-disabled="ctrl.typePage.Type != 'add'">
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>เบอร์โทร</label>
+                                    <input type="tel" ng-model="ctrl.modelSave.tel" required ng-disabled="isView">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>E-mail</label>
+                                    <input type="email" required ng-model="ctrl.modelSave.email" ng-disabled="isView">
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>ที่อยู่</label>
+                                    <textarea ng-model="ctrl.modelSave.address" rows="5" md-select-on-focus ng-disabled="isView"></textarea>
+                                </md-input-container>
+                            </div>
+
+                            <div layout="row" ng-if="ctrl.typePage.Type == 'edit'">
+                                <md-input-container flex="50" flex-gt-sm>
+                                    <label>สถานะ</label>
+                                    <md-select name="type" ng-model="ctrl.modelSave.STATUS" required>
+                                        <md-option value="ปกติ">ปกติ</md-option>
+                                        <md-option value="ยกเลิกการใช้งาน">ยกเลิกการใช้งาน</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+
+                        </md-content>
+
+                        <section>
+                            <div class="footer-form-button pt-5" layout="row" layout-align="center center">
+                                <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveFormAdd()" ng-if="!isView">
+                                    Save
+                                </md-button>
+                                <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancelForm()">
+                                    Cancel
+                                </md-button>
+                            </div>
+                        </section>
+
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

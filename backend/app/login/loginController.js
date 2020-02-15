@@ -17,7 +17,7 @@ app.controller("loginController", ['$scope', '$rootScope', '$location', '$routeP
             $scope.model.password = md5($scope.model.password);
             $http.post(webURL.webApi + "login/loginService.php", $scope.model).then((res) => {
 
-                console.log("res.data", res.data);
+                // console.log("res.data", res.data);
                 if (res.data.loginStatus == '200') {
                     userService.saveData(res.data);
                     $rootScope.getMenu();

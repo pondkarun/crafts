@@ -1,0 +1,58 @@
+<div ng-controller="handmadeController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">จัดการผู้รับจ้าง</h1>
+        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ng-click="ctrl.addEmployed()"><i class="fas fa-plus fa-sm text-white-50"></i> เพิ่มผู้รับจ้าง
+        </button>
+    </div>
+
+
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+
+                    <div layout="row">
+                        <h4 class="pr-3">ค้นหา :</h4>
+                        <md-input-container flex="20">
+                            <label>เลขบัตรประชาชน</label>
+                            <input name="id_card" ng-model="ctrl.modelSearch.id_card">
+                        </md-input-container>
+
+
+                        <md-input-container flex="20">
+                            <label>ชื่อ</label>
+                            <input name="BRAND" ng-model="ctrl.modelSearch.Name">
+                        </md-input-container>
+
+
+                        <md-input-container flex="20">
+                            <label>สถานะ</label>
+                            <md-select name="type" ng-model="ctrl.modelSearch.status">
+                                <md-option value="all">Search All</md-option>
+                                <md-option value="ปกติ">ปกติ</md-option>
+                                <md-option value="ยกเลิกการใช้งาน">ยกเลิกการใช้งาน</md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <md-input-container flex="" class="pl-3">
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="ctrl.searchEmployed()">
+                                <i class="fas fa-search fa-sm text-white-50"></i> ค้นหา
+                            </button>
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm" ng-click="ctrl.clearEmployed()">
+                                <i class="fas fa-repeat fa-sm text-white-50"></i> ค่าเริ่มต้น
+                            </button>
+                        </md-input-container>
+
+                    </div>
+                    <grid-search flex="100" g-option="ctrl.gridOptions" on-callback-view="ctrl.gridCallbackView" on-callback-edit="ctrl.gridCallbackEdit">
+                    </grid-search>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

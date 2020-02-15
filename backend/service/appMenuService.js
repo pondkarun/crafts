@@ -53,7 +53,7 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
         },
     }).when("/employed/:Type/:ID", {
         templateUrl: "app/employed/addEditEmployed/template/addEditEmployed.html",
-        controller: "employedController",
+        controller: "addEditEmployedController",
         resolve: {
             check: function($location, userService, $http) {
                 if (!userService.isUserLoggedIn()) {
@@ -61,6 +61,46 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                 } else {
                     let model = {
                         ROUTEP: "employed",
+                        ID_STATUS_EM: userService.getStatusID()
+                    }
+                    $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
+                        if (Number(res.data.COUNT_ID) <= 0) {
+                            $location.path('/account');
+                        }
+                    })
+                }
+            },
+        },
+    }).when("/handmade", {
+        templateUrl: "app/handmade/searchHandmade/template/handmade.html",
+        controller: "handmadeController",
+        resolve: {
+            check: function($location, userService, $http) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path('/login');
+                } else {
+                    let model = {
+                        ROUTEP: "handmade",
+                        ID_STATUS_EM: userService.getStatusID()
+                    }
+                    $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
+                        if (Number(res.data.COUNT_ID) <= 0) {
+                            $location.path('/account');
+                        }
+                    })
+                }
+            },
+        },
+    }).when("/handmade/:Type/:ID", {
+        templateUrl: "app/handmade/addEditViewHandmade/template/addEditViewHandmade.html",
+        controller: "addEditViewHandmadeController",
+        resolve: {
+            check: function($location, userService, $http) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path('/login');
+                } else {
+                    let model = {
+                        ROUTEP: "handmade",
                         ID_STATUS_EM: userService.getStatusID()
                     }
                     $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {

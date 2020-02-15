@@ -17,7 +17,7 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
         }
 
         $scope.routep = (item) => {
-            console.log("item", item);
+            // console.log("item", item);
             $scope.states.activeItem = item
             $location.path(item);
         }
