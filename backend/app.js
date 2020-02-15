@@ -38,6 +38,7 @@ app.constant('msgSettings', {
     msgTextSearch: 'กรุณากรอกข้อมูลที่ต้องการค้นหา',
     msgUnlikePassword: 'รหัสผ่านไม่ตรงกัน',
     msgErrPassword: 'รหัสผ่านไม่ถูกต้อง',
+    msgErrIDcardRepeat: 'เลขบัตรประชาชนนี้ได้ลงทะเบียนแล้ว',
     msgErrorApi: 'มีบางอย่างผิดพลาด! กรุณาลองใหม่อีกครั้ง',
     msgRepeatedlyData: 'มีข้อมูลซ้ำกัน กรุณาลองทำรายการใหม่',
 

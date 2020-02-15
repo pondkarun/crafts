@@ -15,58 +15,83 @@ $tel = @$postRequest->tel;
 $email = @$postRequest->email;
 $address = @$postRequest->address;
 $username = $id_card;
-$id_position = 1;
+$id_position = ($id_position) ? $id_position : 1;
 
 if ($id) {
 
-    $STATUS = @$postRequest->STATUS;
-    $sql = "UPDATE `employed` SET
-    
-    `username` = '" . $username . "',
-    `id_card` = '" . $id_card . "',
-    `name` = '" . $name . "',
-    `surname` = '" . $surname . "',
-    `email` = '" . $email . "',
-    `address` = '" . $address . "',
-    `tel` = '" . $tel . "',
-    `STATUS` = '" . $STATUS . "'
+    $sql = "SELECT COUNT(id) AS chkUser  FROM employed WHERE (username = '" . $username . "' OR id_card = '" . $username . "') AND id != '" . $id . "'";
+    $result = mysqli_query($condb, $sql);
+    $row = mysqli_fetch_array($result);
+    $chkUser = $row['chkUser'];
 
-    WHERE id = '" . $id . "'
-  ";
+    if ($chkUser == 0 && $id_card) {
+        $STATUS = @$postRequest->STATUS;
+        $sql = "UPDATE `employed` SET
+        
+        `username` = '" . $username . "',
+        `id_card` = '" . $id_card . "',
+        `name` = '" . $name . "',
+        `surname` = '" . $surname . "',
+        `email` = '" . $email . "',
+        `address` = '" . $address . "',
+        `tel` = '" . $tel . "',
+        `STATUS` = '" . $STATUS . "'
+    
+        WHERE id = '" . $id . "'
+      ";
+        $result = mysqli_query($condb, $sql);
+        $status = '200';
+        print_r($status);
+    } else {
+
+        $status = '404';
+        print_r($status);
+    }
 } else {
 
-    $id = GUID();
-    $password = md5("1234");
+    $sql = "SELECT COUNT(id) AS chkUser  FROM employed WHERE username = '" . $username . "' OR id_card = '" . $username . "'";
+    $result = mysqli_query($condb, $sql);
+    $row = mysqli_fetch_array($result);
+    $chkUser = $row['chkUser'];
 
-    $sql = "INSERT INTO employed 
-    (
-        `id`,
-        `username`,
-        `password`,
-        `id_card`,
-        `name`,
-        `surname`,
-        `email`,
-        `address`,
-        `tel`,
-        `id_position`
-    )
-     VALUES 
-     (
-        '" . $id . "', 
-        '" . $username . "',
-        '" . $password . "',
-        '" . $id_card . "',
-        '" . $name . "',
-        '" . $surname . "', 
-        '" . $email . "',
-        '" . $address . "',
-        '" . $tel . "',
-        '" . $id_position . "'
+    if ($chkUser == 0 && $id_card) {
+        $id = GUID();
+        $password = md5("1234");
 
-    )";
+        $sql = "INSERT INTO employed 
+        (
+            `id`,
+            `username`,
+            `password`,
+            `id_card`,
+            `name`,
+            `surname`,
+            `email`,
+            `address`,
+            `tel`,
+            `id_position`
+        )
+         VALUES 
+         (
+            '" . $id . "', 
+            '" . $username . "',
+            '" . $password . "',
+            '" . $id_card . "',
+            '" . $name . "',
+            '" . $surname . "', 
+            '" . $email . "',
+            '" . $address . "',
+            '" . $tel . "',
+            '" . $id_position . "'
+    
+        )";
+
+        $result = mysqli_query($condb, $sql);
+        $status = '200';
+        print_r($status);
+    } else {
+
+        $status = '404';
+        print_r($status);
+    }
 }
-
-$result = mysqli_query($condb, $sql) or die("Error in query: $sql" . mysqli_error());
-
-print_r($result);

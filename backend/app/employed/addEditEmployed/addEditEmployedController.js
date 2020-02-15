@@ -26,15 +26,19 @@ app.controller("addEditEmployedController", ['$scope', '$rootScope', '$location'
             if (!$scope.employedForm.$valid) {
                 showAlertBox(msgSettings.msgValidForm, null);
             } else {
-
+                let goto = () => {
+                    $location.path("employed");
+                }
                 $http.post(webURL.webApi + "employed/addEditEmployedService.php", _this.modelSave).then((res) => {
                     // console.log("res.data", res.data);
-                    showAlertBox(msgSettings.msgSaveSucc, null);
+                    if (res.data == "404") {
+                        showAlertBox(msgSettings.msgErrIDcardRepeat, null);
+                    } else {
+                        showAlertBox(msgSettings.msgSaveSucc, goto());
+                    }
                 }).catch((err) => {
                     showAlertBox(msgSettings.msgNotSave, null);
-                }).finally(() => {
-                    $location.path("employed");
-                });
+                })
 
             }
         }

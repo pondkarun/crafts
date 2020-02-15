@@ -43,9 +43,19 @@
                             </div>
 
                             <md-input-container class="md-block">
-                                <label>ที่อยู่</label>
+                                <label>ที่อยู่ก</label>
                                 <textarea ng-model="ctrl.modelSave.address" rows="5" md-select-on-focus ng-disabled="isView"></textarea>
                             </md-input-container>
+
+                            <div layout="row" ng-if="ctrl.typePage.Type == 'edit'">
+                                <md-input-container flex="50">
+                                    <label>สถานะ</label>
+                                    <md-select name="type" ng-model="ctrl.modelSave.STATUS" required>
+                                        <md-option value="ปกติ">ปกติ</md-option>
+                                        <md-option value="ยกเลิกการใช้งาน">ยกเลิกการใช้งาน</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
                         </md-content>
 
                         <section>
