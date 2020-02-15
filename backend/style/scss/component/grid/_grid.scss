@@ -54,3 +54,40 @@ div#gridSearchEmployed[kendo-grid] {
         }
     }
 }
+
+div#gridSearchHandmade[kendo-grid] {
+    table {
+        colgroup {
+            col {
+                @include first-child() {
+                    width: 150px;
+                }
+                &:nth-child(2) {
+                    width: 250px;
+                }
+                &:nth-child(3) {
+                    width: 200px;
+                }
+                &:nth-child(4) {
+                    width: 150px;
+                }
+                &:nth-child(5) {
+                    width: 125px;
+                }
+                @include last-child() {
+                    width: 125px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    word-wrap: break-word;
+                    @include first-child() {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}

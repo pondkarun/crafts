@@ -4,48 +4,51 @@ app.controller("handmadeController", ['$scope', '$rootScope', '$location', '$rou
     function($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
         let _this = this;
         this.modelSearch = {
-            id_card: null,
-            Name: null,
-            status: "ปกติ"
+            code_handmade: null,
+            name: null,
+            type_id: null,
+            price1: null,
+            price2: null,
+            is_use: "true"
         };
         _this.ID = userService.getID();
 
         this.init = function() {
-            _this.searchEmployed();
+            _this.searchHandmade();
         }
 
         this.gridOptions = {
-            gridID: 'gridSearchEmployed',
+            gridID: 'gridSearchHandmade',
             dataSource: new kendo.data.DataSource({ data: [], pageSize: 10 }),
             sortable: true,
             pageable: true,
             columns: [{
-                    field: "id_card",
-                    title: "เลขบัตรประชาชน",
+                    field: "code_handmade",
+                    title: "รหัสงานฝีมือ",
                     attributes: {
                         class: "text-center"
                     }
                 },
 
                 {
-                    field: "NameTH",
-                    title: "ชื่อ - นามสกุล",
+                    field: "name",
+                    title: "รายการงานฝีมือ",
                     attributes: {
                         class: "text-center"
                     }
                 },
 
                 {
-                    field: "email",
-                    title: "E-mail",
+                    field: "type",
+                    title: "ประเภทงานฝีมือ",
                     attributes: {
                         class: "text-center"
                     }
                 },
 
                 {
-                    field: "tel",
-                    title: "เบอร์ติดต่อ",
+                    field: "price",
+                    title: "ราคา",
                     attributes: {
                         class: "text-center"
                     }
@@ -69,50 +72,53 @@ app.controller("handmadeController", ['$scope', '$rootScope', '$location', '$rou
             showIndex: false,
         };
 
-        this.addEmployed = () => {
-            $location.path("employed" + "/add/" + 0);
+        this.addHandmade = () => {
+            $location.path("handmade" + "/add/" + 0);
         }
 
         this.gridCallbackView = (item) => {
-            $location.path("employed" + "/view/" + item.id);
+            $location.path("handmade" + "/view/" + item.id);
         }
 
         this.gridCallbackEdit = (item) => {
-            $location.path("employed" + "/edit/" + item.id);
+            $location.path("handmade" + "/edit/" + item.id);
         }
 
-        this.searchEmployed = () => {
+        this.searchHandmade = () => {
             // console.log("modelSearch", _this.modelSearch);
-            loading.open();
-            $http.post(webURL.webApi + "employed/searchEmployedService.php", _this.modelSearch).then((res) => {
-                // console.log("res.data", res.data);
+            // loading.open();
+            // $http.post(webURL.webApi + "employed/searchEmployedService.php", _this.modelSearch).then((res) => {
+            //     // console.log("res.data", res.data);
 
-                res.data.filter((e) => {
-                    e.PurchaseDate = commonService.formatDate(e.PurchaseDate)
-                    e.STATUS = (e.STATUS == 'ใช้งาน') ? "Active" : "Inactive";
-                    if (e.DisposedDate && e.DisposedDate != "0000-00-00") {
-                        e.DisposedDate = commonService.formatDate(e.DisposedDate)
-                    } else {
-                        e.DisposedDate = "-"
-                    }
-                })
+            //     res.data.filter((e) => {
+            //         e.PurchaseDate = commonService.formatDate(e.PurchaseDate)
+            //         e.STATUS = (e.STATUS == 'ใช้งาน') ? "Active" : "Inactive";
+            //         if (e.DisposedDate && e.DisposedDate != "0000-00-00") {
+            //             e.DisposedDate = commonService.formatDate(e.DisposedDate)
+            //         } else {
+            //             e.DisposedDate = "-"
+            //         }
+            //     })
 
-                _this.gridOptions.dataSource.data(res.data);
-                loading.close();
-            }).catch((err) => {
-                console.log("Error");
-                loading.close();
-                showAlertBox(msgSettings.msgErrorApi, null);
-            })
+            //     _this.gridOptions.dataSource.data(res.data);
+            //     loading.close();
+            // }).catch((err) => {
+            //     console.log("Error");
+            //     loading.close();
+            //     showAlertBox(msgSettings.msgErrorApi, null);
+            // })
         }
 
-        this.clearEmployed = () => {
+        this.clearHandmade = () => {
             this.modelSearch = {
-                id_card: null,
-                Name: null,
-                status: "ปกติ"
+                code_handmade: null,
+                name: null,
+                type_id: null,
+                price1: null,
+                price2: null,
+                is_use: "true"
             };
-            _this.searchEmployed();
+            _this.searchHandmade();
         }
 
         //************dialog func***************//
