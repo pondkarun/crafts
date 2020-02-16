@@ -73,7 +73,7 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
                 fd.append('file[]', file);
             });
             fd.append('formdata', JSON.stringify(id));
-            $http.post(webURL.webApi + '/handmade/uploadImageHandmadeService.php', fd, {
+            $http.post(webURL.webApi + 'handmade/uploadImageHandmadeService.php', fd, {
                 transformRequest: angular.identity,
                 headers: {
                     'Content-type': undefined
