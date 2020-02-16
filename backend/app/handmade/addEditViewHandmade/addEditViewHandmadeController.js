@@ -53,21 +53,18 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
                     // console.log("res.data", res.data);
                     if (res.data.status == "200") {
                         if (res.data.id) {
+                            showAlertBox(msgSettings.msgSaveSucc, null);
+                            $location.path("handmade");
                             uploadImage(res.data.id)
                         }
                     } else {
                         showAlertBox(msgSettings.msgNotSave, null);
                     }
-                }).catch((err) => {
-                    showAlertBox(msgSettings.msgNotSave, null);
                 })
             }
         }
 
         function uploadImage(id) {
-            let goto = () => {
-                $location.path("handmade");
-            }
             var fd = new FormData();
             angular.forEach($scope.files, function(file) {
                 fd.append('file[]', file);
@@ -78,10 +75,7 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
                 headers: {
                     'Content-type': undefined
                 }
-            }).then((res) => {
-                // console.log("res", res);
-                showAlertBox(msgSettings.msgSaveSucc, goto());
-            });
+            })
         }
 
         function showAlertBox(msg, callback) {
