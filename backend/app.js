@@ -4,9 +4,21 @@ var app = angular.module('crafts', ['ngMaterial', 'ngMessages', 'material.svgAss
 var loading = new loadingTopJS();
 
 var webURL = {
-    webApi: "http://127.0.0.1/crafts/api/"
+    webApi: "http://localhost/crafts/api/"
 }
 
+app.directive("fileInput", ['$parse', function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, ele, attrs) {
+            ele.bind('change', function() {
+                $parse(attrs.fileInput).
+                assign(scope, ele[0].files)
+                scope.$apply()
+            });
+        }
+    }
+}]);
 
 app.constant('msgSettings', {
     msgDelConfirm: "ยืนยันการลบข้อมูล",

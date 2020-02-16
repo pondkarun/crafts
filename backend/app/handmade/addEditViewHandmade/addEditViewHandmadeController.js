@@ -11,6 +11,14 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             size: [],
             employed_id: userService.getID()
         };
+        this.modelSave = {
+            name: "fgfd",
+            price: 953751301,
+            type_id: "18F9D3C992A84D15AE016B6FFF5F6CCE",
+            color: ["5"],
+            size: [{ color: "5", size: "2" }],
+            employed_id: userService.getID()
+        };
         this.listType = [];
         this.model = {
             color: null,
@@ -46,8 +54,6 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
         }
 
         this.saveFormAdd = () => {
-            console.log("modelSave", _this.modelSave);
-
             if (!$scope.employedForm.$valid) {
                 showAlertBox(msgSettings.msgValidForm, null);
             } else if (_this.modelSave.color.length <= 0) {
@@ -55,21 +61,36 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             } else if (_this.modelSave.size.length <= 0) {
                 showAlertBox(msgSettings.msgValidForm, null);
             } else {
-                let goto = () => {
-                    $location.path("handmade");
-                }
+
                 $http.post(webURL.webApi + "handmade/addEditHandmadeService.php", _this.modelSave).then((res) => {
                     console.log("res.data", res.data);
-                    if (res.data == "404") {
-                        showAlertBox(msgSettings.msgErrIDcardRepeat, null);
+                    if (res.data.status == "200") {
+                        if (res.data.id) {
+                            uploadImage(res.data.id)
+                        }
                     } else {
-                        showAlertBox(msgSettings.msgSaveSucc, goto());
+                        showAlertBox(msgSettings.msgNotSave, null);
                     }
                 }).catch((err) => {
                     showAlertBox(msgSettings.msgNotSave, null);
                 })
-
             }
+        }
+
+        function uploadImage(id) {
+            var fd = new FormData();
+            angular.forEach($scope.files, function(file) {
+                fd.append('file[]', file);
+            });
+            fd.append('formdata', JSON.stringify(id));
+            $http.post(webURL.webApi + '/handmade/uploadImageHandmadeService.php', fd, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Content-type': undefined
+                }
+            }).then((res) => {
+                console.log("res", res);
+            });
         }
 
         function showAlertBox(msg, callback) {

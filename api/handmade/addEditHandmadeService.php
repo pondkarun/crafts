@@ -1,9 +1,9 @@
 <?php
 require_once('../condb.php');
-
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
 
+$data = array();
 $input = file_get_contents("php://input");
 $postRequest = json_decode($input);
 
@@ -29,7 +29,6 @@ $id = GUID();
 
 if ($name) {
 
-
     $sql = "INSERT INTO handmade 
     (
         `id`,
@@ -54,11 +53,13 @@ if ($name) {
     )";
 
     $result = mysqli_query($condb, $sql) or die("Error in query: $sql" . mysqli_error());
-    $status = '200';
-} else {
 
-    $status = '404';
+    $data["status"] = '200';
+    $data["id"] = $id;
+} else {
+    $data["status"] = '404';
+    $data["id"] = null;
 }
 
 
-print_r($status);
+print_r(json_encode($data));
