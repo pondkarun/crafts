@@ -14,50 +14,45 @@
                     <form name="employedForm" class="container" novalidate>
                         <md-content layout-padding>
                             <div layout-gt-sm="row">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>ชื่อจริง</label>
+                                <md-input-container class="md-block" flex="70" flex-gt-sm>
+                                    <label>ชื่องานฝีมือ</label>
                                     <input type="text" required ng-model="ctrl.modelSave.name" ng-disabled="isView">
                                 </md-input-container>
 
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>นามสกุล</label>
-                                    <input type="text" required ng-model="ctrl.modelSave.surname" ng-disabled="isView">
-                                </md-input-container>
-                            </div>
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>เลขบัตรประชาชน</label>
-                                    <input type="text" ng-model="ctrl.modelSave.id_card" required pattern="\d{13}" md-maxlength="13" ng-disabled="ctrl.typePage.Type != 'add'">
-                                </md-input-container>
-                            </div>
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>เบอร์โทร</label>
-                                    <input type="tel" ng-model="ctrl.modelSave.tel" required ng-disabled="isView">
-                                </md-input-container>
-
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>E-mail</label>
-                                    <input type="email" required ng-model="ctrl.modelSave.email" ng-disabled="isView">
+                                <md-input-container class="md-block" flex="30" flex-gt-sm>
+                                    <label>ราคา</label>
+                                    <input type="number" min="0" required ng-model="ctrl.modelSave.price" ng-disabled="isView">
                                 </md-input-container>
                             </div>
 
-                            <div layout-gt-sm="row">
-                                <md-input-container class="md-block" flex-gt-sm>
-                                    <label>ที่อยู่</label>
-                                    <textarea ng-model="ctrl.modelSave.address" rows="5" md-select-on-focus ng-disabled="isView"></textarea>
-                                </md-input-container>
-                            </div>
-
-                            <div layout="row" ng-if="ctrl.typePage.Type == 'edit'">
-                                <md-input-container flex="50" flex-gt-sm>
-                                    <label>สถานะ</label>
-                                    <md-select name="type" ng-model="ctrl.modelSave.STATUS" required>
-                                        <md-option value="ปกติ">ปกติ</md-option>
-                                        <md-option value="ยกเลิกการใช้งาน">ยกเลิกการใช้งาน</md-option>
+                            <div layout="row">
+                                <md-input-container flex="30" flex-gt-sm>
+                                    <label>ประเภทงานฝีมือ</label>
+                                    <md-select name="type" ng-model="ctrl.modelSave.type_id" required>
+                                        <md-option ng-repeat="item in ctrl.listType" value="{{ item.id }}">{{ item.type }}</md-option>
                                     </md-select>
                                 </md-input-container>
+
+                                <md-content flex="70" class="pl-1" flex-gt-sm>
+                                    <md-chips ng-model="ctrl.modelSave.color" placeholder="รายละเอียดสี *" md-add-on-blur="true" input-aria-label="Fruit names" md-removable="ctrl.removable"></md-chips>
+                                </md-content>
                             </div>
+
+                            <div layout="row">
+                                <md-input-container flex="30" flex-gt-sm>
+                                    <label>เลือกสี</label>
+                                    <md-select name="type" ng-model="ctrl.model.color" ng-disabled="ctrl.modelSave.color.length == 0" ng-change="ctrl.mapchipModel(ctrl.model.color)">
+                                        <md-option ng-repeat="item in ctrl.modelSave.color" value="{{ item }}">{{ item }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <md-content flex="70" class="pl-1" flex-gt-sm ng-if="ctrl.model.color">
+                                    <md-chips ng-model="ctrl.model.size" placeholder="รายละเอียดขนาด *" md-add-on-blur="true" input-aria-label="Fruit names" md-removable="ctrl.removable" md-transform-chip="ctrl.chipModel($chip)">
+                                    </md-chips>
+                                </md-content>
+                            </div>
+
+
 
                         </md-content>
 

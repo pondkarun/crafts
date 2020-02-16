@@ -5,32 +5,61 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
         let _this = this;
         this.modelSave = {
             name: null,
-            surname: null,
-            id_card: null,
-            tel: null,
-            email: null,
-            address: null
+            price: null,
+            type_id: null,
+            color: [],
+            size: [],
+            employed_id: userService.getID()
         };
+        this.listType = [];
+        this.model = {
+            color: null,
+            size: []
+        };
+
+        this.chipModel = (chip) => {
+            let item = {
+                color: _this.model.color,
+                size: chip
+            }
+            _this.modelSave.size.push(item);
+        }
+
+        this.mapchipModel = (item) => {
+            _this.model.size = [];
+            _this.modelSave.size.filter((e) => {
+                if (e.color == item) {
+                    _this.model.size.push(e.size);
+                }
+            })
+        }
+
         this.typePage = {};
         $scope.isView = false;
         this.init = function() {
             checkRouteParams()
+            getType()
         }
 
         this.cancelForm = () => {
-            $location.path("employed");
+            $location.path("handmade");
         }
 
         this.saveFormAdd = () => {
-            // console.log("modelSave", _this.modelSave);
+            console.log("modelSave", _this.modelSave);
+
             if (!$scope.employedForm.$valid) {
+                showAlertBox(msgSettings.msgValidForm, null);
+            } else if (_this.modelSave.color.length <= 0) {
+                showAlertBox(msgSettings.msgValidForm, null);
+            } else if (_this.modelSave.size.length <= 0) {
                 showAlertBox(msgSettings.msgValidForm, null);
             } else {
                 let goto = () => {
-                    $location.path("employed");
+                    $location.path("handmade");
                 }
-                $http.post(webURL.webApi + "employed/addEditEmployedService.php", _this.modelSave).then((res) => {
-                    // console.log("res.data", res.data);
+                $http.post(webURL.webApi + "handmade/addEditHandmadeService.php", _this.modelSave).then((res) => {
+                    console.log("res.data", res.data);
                     if (res.data == "404") {
                         showAlertBox(msgSettings.msgErrIDcardRepeat, null);
                     } else {
@@ -51,18 +80,17 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
 
         function checkRouteParams() {
             _this.typePage = $routeParams;
-            // console.log("_this.typePage", _this.typePage);
             if (_this.typePage.Type == "edit") {
-                $scope.title = "แก้ไขผู้รับจ้าง";
+                $scope.title = "แก้ไขงานฝีมือ";
                 getEmployedEdit(_this.typePage.ID);
             } else if (_this.typePage.Type == "add") {
-                $scope.title = "เพิ่มผู้รับจ้าง";
+                $scope.title = "เพิ่มงานฝีมือ";
             } else if (_this.typePage.Type == "view") {
-                $scope.title = "ข้อมูลผู้รับจ้าง";
+                $scope.title = "ข้อมูลงานฝีมือ";
                 getEmployedEdit(_this.typePage.ID);
                 $scope.isView = true;
             } else {
-                $location.path("employed");
+                $location.path("handmade");
             }
         }
 
@@ -79,6 +107,16 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             }).catch((err) => {
                 console.log("Error");
                 loading.close();
+                showAlertBox(msgSettings.msgErrorApi, null);
+            })
+        }
+
+        const getType = () => {
+            $http.get(webURL.webApi + "type/getTypeService.php").then((res) => {
+                // console.log("res.data", res.data);
+                _this.listType = res.data
+            }).catch((err) => {
+                console.log("Error");
                 showAlertBox(msgSettings.msgErrorApi, null);
             })
         }
