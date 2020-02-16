@@ -11,19 +11,6 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             size: [],
             employed_id: userService.getID()
         };
-        this.modelSave = {
-            name: "fgfd",
-            price: 953751301,
-            type_id: "18F9D3C992A84D15AE016B6FFF5F6CCE",
-            color: ["5"],
-            size: [{ color: "5", size: "2" }],
-            employed_id: userService.getID()
-        };
-        this.listType = [];
-        this.model = {
-            color: null,
-            size: []
-        };
 
         this.chipModel = (chip) => {
             let item = {
@@ -63,7 +50,7 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             } else {
 
                 $http.post(webURL.webApi + "handmade/addEditHandmadeService.php", _this.modelSave).then((res) => {
-                    console.log("res.data", res.data);
+                    // console.log("res.data", res.data);
                     if (res.data.status == "200") {
                         if (res.data.id) {
                             uploadImage(res.data.id)
@@ -78,6 +65,9 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
         }
 
         function uploadImage(id) {
+            let goto = () => {
+                $location.path("handmade");
+            }
             var fd = new FormData();
             angular.forEach($scope.files, function(file) {
                 fd.append('file[]', file);
@@ -89,7 +79,8 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
                     'Content-type': undefined
                 }
             }).then((res) => {
-                console.log("res", res);
+                // console.log("res", res);
+                showAlertBox(msgSettings.msgSaveSucc, goto());
             });
         }
 

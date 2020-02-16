@@ -1,16 +1,6 @@
 <?php
 require_once('../condb.php');
 
-// echo '<pre>';
-// print_r($_FILES);
-// echo '</pre>';
-
-// echo '<pre>';
-// print_r($_POST);
-// echo '</pre>';
-// exit;
-
-
 $id_handmade = $_POST['formdata'];
 foreach ($_FILES['file']['name'] as $key => $val) {
 
