@@ -86,17 +86,6 @@ app.controller("employedController", ['$scope', '$rootScope', '$location', '$rou
             loading.open();
             $http.post(webURL.webApi + "employed/searchEmployedService.php", _this.modelSearch).then((res) => {
                 // console.log("res.data", res.data);
-
-                res.data.filter((e) => {
-                    e.PurchaseDate = commonService.formatDate(e.PurchaseDate)
-                    e.STATUS = (e.STATUS == 'ใช้งาน') ? "Active" : "Inactive";
-                    if (e.DisposedDate && e.DisposedDate != "0000-00-00") {
-                        e.DisposedDate = commonService.formatDate(e.DisposedDate)
-                    } else {
-                        e.DisposedDate = "-"
-                    }
-                })
-
                 _this.gridOptions.dataSource.data(res.data);
                 loading.close();
             }).catch((err) => {
