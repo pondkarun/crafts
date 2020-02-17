@@ -1,7 +1,7 @@
 'use strict'
 
 app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings', 'commonService',
-    function ($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
+    function($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
         let _this = this;
         this.modelSave = {
             name: null,
@@ -19,10 +19,12 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             }
             _this.modelSave.size.push(item);
         }
-        this.removable = (item) => {
-            console.log("item", item);
 
+        this.removableSize = (item) => {
+            let delIndex = _this.modelSave.size.findIndex((x) => x.size == item && x.color == _this.model.color);
+            _this.modelSave.size.splice(delIndex, 1);
         }
+
         this.mapchipModel = (item) => {
             _this.model.size = [];
             _this.modelSave.size.filter((e) => {
@@ -34,7 +36,7 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
 
         this.typePage = {};
         $scope.isView = false;
-        this.init = function () {
+        this.init = function() {
             checkRouteParams()
             getType()
         }
@@ -69,7 +71,7 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
 
         function uploadImage(id) {
             var fd = new FormData();
-            angular.forEach($scope.files, function (file) {
+            angular.forEach($scope.files, function(file) {
                 fd.append('file[]', file);
             });
             fd.append('formdata', JSON.stringify(id));
