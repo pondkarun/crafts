@@ -60,10 +60,12 @@
                                         <button class="btn-upload">อัพโหลดรูปภาพ</button>
                                         <input flow-btn type="file" multiple>
                                     </div>
-                                    <div ng-repeat="file in uploader.flow.files track by $index">
-                                        {{file.name}}
-                                        <a href="" ng-click="file.cancel(); ctrl.open(file)">X</a>
-                                    </div>
+                                    <ul ng-repeat="file in uploader.flow.files track by $index">
+                                        <li>
+                                            {{file.name}}
+                                            <a href="" ng-click="file.cancel(); ctrl.delImg(file.name)" class="pl-1">X</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </md-content>

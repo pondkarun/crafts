@@ -52,8 +52,7 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
                 fileReader.onload = function(event) {
                     let item = {
                         image: event.target.result,
-                        name: flowFile.name,
-                        sort: i
+                        name: flowFile.name
                     }
                     _this.modelSave.imageStrings.push(item);
                 };
@@ -61,9 +60,9 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             });
         };
 
-        this.open = (index) => {
-            console.log("index", index);
-
+        this.delImg = (item) => {
+            let delIndex = _this.modelSave.imageStrings.findIndex((x) => x.name == item);
+            _this.modelSave.imageStrings.splice(delIndex, 1);
         }
 
         this.cancelForm = () => {
@@ -77,10 +76,13 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
                 showAlertBox(msgSettings.msgValidForm, null);
             } else if (_this.modelSave.size.length <= 0) {
                 showAlertBox(msgSettings.msgValidForm, null);
+
+            } else if (_this.modelSave.imageStrings.length <= 0) {
+                showAlertBox("กรุณาเลือกรูปภาพ", null);
             } else {
 
                 $http.post(webURL.webApi + "handmade/addEditHandmadeService.php", _this.modelSave).then((res) => {
-                    console.log("res.data", res.data);
+                    // console.log("res.data", res.data);
                     if (res.data.status == "200") {
                         if (res.data.id) {
                             showAlertBox(msgSettings.msgSaveSucc, null);
