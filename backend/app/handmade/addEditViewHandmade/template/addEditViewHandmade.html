@@ -54,13 +54,21 @@
                                 </md-content>
                             </div>
 
-
-
+                            <div layout="row" flex-gt-sm>
+                                <div flow-init flow-name="uploader.flow" flow-files-added="ctrl.processFiles($files)">
+                                    <div class="upload-btn-wrapper">
+                                        <button class="btn-upload">อัพโหลดรูปภาพ</button>
+                                        <input flow-btn type="file" multiple>
+                                    </div>
+                                    <div ng-repeat="file in uploader.flow.files track by $index">
+                                        {{file.name}}
+                                        <a href="" ng-click="file.cancel(); ctrl.open(file)">X</a>
+                                    </div>
+                                </div>
+                            </div>
                         </md-content>
 
-                        <div layout="row" flex-gt-sm>
-                            <input type="file" file-input="files" multiple required />
-                        </div>
+
 
                         <section>
                             <div class="footer-form-button pt-5" layout="row" layout-align="center center">
@@ -72,7 +80,6 @@
                                 </md-button>
                             </div>
                         </section>
-
                     </form>
 
 

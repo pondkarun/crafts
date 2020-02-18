@@ -3,7 +3,6 @@ require_once('../condb.php');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
 
-$data = array();
 $input = file_get_contents("php://input");
 $postRequest = json_decode($input);
 
@@ -18,6 +17,7 @@ $color = json_encode($color, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 $size = @$postRequest->size;
 $size = json_encode($size, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+$imageStrings = $postRequest->imageStrings;
 
 $sql = "SELECT COUNT(code_handmade) AS COUNT_CODE FROM `handmade`";
 $result = mysqli_query($condb, $sql);
@@ -54,12 +54,47 @@ if ($name) {
 
     $result = mysqli_query($condb, $sql) or die("Error in query: $sql" . mysqli_error());
 
-    $data["status"] = '200';
-    $data["id"] = $id;
+
+    for ($i = 0; $i < count($imageStrings); $i++) {
+
+        $statement = array(
+            $imageStrings[$i]->image,
+            $imageStrings[$i]->name
+        );
+
+        $date1 = date("Ymd_His");
+        $numrand = (mt_rand());
+        $type = strrchr($statement[1], ".");
+        $newname = "crafts_" . $numrand . $date1 . $type;
+        $path = "../../images/" . $newname;
+
+        $data = $statement[0];
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+        $data = base64_decode($data);
+        file_put_contents($path, $data);
+
+
+        $sql = 'INSERT INTO handmade_image 
+        (
+            `id_handmade`,
+            `image`
+        )
+        VALUES 
+        (
+            "' . $id . '",
+            "' . $newname . '"
+
+        )';
+
+        $result = mysqli_query($condb, $sql) or die("Error in query: $sql" . mysqli_error());
+    }
+
+
+    $status = '200';
 } else {
-    $data["status"] = '404';
-    $data["id"] = null;
+    $status = '404';
 }
 
 
-print_r(json_encode($data));
+print_r(json_encode($status));

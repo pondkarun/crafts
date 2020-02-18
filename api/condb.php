@@ -16,4 +16,3 @@ if ($condb->connect_errno) {
 }
 
 require_once('function.php');
-// echo md5("P@ssw0rd");

@@ -1,24 +1,12 @@
 ﻿'use strict'
 
-var app = angular.module('crafts', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngRoute', 'kendo.directives', 'vAccordion', 'ngAnimate']);
+var app = angular.module('crafts', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngRoute', 'kendo.directives', 'vAccordion', 'ngAnimate', 'flow']);
 var loading = new loadingTopJS();
 
 var webURL = {
     webApi: "http://localhost/crafts/api/"
 }
 
-app.directive("fileInput", ['$parse', function($parse) {
-    return {
-        restrict: 'A',
-        link: function(scope, ele, attrs) {
-            ele.bind('change', function() {
-                $parse(attrs.fileInput).
-                assign(scope, ele[0].files)
-                scope.$apply()
-            });
-        }
-    }
-}]);
 
 app.constant('msgSettings', {
     msgDelConfirm: "ยืนยันการลบข้อมูล",

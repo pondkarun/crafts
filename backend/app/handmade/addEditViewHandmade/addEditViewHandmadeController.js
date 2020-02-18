@@ -9,8 +9,18 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             type_id: null,
             color: [],
             size: [],
+            imageStrings: [],
             employed_id: userService.getID()
         };
+
+
+        this.typePage = {};
+        $scope.isView = false;
+        this.init = function() {
+            checkRouteParams()
+            getType()
+        }
+
 
         this.chipModel = (chip) => {
             let item = {
@@ -34,11 +44,26 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             })
         }
 
-        this.typePage = {};
-        $scope.isView = false;
-        this.init = function() {
-            checkRouteParams()
-            getType()
+
+        //อัพโหลด
+        this.processFiles = (files) => {
+            angular.forEach(files, function(flowFile, i) {
+                var fileReader = new FileReader();
+                fileReader.onload = function(event) {
+                    let item = {
+                        image: event.target.result,
+                        name: flowFile.name,
+                        sort: i
+                    }
+                    _this.modelSave.imageStrings.push(item);
+                };
+                fileReader.readAsDataURL(flowFile.file);
+            });
+        };
+
+        this.open = (index) => {
+            console.log("index", index);
+
         }
 
         this.cancelForm = () => {
@@ -55,33 +80,21 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             } else {
 
                 $http.post(webURL.webApi + "handmade/addEditHandmadeService.php", _this.modelSave).then((res) => {
-                    // console.log("res.data", res.data);
+                    console.log("res.data", res.data);
                     if (res.data.status == "200") {
                         if (res.data.id) {
                             showAlertBox(msgSettings.msgSaveSucc, null);
-                            $location.path("handmade");
-                            uploadImage(res.data.id)
                         }
                     } else {
                         showAlertBox(msgSettings.msgNotSave, null);
                     }
+                }).catch((err) => {
+                    showAlertBox(msgSettings.msgErrorApi, null);
                 })
             }
         }
 
-        function uploadImage(id) {
-            var fd = new FormData();
-            angular.forEach($scope.files, function(file) {
-                fd.append('file[]', file);
-            });
-            fd.append('formdata', JSON.stringify(id));
-            $http.post(webURL.webApi + 'handmade/uploadImageHandmadeService.php', fd, {
-                transformRequest: angular.identity,
-                headers: {
-                    'Content-type': undefined
-                }
-            })
-        }
+
 
         function showAlertBox(msg, callback) {
             var dialog = customDialog.defaultObj();
@@ -109,8 +122,8 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             loading.open();
             $http.post(webURL.webApi + "employed/getViewEditEmployedService.php", ID).then((res) => {
                 // console.log("res.data", res.data);
-                if (res.data.status == "200") {
-                    this.modelSave = res.data;
+                if (res.data == "200") {
+                    $location.path("handmade");
                 } else {
                     showAlertBox(msgSettings.msgErrorApi, null);
                 }
