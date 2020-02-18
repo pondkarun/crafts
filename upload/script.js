@@ -14,11 +14,15 @@ myApp.controller('UploadCtrl', function ($scope, $http) {
       fileReader.readAsDataURL(flowFile.file);
     });
   };
-
+  $scope.modelSave = {
+    name: null,
+    imageStrings: null
+  }
   $scope.demo = () => {
-    console.log("$scope.imageStrings", $scope.imageStrings);
-
-    $http.post("http://localhost/demo/php/dist/db.php", $scope.imageStrings).then((res) => {
+    // console.log("$scope.imageStrings", $scope.imageStrings);
+    $scope.modelSave.imageStrings = $scope.imageStrings
+    console.log("$scope.modelSave", $scope.modelSave);
+    $http.post("http://localhost/demo/php/upload/db.php", $scope.modelSave).then((res) => {
       console.log("res.data", res.data);
     })
   }
