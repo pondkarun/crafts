@@ -13,7 +13,7 @@
   <html ng-app="app">
 
   <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-flow/2.5.1/ng-flow-standalone.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-flow/2.5.1/ng-flow-standalone.min.js"></script> -->
   </head>
 
   <body ng-controller="UploadCtrl">
@@ -21,9 +21,8 @@
       <input type="text" ng-model="modelSave.name">
       <button flow-btn type="file" multiple>Upload Images</button>
       <div ng-repeat="image in uploader.flow.files track by $index">
-        <!-- <span class="text">Blob image displayed with "flow-img"</span><img class="preview" flow-img="image" /><br>
-        <span class="text">Base64 image displayed with "ng-src"</span> <img class="preview"
-          ng-src="{{imageStrings[$index]}}" /> -->
+        <img class="preview" flow-img="image" /><br>
+        <button ng-click="del(image)">save</button>
       </div>
     </div>
     <button ng-click="demo()">save</button>
