@@ -54,7 +54,11 @@ try {
         $query .= " AND (h.is_use LIKE '" . $is_use . "') ";
     }
 
-    $query .= " ORDER BY h.code_handmade ASC ";
+    if ($employed_id) {
+        $query .= " AND (h.employed_id LIKE '" . $employed_id . "') ";
+    }
+
+    $query .= "  ORDER BY h.code_handmade ASC ";
 
 
     $result = $condb->query($query) or die($condb->error);
