@@ -8,9 +8,15 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
 $input = file_get_contents("php://input");
 $postRequest = json_decode($input);
 
-@$code_handmade = $postRequest->id_card;
-@$Name = $postRequest->Name;
-@$status = $postRequest->status;
+@$code_handmade = $postRequest->code_handmade;
+@$name = $postRequest->name;
+@$type_id = $postRequest->type_id;
+@$price1 = $postRequest->price1;
+@$price2 = $postRequest->price2;
+@$employed_id = $postRequest->employed_id;
+@$is_use = $postRequest->is_use;
+
+
 
 $data = array();
 
@@ -29,13 +35,23 @@ try {
     INNER JOIN type AS t ON t.id = h.type_id 
     WHERE  1";
     if ($code_handmade) {
-        $query .= " AND (h.code_handmade like '%" . $code_handmade . "%') ";
+        $query .= " AND (h.code_handmade LIKE '%" . $code_handmade . "%') ";
     }
-    if ($Name) {
-        $query .= " AND (CONCAT(e.name , ' ' , e.surname) LIKE  '%" . $Name . "%') ";
+    if ($name) {
+        $query .= " AND (h.name LIKE  '%" . $name . "%') ";
     }
-    if ($status && $status != "all") {
-        $query .= " AND (e.status like '" . $status . "') ";
+    if ($type_id && $type_id != "all") {
+        $query .= " AND (h.type_id LIKE  '%" . $type_id . "%') ";
+    }
+
+    if ($price1 && $price2) {
+        $query .= " AND (h.price BETWEEN '" . $price1 . "' AND  '" . $price2 . "') ";
+    } elseif ($price1) {
+        $query .= " AND (h.price LIKE  '%" . $price1 . "%') ";
+    }
+
+    if ($is_use && $is_use != "all") {
+        $query .= " AND (h.is_use LIKE '" . $is_use . "') ";
     }
 
     $query .= " ORDER BY h.code_handmade ASC ";

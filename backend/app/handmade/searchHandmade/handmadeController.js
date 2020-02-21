@@ -6,15 +6,18 @@ app.controller("handmadeController", ['$scope', '$rootScope', '$location', '$rou
         this.modelSearch = {
             code_handmade: null,
             name: null,
-            type_id: null,
+            type_id: "all",
             price1: null,
             price2: null,
+            employed_id: userService.getID(),
             is_use: "true"
         };
-        _this.ID = userService.getID();
+
+        this.typePage = {};
 
         this.init = function() {
             _this.searchHandmade();
+            getType()
         }
 
         this.gridOptions = {
@@ -86,29 +89,47 @@ app.controller("handmadeController", ['$scope', '$rootScope', '$location', '$rou
 
         this.searchHandmade = () => {
             // console.log("modelSearch", _this.modelSearch);
-            loading.open();
-            $http.post(webURL.webApi + "handmade/searchHandmadeService.php", _this.modelSearch).then((res) => {
-                // console.log("res.data", res.data);
-                res.data.filter((e) => e.price = Number(e.price).toLocaleString())
-                _this.gridOptions.dataSource.data(res.data);
-                loading.close();
-            }).catch((err) => {
-                console.log("Error");
-                loading.close();
-                showAlertBox(msgSettings.msgErrorApi, null);
-            })
+            if (_this.modelSearch.price2 && !_this.modelSearch.price1) {
+                showAlertBox(msgSettings.msgValidForm, null);
+            } else {
+                loading.open();
+                $http.post(webURL.webApi + "handmade/searchHandmadeService.php", _this.modelSearch).then((res) => {
+                    // console.log("res.data", res.data);
+                    res.data.filter((e) => {
+                        e.price = Number(e.price).toLocaleString()
+                        e.is_use = (e.is_use == 'true') ? 'ปกติ' : 'ยกเลิกรายการ';
+                    })
+                    _this.gridOptions.dataSource.data(res.data);
+                    loading.close();
+                }).catch((err) => {
+                    console.log("Error");
+                    loading.close();
+                    showAlertBox(msgSettings.msgErrorApi, null);
+                })
+            }
         }
 
         this.clearHandmade = () => {
             this.modelSearch = {
                 code_handmade: null,
                 name: null,
-                type_id: null,
+                type_id: "all",
                 price1: null,
                 price2: null,
+                employed_id: userService.getID(),
                 is_use: "true"
             };
             _this.searchHandmade();
+        }
+
+        const getType = () => {
+            $http.get(webURL.webApi + "type/getTypeService.php").then((res) => {
+                // console.log("res.data", res.data);
+                _this.listType = res.data
+            }).catch((err) => {
+                console.log("Error");
+                showAlertBox(msgSettings.msgErrorApi, null);
+            })
         }
 
         //************dialog func***************//
