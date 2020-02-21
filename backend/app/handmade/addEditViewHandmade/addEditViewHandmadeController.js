@@ -103,13 +103,8 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
 
                 $http.post(webURL.webApi + "handmade/addEditHandmadeService.php", _this.modelSave).then((res) => {
                     // console.log("res.data", res.data);
-                    if (res.data.status == "200") {
-                        if (res.data.id) {
-                            showAlertBox(msgSettings.msgSaveSucc, null);
-                        }
-                    } else {
-                        showAlertBox(msgSettings.msgNotSave, null);
-                    }
+                    showAlertBox(msgSettings.msgSaveSucc, null);
+                    $location.path("handmade");
                 }).catch((err) => {
                     showAlertBox(msgSettings.msgErrorApi, null);
                 })
