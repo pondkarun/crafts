@@ -28,7 +28,7 @@
                             <div layout="row">
                                 <md-input-container flex="30" flex-gt-sm>
                                     <label>ประเภทงานฝีมือ</label>
-                                    <md-select name="type" ng-model="ctrl.modelSave.type_id" required>
+                                    <md-select name="type" ng-model="ctrl.modelSave.type_id" required ng-disabled="isView">
                                         <md-option ng-repeat="item in ctrl.listType" value="{{ item.id }}">
                                             {{ item.type }}
                                         </md-option>
@@ -36,7 +36,7 @@
                                 </md-input-container>
 
                                 <md-content flex="70" class="pl-1" flex-gt-sm>
-                                    <md-chips ng-model="ctrl.modelSave.color" placeholder="รายละเอียดสี *" md-add-on-blur="true" input-aria-label="Fruit names" md-on-remove=""></md-chips>
+                                    <md-chips ng-model="ctrl.modelSave.color" placeholder="รายละเอียดสี *" md-add-on-blur="true" input-aria-label="Fruit names" md-on-remove="" readonly="isView"></md-chips>
                                 </md-content>
                             </div>
 
@@ -50,12 +50,13 @@
                                 </md-input-container>
 
                                 <md-content flex="70" class="pl-1" flex-gt-sm ng-if="ctrl.model.color">
-                                    <md-chips ng-model="ctrl.model.size" placeholder="รายละเอียดขนาด *" md-add-on-blur="true" input-aria-label="Fruit names" md-on-remove="ctrl.removableSize($chip)" md-transform-chip="ctrl.chipModel($chip)">
+                                    <md-chips ng-model="ctrl.model.size" placeholder="รายละเอียดขนาด *" md-add-on-blur="true" input-aria-label="Fruit names" md-on-remove="ctrl.removableSize($chip)" md-transform-chip="ctrl.chipModel($chip)" readonly="isView">
                                     </md-chips>
                                 </md-content>
                             </div>
 
-                            <div layout="row" flex-gt-sm>
+
+                            <div layout="row" flex-gt-sm ng-if="!isView">
                                 <div flow-init flow-name="uploader.flow" flow-files-added="ctrl.processFiles($files)">
                                     <div class="upload-btn-wrapper">
                                         <button class="btn-upload">อัพโหลดรูปภาพ</button>
@@ -69,6 +70,19 @@
                                     </ul>
                                 </div>
                             </div>
+
+                            <div layout="row" flex-gt-sm>
+                                <h5>รูปภาพ</h5>
+                                <ul>
+                                    <li ng-repeat="item in ctrl.model.imageStrings">
+                                        <a href="{{item.path}}" target="_blank" style="color: black;">{{item.image}}</a>
+                                        <a href="" ng-click="ctrl.imageStringsDel(item.id)" class="pl-1" ng-if="!isView">X</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
                         </md-content>
 
 

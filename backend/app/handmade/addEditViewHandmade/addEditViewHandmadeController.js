@@ -4,15 +4,22 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
     function($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
         let _this = this;
         this.modelSave = {
+            id: null,
             name: null,
             price: null,
             type_id: null,
             color: [],
             size: [],
             imageStrings: [],
+            imageStringsDel: [],
             employed_id: userService.getID()
         };
 
+        this.model = {
+            color: null,
+            size: null,
+            imageStrings: []
+        };
 
         this.typePage = {};
         $scope.isView = false;
@@ -65,6 +72,19 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             _this.modelSave.imageStrings.splice(delIndex, 1);
         }
 
+        this.imageStringsDel = (item) => {
+            // console.log(item);
+            let delModel = _this.model.imageStrings.findIndex((x) => x.id == item);
+            _this.model.imageStrings.splice(delModel, 1);
+
+            let delModelSave = _this.modelSave.imageStrings.findIndex((x) => x.id == item);
+            _this.modelSave.imageStringsDel.push(_this.modelSave.imageStrings[delModelSave])
+            _this.modelSave.imageStrings.splice(delModelSave, 1);
+
+
+
+        }
+
         this.cancelForm = () => {
             $location.path("handmade");
         }
@@ -108,27 +128,56 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             _this.typePage = $routeParams;
             if (_this.typePage.Type == "edit") {
                 $scope.title = "แก้ไขงานฝีมือ";
-                getEmployedEdit(_this.typePage.ID);
+                getHandmadeEdit(_this.typePage.ID);
             } else if (_this.typePage.Type == "add") {
                 $scope.title = "เพิ่มงานฝีมือ";
             } else if (_this.typePage.Type == "view") {
                 $scope.title = "ข้อมูลงานฝีมือ";
-                getEmployedEdit(_this.typePage.ID);
+                getHandmadeEdit(_this.typePage.ID);
                 $scope.isView = true;
             } else {
                 $location.path("handmade");
             }
         }
 
-        const getEmployedEdit = (ID) => {
+        const getHandmadeEdit = (ID) => {
             loading.open();
-            $http.post(webURL.webApi + "employed/getViewEditEmployedService.php", ID).then((res) => {
+            $http.post(webURL.webApi + "handmade/getViewEditHandmadeService.php", ID).then((res) => {
                 // console.log("res.data", res.data);
-                if (res.data == "200") {
-                    $location.path("handmade");
+                if (res.data.status == "200") {
+                    var color = (res.data.color) ? JSON.parse(res.data.color) : null;
+                    var size = (res.data.size) ? JSON.parse(res.data.size) : null;
+                    this.modelSave = {
+                        id: res.data.id,
+                        name: res.data.name,
+                        price: Number(res.data.price),
+                        type_id: res.data.type_id,
+                        color: color,
+                        size: size,
+                        imageStrings: [],
+                        imageStringsDel: [],
+                        employed_id: userService.getID()
+                    };
+                    _this.model.color = _this.modelSave.color[0]
+                    _this.mapchipModel(_this.model.color)
+                    getHandmadeImageEdit(ID)
+
                 } else {
                     showAlertBox(msgSettings.msgErrorApi, null);
                 }
+            }).catch((err) => {
+                console.log("Error");
+                loading.close();
+                showAlertBox(msgSettings.msgErrorApi, null);
+            })
+        }
+
+        const getHandmadeImageEdit = (ID) => {
+            $http.post(webURL.webApi + "handmade/getViewEditHandmadeImageService.php", ID).then((res) => {
+                // console.log("res.data", res.data);
+                res.data.filter(e => e.path = webURL.webImagesView + e.image)
+                _this.modelSave.imageStrings = res.data;
+                _this.model.imageStrings = angular.copy(res.data);
                 loading.close();
             }).catch((err) => {
                 console.log("Error");
