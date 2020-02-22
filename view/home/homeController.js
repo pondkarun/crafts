@@ -8,10 +8,17 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
             is_use: "true",
             type_id: "all"
         }
+        this.listType = {};
         this.listHandmade = [];
         this.pager = {};
-        this.dummyItems = _.range(1, 500);
         this.init = function() {
+            _this.searchHandmade();
+            getType();
+        }
+
+        this.typeClick = (item) => {
+            // console.log("item", item);
+            this.modelSearch.type_id = item;
             _this.searchHandmade();
         }
 
@@ -26,7 +33,7 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
                     e.path = webURL.webImagesView + e.path
                 })
 
-                _this.listHandmade = res.data
+                _this.listHandmade = angular.copy(res.data)
                 _this.setPage(1);
                 loading.close();
             }).catch((err) => {
@@ -36,16 +43,24 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
             })
         }
 
+        const getType = () => {
+            $http.get(webURL.webApi + "type/getTypeService.php").then((res) => {
+                // console.log("res.data", res.data);
+                _this.listType = res.data
+            }).catch((err) => {
+                console.log("Error");
+                showAlertBox(msgSettings.msgErrorApi, null);
+            })
+        }
 
         this.setPage = (page) => {
-            if (page < 1 || page > _this.pager.totalPages) {
-                return;
-            }
+
             // get the pager object from service 
             _this.pager = PaginationService.GetPager(_this.listHandmade.length, page);
 
             // get current page of items 
             _this.items = _this.listHandmade.slice(_this.pager.startIndex, _this.pager.endIndex + 1);
+
         }
 
 
@@ -68,7 +83,7 @@ app.factory('PaginationService', function PaginationService() {
         currentPage = currentPage || 1;
 
         // default page size will be 10
-        pageSize = pageSize || 9;
+        pageSize = pageSize || 21;
 
         // calc total pages 
         var totalPages = Math.ceil(totalItems / pageSize);

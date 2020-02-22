@@ -17,16 +17,13 @@
         <ul class="nav justify-content-center pb-2">
 
             <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
+                <a class="nav-link " ng-class="{'disabled': ctrl.modelSearch.type_id == 'all'}" href="" ng-click="ctrl.typeClick('all')">ทั้งหมด</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+
+
+
+            <li class="nav-item" ng-repeat="x in ctrl.listType">
+                <a class="nav-link" ng-class="{'disabled': x.id == ctrl.modelSearch.type_id}" href="" ng-click="ctrl.typeClick(x.id)">{{x.type}}</a>
             </li>
 
 
@@ -43,8 +40,9 @@
 
                     <div class="card-body">
                         <a href="" style="color: black;">
-                            <h3 class="card-text"><b>{{item.name}}</b> : {{item.price}} บาท</h3>
+                            <h3 class="card-text"><b>{{item.name}}</b> </h3>
                         </a>
+                        <h3 class="text-red">฿ {{item.price}} </h3>
                     </div>
 
                     <div class="card-footer text-right" style="font-size: 16px;">
