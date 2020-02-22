@@ -1,0 +1,53 @@
+// variable
+@import "../../base/variables.scss";
+// button
+@import "../../component/button/button.scss";
+// use for plugin family.scss
+@import "../../plugin/family/family.scss";
+// use for plugin juice.scss
+@import "../../plugin/juice/juice.scss";
+// use for plugin include-media.scss
+@import "../../plugin/include-media/include-media.scss";
+// use for plugin z-index-manager.scss
+@import '../../plugin/z-index-manager/functions.scss';
+@import '../../plugin/z-index-manager/mixins.scss';
+// config for plugin z-index-manager.scss
+@debug $z-indexes;
+// use for plugin animated.scss
+@import "../../plugin/animated/animated.scss";
+// md dialog
+.dialog-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+    outline: none;
+    border-radius: 100px;
+    width: 30px;
+    height: 30px;
+    padding-top: 8px;
+    &:hover {
+        cursor: pointer;
+        font: {
+            size: 100%;
+        }
+        // background-color: $color-1;
+        // border: 1px solid $color-8;
+    }
+}
+
+.wrapper-confirm-dialog {
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // bottom: 0;
+    // left: 0;
+    // div[ng-include] {
+    //     width: 100%;
+    // }
+    margin-right: 200px;
+    margin-left: 200px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    font-size: 24px;
+}

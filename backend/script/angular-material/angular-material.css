@@ -60,16 +60,19 @@ textarea {
     overflow: auto;
 }
 
-input[type="search"] {
+
+/* input[type="search"] {
     -webkit-appearance: textfield;
     box-sizing: content-box;
     -webkit-box-sizing: content-box;
-}
+} */
 
+
+/* 
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
-}
+} */
 
 input:-webkit-autofill {
     text-shadow: none;

@@ -1,0 +1,60 @@
+// colors
+$color-1: #263656;
+$color-2: #00538C;
+$color-3: #4D4D4D;
+$color-4: #BBBDBF;
+$color-5: #536591;
+$color-6: #E6E6E6;
+$color-7: #D0D2D3;
+$color-8: #FFFFFF;
+$color-9: #333333;
+$color-10: #283F51;
+$color-11: #fcee21;
+$color-12: #194886;
+$color-13: #326499;
+$color-14: #16375B;
+$color-15: #224A6D;
+$color-16: #0D253A;
+$color-17: #BCBEC0; //tab
+$color-18: rgb(221, 44, 0); //note
+$color-19: #F2F2F2;
+$color-20: #CCCCCC;
+$color-21: #B3B3B3;
+$color-22: #4E85B7;
+$color-23: #599FD3;
+// fonts family
+$main-fontNormal: 'THSarabunPSK';
+$main-fontBold: 'THSarabunPSK-Bold';
+// content font-size
+$content-FontSize-1: 27px;
+$content-FontSize-2: 20px;
+// header font-size
+$header-FontSize-1: 32px;
+$header-FontSize-2: 28px;
+$header-FontSize-3: 36px;
+// menu font-size
+$menu-FontSize-1: 30px;
+$menu-FontSize-2: 26px;
+$menu-FontSize-3: 36px;
+// tab font-size
+$tab-FontSize-1: 18px;
+// breadcrumb font-size
+$breadcrumb-FontSize-1: 28px;
+// grid font-size
+$grid-FontSize-1: 18px;
+// grid color
+$grid-color-1: #F1F2F2;
+$grid-color-2: #E6E7E8;
+// border color
+$border-color-1: rgba(128, 128, 128, 0.2);
+$border-color-2: #1B1464;
+$border-color-3: #999999;
+$border-color-4: #ffffff;
+// config for plugin z-index-manager.scss
+$z-indexes: ( page: 1, header: 5, footer: 5);
+// breakpoint for include-media.scss
+$xs: 599px;
+$sm: 959px;
+$md: 1279px;
+$lg: 1365px;
+$xl: 1920px;

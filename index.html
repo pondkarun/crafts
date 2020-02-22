@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="MyApp" lang="th">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="./images/logo.png" />
-    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="backend/script/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="./images/logo.png" rel="icon" type="image/png">
+    <link href="./assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="./backend/script/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="./backend/script/angular-material/angular-material.css" rel="stylesheet" type="text/css">
+    <link href="./backend/script/loadingTopJS/loadingTopJS.css" rel="stylesheet" type="text/css">
+    <link href="./backend/script/kendo-ui/kendo.common-material.css" rel="stylesheet" type="text/css">
+    <link href="./backend/script/kendo-ui/kendo.material.css" rel="stylesheet" type="text/css">
+    <link href="./backend/script/v-accordion.min.css" rel="stylesheet" type="text/css">
+    <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="./style/main.css" rel="stylesheet" type="text/css">
     <title>ศูนย์ฝึกอาชีพเขตจตุจักร</title>
 </head>
 
-<body>
+<body ng-cloak ng-controller="appController as ctrl" id="page-top" ng-init="ctrl.init()">
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="./images/logo.png" width="95px">
-
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,157 +41,50 @@
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter">
+                            เข้าสู่ระบบ
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="container   p-3">
-        <form class="justify-content-end">
-            <div class="row">
-                <div class="col-11">
-                    <input class="form-control" type="search" placeholder="ค้นหา..." aria-label="ค้นหา">
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
                 </div>
-                <div class="col-1">
-                    <button type="submit" class="btn btn-success mb-2">ค้นหา</button>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </form>
-    </section>
-
-    <section class="container main shadow">
-
-
-
-
-        <ul class="nav justify-content-center pb-2">
-
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-
-
-        </ul>
-
-        <div class="row">
-
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
-
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
 
 
+    <article ng-view></article>
 
-    </section>
+
     <br>
     <footer class="semi-footer pt-3 p-5 text-center text-md-left">
         <div class="row">
@@ -206,9 +104,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="index.php">หน้าแรก <span class="sr-only">(current)</span></a>
                     </li>
-                    <!-- <li class="nav-item ">
-                        <a class="nav-link" href="index.php?pageto=about">เกี่ยวกับ</a>
-                    </li> -->
+
                     <li class="nav-item ">
                         <a class="nav-link" href="index.php?pageto=blog">บทความ</a>
                     </li>
@@ -232,9 +128,47 @@
             ALL Right Reserved
         </span>
     </footer>
-    <script src="assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="./backend/script/jquery-2-2.4.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+
+
+    <script src="./backend/script/md5.min.js"></script>
+    <script src="./backend/script/js/plugins/pace.min.js"></script>
+    <script src="./backend/script/js/sweetalert/sweetalert.min.js"></script>
+    <script src="./backend/script/angular/angular.js"></script>
+    <script src="./backend/script/angular/angular-animate.js"></script>
+    <script src="./backend/script/angular/angular-aria.js"></script>
+    <script src="./backend/script/angular-material/angular-material.min.js"></script>
+    <script src="./backend/script/angular/angular-cookies.js"></script>
+    <script src="./backend/script/angular/angular-loader.js"></script>
+    <script src="./backend/script/angular/angular-route.js"></script>
+    <script src="./backend/script/angular/angular-messages.js"></script>
+    <script src="./backend/script/angular/angular-sanitize.js"></script>
+    <script src="./backend/script/loadingTopJS/loadingTopJS.min.js"></script>
+    <script src="./backend/script/v-accordion.js"></script>
+    <script src="./backend/script/kendo-ui/kendo.all.js"></script>
+    <script src="./backend/script/kendo-ui/cultures/kendo.culture.th-TH.js"></script>
+    <script src="./backend/script/kendo-ui/cultures/kendo.culture.th.js"></script>
+    <script src="./backend/script/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="./backend/script/moment.min.js"></script>
+    <script src="./backend/script/svg-assets-cache.js"></script>
+    <script src="./backend/script/underscore-min.js"></script>
+    <script src="./backend/script/ngInfiniteScroll.js"></script>
+
+    <!-- Load app main script -->
+    <script src="app.js"></script>
+    <script src="index.js"></script>
+
+    <!-- Load services -->
+    <script src="service/appMenuService.js"></script>
+    <script src="service/userService.js"></script>
+    <script src="service/dialogService.js"></script>
+    <script src="service/commonService.js"></script>
+
+    <!-- Load Controller-->
+    <script src="view/home/hometController.js"></script>
+
 </body>
 
 </html>

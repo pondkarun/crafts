@@ -1,0 +1,35 @@
+﻿<md-dialog aria-label="inputDialog">
+    <!--header-->
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row" layout-align="center center">
+            <div flex>
+                {{model.title}}
+            </div>
+            <div class="dialog-close" ng-click="cancel()" layout="row" layout-align="center center" flex="none">
+                X
+            </div>
+        </div>
+    </md-toolbar>
+
+    <!--content-->
+    <md-dialog-content>
+        <div class="ng-modal-dialog-content" name="contentBox">
+            <div class="wrapper-confirm-dialog" layout="row" layout-wrap layout-align="center center">
+                {{model.content}}
+            </div>
+        </div>
+    </md-dialog-content>
+
+    <!--footer-->
+    <md-dialog-actions class="footer-form-button" layout="row" layout-align="center center">
+
+        <md-button class="btn-main" ng-click="submit()" layout="row" layout-align="center center">
+            <!-- <img ng-src=""> -->{{model.okBtn}}
+        </md-button>
+
+        <md-button class="btn-cancel" ng-show="{{model.isConfirm}}" ng-click="cancel()" layout="row" layout-align="center center">
+            <!-- <img ng-src=""> -->{{model.cancelBtn}}
+        </md-button>
+
+    </md-dialog-actions>
+</md-dialog>

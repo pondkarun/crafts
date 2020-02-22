@@ -1,0 +1,238 @@
+// variable
+@import "../../base/variables.scss";
+// use for plugin family.scss
+@import "../../plugin/family/family.scss";
+// use for plugin juice.scss
+@import "../../plugin/juice/juice.scss";
+// use for plugin include-media.scss
+@import "../../plugin/include-media/include-media.scss";
+// use for plugin z-index-manager.scss
+@import "../../plugin/z-index-manager/functions.scss";
+@import "../../plugin/z-index-manager/mixins.scss";
+// config for plugin z-index-manager.scss
+@debug $z-indexes;
+// use for plugin animated.scss
+@import "../../plugin/animated/animated.scss";
+// fix angular material
+@import "../../base/fix-kendoui.scss";
+// button
+@import "../../component/button/button.scss";
+//Inventory
+div#gridSearchInventory[kendo-grid] {
+    table {
+        colgroup {
+            col {
+                @include first-child() {
+                    width: 125px;
+                }
+                &:nth-child(2) {
+                    width: 125px;
+                }
+                &:nth-child(3) {
+                    width: 125px;
+                }
+                &:nth-child(4) {
+                    width: 300px;
+                }
+                &:nth-child(5) {
+                    width: 125px;
+                }
+                &:nth-child(6) {
+                    width: 125px;
+                }
+                &:nth-child(7) {
+                    width: 125px;
+                }
+                &:nth-child(8) {
+                    width: 200px;
+                }
+                @include last-child() {
+                    width: 125px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    word-wrap: break-word;
+                    @include first-child() {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Device
+div#gridSearchDevice[kendo-grid] {
+    table {
+        colgroup {
+            col {
+                @include first-child() {
+                    width: 125px;
+                }
+                &:nth-child(2) {
+                    width: 125px;
+                }
+                &:nth-child(3) {
+                    width: 300px;
+                }
+                &:nth-child(4) {
+                    width: 200px;
+                }
+                &:nth-child(5) {
+                    width: 125px;
+                }
+                &:nth-child(6) {
+                    width: 200px;
+                }
+                &:nth-child(7) {
+                    width: 150px;
+                }
+                @include last-child() {
+                    width: 125px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    word-wrap: break-word;
+                    @include first-child() {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Request
+div#gridSearchRequest[kendo-grid] {
+    table {
+        colgroup {
+            col {
+                @include first-child() {
+                    width: 125px;
+                }
+                &:nth-child(2) {
+                    width: 300px;
+                }
+                &:nth-child(3) {
+                    width: 175px;
+                }
+                &:nth-child(4) {
+                    width: 225px;
+                }
+                &:nth-child(5) {
+                    width: 175px;
+                }
+                &:nth-child(6) {
+                    width: 200px;
+                }
+                &:nth-child(7) {
+                    width: 175px;
+                }
+                @include last-child() {
+                    width: 125px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    word-wrap: break-word;
+                    @include first-child() {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Service
+div#gridSearchService[kendo-grid] {
+    table {
+        colgroup {
+            col {
+                @include first-child() {
+                    width: 125px;
+                }
+                &:nth-child(2) {
+                    width: 300px;
+                }
+                &:nth-child(3) {
+                    width: 175px;
+                }
+                &:nth-child(4) {
+                    width: 225px;
+                }
+                &:nth-child(5) {
+                    width: 175px;
+                }
+                &:nth-child(6) {
+                    width: 200px;
+                }
+                &:nth-child(7) {
+                    width: 175px;
+                }
+                @include last-child() {
+                    width: 125px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    word-wrap: break-word;
+                    @include first-child() {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Report
+div#gridSearchReport[kendo-grid] {
+    table {
+        colgroup {
+            col {
+                @include first-child() {
+                    width: 100px;
+                }
+                &:nth-child(2) {
+                    width: 150px;
+                }
+                &:nth-child(3) {
+                    width: 200px;
+                }
+                &:nth-child(4) {
+                    width: 200px;
+                }
+                &:nth-child(5) {
+                    width: 150px;
+                }
+                &:nth-child(6) {
+                    width: 150px;
+                }
+                @include last-child() {
+                    width: 150px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    word-wrap: break-word;
+                    @include first-child() {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
