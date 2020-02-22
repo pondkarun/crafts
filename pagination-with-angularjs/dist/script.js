@@ -7,29 +7,34 @@
         .controller('PaginationController', PaginationController);
 
     function PaginationController(PaginationService) {
-        var vm = this;
+        var _this = this;
 
-        vm.dummyItems = _.range(1, 1510); // dummy array of items to be paginated 
-        vm.pager = {};
-        vm.setPage = setPage;
+        _this.dummyItems = _.range(1, 7); // dummy array of items to be paginated 
+        _this.pager = {};
+        _this.setPage = setPage;
 
         initPager();
 
         function initPager() {
             // initially set to page 1
-            vm.setPage(1);
+            _this.setPage(1);
         }
 
         function setPage(page) {
-            if (page < 1 || page > vm.pager.totalPages) {
+            // console.log("page", page);
+            // console.log("_this.pager.totalPages", _this.pager.totalPages);
+            if (page < 1 || page > _this.pager.totalPages) {
                 return;
             }
 
             // get the pager object from service 
-            vm.pager = PaginationService.GetPager(vm.dummyItems.length, page);
+            _this.pager = PaginationService.GetPager(_this.dummyItems.length, page);
 
             // get current page of items 
-            vm.items = vm.dummyItems.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
+            // console.log("_this.pager.startIndex", _this.pager.startIndex);
+            // console.log("_this.pager.endIndex + 1", _this.pager.endIndex + 1);
+
+            _this.items = _this.dummyItems.slice(_this.pager.startIndex, _this.pager.endIndex + 1);
         }
     }
 
@@ -43,11 +48,15 @@
 
         // service implementation
         function GetPager(totalItems, currentPage, pageSize) {
+            console.log("totalItems", totalItems);
+            console.log("currentPage", currentPage);
+            console.log("pageSize", pageSize);
+
             // default to page 1
             currentPage = currentPage || 1;
 
             // default page size will be 10
-            pageSize = pageSize || 10;
+            pageSize = pageSize || 3;
 
             // calc total pages 
             var totalPages = Math.ceil(totalItems / pageSize);

@@ -1,0 +1,67 @@
+<div ng-controller="registerController as ctrl" ng-init="ctrl.init()">
+
+    <section class="container p-3">
+        <!-- <h1>สมัครสมาชิก</h1> -->
+    </section>
+
+    <section class="container main shadow">
+        <form name="register" class="col-md-6 offset-md-3">
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputUsername">ชื่อผู้ใช้งาน</label>
+                    <input type="text" ng-model="ctrl.modelSave.username" class="form-control" id="inputUsername">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputPassword">รหัสผ่าน</label>
+                    <input type="password" ng-model="ctrl.modelSave.password" class="form-control" id="inputPassword">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPasswordCon">ยืนยันรหัสผ่าน</label>
+                    <input type="password" ng-model="ctrl.modelSave.password_con" class="form-control" id="inputPasswordCon">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail">E-mail</label>
+                <input type="email" ng-model="ctrl.modelSave.email" class="form-control" id="inputEmail">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputName">ชื่อจริง</label>
+                    <input type="text" ng-model="ctrl.modelSave.name" class="form-control" id="inputName">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputSurname">นามสกุล</label>
+                    <input type="text" ng-model="ctrl.modelSave.surname" class="form-control" id="inputSurname">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputAddress">ที่อยู่ปัจจุบัน</label>
+                <textarea class="form-control" ng-model="ctrl.modelSave.address" id="inputAddress" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="inputTel">เบอร์ติดต่อ</label>
+                <input type="tel" ng-model="ctrl.modelSave.tel" class="form-control" id="inputTel">
+            </div>
+
+            <div class="footer-form-button pt-3" layout="row" layout-align="center center">
+
+                <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.save()">
+                    สมัครสมาชิก
+                </md-button>
+
+                <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancel()">
+                    ยกเลิก
+                </md-button>
+            </div>
+
+        </form>
+    </section>
+</div>

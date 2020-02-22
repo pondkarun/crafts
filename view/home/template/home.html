@@ -1,18 +1,18 @@
-<div ng-controller="hometController as ctrl" ng-init="ctrl.init()">
-    <section class="container   p-3">
+<div ng-controller="homeController as ctrl" ng-init="ctrl.init()">
+    <section class="container p-3">
         <form class="justify-content-end">
             <div class="row">
                 <div class="col-11">
-                    <input class="form-control " type="search" placeholder="ค้นหา..." aria-label="ค้นหา">
+                    <input class="form-control " type="search" ng-model="ctrl.modelSearch.name" placeholder="ค้นหา..." aria-label="ค้นหา">
                 </div>
                 <div class="col-1">
-                    <button type="submit" class="btn btn-success mb-2">ค้นหา</button>
+                    <button type="submit" class="btn btn-success mb-2" ng-click="ctrl.searchHandmade()">ค้นหา</button>
                 </div>
             </div>
         </form>
     </section>
 
-    <section class="container main shadow">
+    <section class="container main shadow p-3">
 
         <ul class="nav justify-content-center pb-2">
 
@@ -34,110 +34,53 @@
 
         <div class="row">
 
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
+            <div class="col-12 col-sm-12 col-md-4 p-3" ng-repeat="item in ctrl.items">
+                <div class="card h-100 shadow">
+
                     <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
+                        <img class="card-img-top" src="{{item.path}}" alt="{{item.name}}">
                     </a>
 
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
+                    <div class="card-body">
+                        <a href="" style="color: black;">
+                            <h3 class="card-text"><b>{{item.name}}</b> : {{item.price}} บาท</h3>
+                        </a>
+                    </div>
+
+                    <div class="card-footer text-right" style="font-size: 16px;">
+                        <a href="" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a> {{item.datetime}}
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
+        </div>
 
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
+        <div class="text-center pt-3">
+            <nav aria-label="Page navigation example">
+                <ul ng-if="ctrl.pager.pages.length" class="pagination justify-content-center">
+                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === 1}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(1)">หน้าแรก</a>
+                    </li>
+                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === 1}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item" ng-repeat="page in ctrl.pager.pages" ng-class="{active:ctrl.pager.currentPage === page}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(page)">{{page}}</a>
+                    </li>
+                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.totalPages)">หน้าสุดท้าย</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-12 col-md-4 p-3">
-                <div class="card h-100 shadow ">
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="https://via.placeholder.com/100/" alt="Coding">
-                    </a>
-
-                    <div class="p-1">
-                        <a href="detail.html" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
-                    </div>
-                </div>
-            </div>
 
     </section>
-
-    </div>
 </div>

@@ -13,7 +13,10 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
 
     $routeProvider.when("/home", {
         templateUrl: "view/home/template/home.html",
-        controller: "hometController"
+        controller: "homeController"
+    }).when("/register", {
+        templateUrl: "view/register/template/register.html",
+        controller: "registerController"
     }).otherwise({ redirectTo: '/home' });
 });
 

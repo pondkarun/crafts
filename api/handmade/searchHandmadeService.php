@@ -29,8 +29,9 @@ try {
     h.name,
     h.price,
     t.type,
-    h.is_use
-
+    h.is_use,
+    h.datetime,
+    (SELECT image FROM handmade_image WHERE id_handmade = h.id LIMIT 1) AS path
     FROM handmade AS h
     INNER JOIN type AS t ON t.id = h.type_id 
     WHERE  1";
@@ -58,7 +59,7 @@ try {
         $query .= " AND (h.employed_id LIKE '" . $employed_id . "') ";
     }
 
-    $query .= "  ORDER BY h.code_handmade ASC ";
+    $query .= "  ORDER BY h.code_handmade DESC ";
 
 
     $result = $condb->query($query) or die($condb->error);
