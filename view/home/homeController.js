@@ -1,7 +1,7 @@
 'use strict'
 
-app.controller("homeController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings', 'PaginationService',
-    function($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, PaginationService) {
+app.controller("homeController", ['$scope', '$rootScope', '$location', '$routeParams', 'customerService', '$http', 'customDialog', 'msgSettings', 'PaginationService',
+    function($scope, $rootScope, $location, $routeParams, customerService, $http, customDialog, msgSettings, PaginationService) {
         var _this = this;
         this.modelSearch = {
             name: null,
@@ -63,7 +63,11 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
 
         }
 
-
+        function showAlertBox(msg, callback) {
+            var dialog = customDialog.defaultObj();
+            dialog.content = msg;
+            customDialog.alert(callback, dialog);
+        }
 
     }
 ]);

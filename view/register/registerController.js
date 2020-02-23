@@ -1,7 +1,7 @@
 'use strict'
 
-app.controller("registerController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings',
-    function($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings) {
+app.controller("registerController", ['$scope', '$rootScope', '$location', '$routeParams', 'customerService', '$http', 'customDialog', 'msgSettings',
+    function($scope, $rootScope, $location, $routeParams, customerService, $http, customDialog, msgSettings) {
         var _this = this;
         this.modelSave = {
             username: null,

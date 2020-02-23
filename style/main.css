@@ -22,6 +22,10 @@ body {
   background-color: #004d5f !important;
 }
 
+.modal-footer {
+  display: flow-root;
+}
+
 /**
  * Functions for z-index management
  *
@@ -104,6 +108,10 @@ body {
 
 #page-top .bg-blue {
   background-color: #004d5f !important;
+}
+
+.modal-footer {
+  display: flow-root;
 }
 
 /*

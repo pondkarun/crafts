@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <?php
 require_once('../condb.php');
 header('Access-Control-Allow-Origin: *');
