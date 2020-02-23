@@ -21,6 +21,10 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
             this.modelSearch.type_id = item;
             _this.searchHandmade();
         }
+        this.detail = (id) => {
+            console.log(id);
+            $location.path("detail/" + id);
+        }
 
         this.searchHandmade = () => {
             // console.log("modelSearch", _this.modelSearch);

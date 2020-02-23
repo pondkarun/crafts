@@ -8,6 +8,8 @@ app.controller("appController", ['$scope', '$rootScope', '$location', '$routePar
             password: null
         }
         this.init = () => {}
+        $scope.states = {};
+        $scope.states.activeItem = 'home';
         $scope.modal = null
         $scope.register = () => {
             $location.path("register");
@@ -16,6 +18,13 @@ app.controller("appController", ['$scope', '$rootScope', '$location', '$routePar
         $scope.showMenu = () => {
             return customerService.isUserLoggedIn()
         }
+
+        this.routep = (item) => {
+            // console.log("item", item);
+            $scope.states.activeItem = item
+            $location.path(item);
+        }
+
 
         this.login = () => {
             loading.open();

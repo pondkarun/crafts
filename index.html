@@ -33,13 +33,13 @@
 
                 <ul class="navbar-nav ml-auto text-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">หน้าแรก</a>
+                        <a class="nav-link" ng-class="{'active': 'home' == states.activeItem}" ng-click="ctrl.routep('home')" href="">หน้าแรก</a>
                     </li>
                     <li class="nav-item" ng-if="showMenu()">
-                        <a class="nav-link" href="#">ตรวจสอบสถานะ</a>
+                        <a class="nav-link" ng-class="{'active': item.ROUTEP == states.activeItem}" href="">ตรวจสอบสถานะ</a>
                     </li>
                     <li class="nav-item" ng-if="showMenu()">
-                        <a class="nav-link" href="#">ข้อมูลส่วนตัว</a>
+                        <a class="nav-link" ng-class="{'active': item.ROUTEP == states.activeItem}" href="">ข้อมูลส่วนตัว</a>
                     </li>
                     <li class="nav-item" ng-if="!showMenu()">
                         <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter"> 
