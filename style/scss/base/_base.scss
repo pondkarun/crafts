@@ -1,10 +1,25 @@
-// @font-face {
-//     font-family: "THSarabunPSK";
-//     font-style: normal;
-//     font-weight: normal;
-//     src: url("./fonts/THSarabunPSK.eot?#iefix") format("embedded-opentype"), url("./fonts/THSarabunPSK.woff2") format("woff2"), url("./fonts/THSarabunPSK.woff") format("woff"), url("./fonts/THSarabunPSK.ttf") format("truetype"), url("./fonts/THSarabunPSK.svg#THSarabunPSK") format("svg");
-// }
 body {
-    // font-family: 'TH SarabunPSK';
     font-family: 'Sarabun', ;
+}
+
+.semi-footer {
+    background: #004d5f;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #ffd400;
+    }
+    .fa {
+        color: #fff;
+        padding-right: 10px;
+    }
+}
+
+#page-top {
+    .bg-blue {
+        background-color: #004d5f !important;
+    }
 }

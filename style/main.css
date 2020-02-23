@@ -2,6 +2,26 @@ body {
   font-family: "Sarabun";
 }
 
+.semi-footer {
+  background: #004d5f;
+}
+.semi-footer h1,
+.semi-footer h2,
+.semi-footer h3,
+.semi-footer h4,
+.semi-footer h5,
+.semi-footer h6 {
+  color: #ffd400;
+}
+.semi-footer .fa {
+  color: #fff;
+  padding-right: 10px;
+}
+
+#page-top .bg-blue {
+  background-color: #004d5f !important;
+}
+
 /**
  * Functions for z-index management
  *
@@ -64,6 +84,26 @@ body {
  */
 body {
   font-family: "Sarabun";
+}
+
+.semi-footer {
+  background: #004d5f;
+}
+.semi-footer h1,
+.semi-footer h2,
+.semi-footer h3,
+.semi-footer h4,
+.semi-footer h5,
+.semi-footer h6 {
+  color: #ffd400;
+}
+.semi-footer .fa {
+  color: #fff;
+  padding-right: 10px;
+}
+
+#page-top .bg-blue {
+  background-color: #004d5f !important;
 }
 
 /*
