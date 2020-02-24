@@ -13,27 +13,15 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
             imageStrings: []
         };
 
-        $scope.myInterval = 3000;
-        $scope.slides = [{
-                image: 'http://www.smo-msci.com/crafts/images/crafts_164986253720200222_014631.jpg'
-            },
-            {
-                image: 'http://www.smo-msci.com/crafts/images/crafts_164986253720200222_014631.jpg'
-            },
-            {
-                image: 'http://www.smo-msci.com/crafts/images/crafts_164986253720200222_014631.jpg'
-            },
-            {
-                image: 'http://www.smo-msci.com/crafts/images/crafts_164986253720200222_014631.jpg'
-            }
-        ];
+        $scope.ShowId = function(event) {
+            alert(event.target.id);
+        };
 
 
         this.init = function() {
             _this.typePage = $routeParams;
             getHandmadeEdit(_this.typePage.id);
         }
-
 
         const getHandmadeEdit = (ID) => {
             loading.open();
