@@ -3,11 +3,6 @@
 var app = angular.module('crafts', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngRoute', 'kendo.directives', 'vAccordion', 'ngAnimate', 'flow']);
 var loading = new loadingTopJS();
 
-var webURL = {
-    webApi: "http://localhost/crafts/api/",
-    webImagesView: "http://localhost/crafts/images/"
-}
-
 
 app.constant('msgSettings', {
     msgDelConfirm: "ยืนยันการลบข้อมูล",

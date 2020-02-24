@@ -16,10 +16,24 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
         controller: "homeController"
     }).when("/register", {
         templateUrl: "view/register/template/register.html",
-        controller: "registerController"
+        controller: "registerController",
+        resolve: {
+            check: function($location, customerService) {
+                if (customerService.isUserLoggedIn()) {
+                    $location.path("/home");
+                }
+            }
+        }
     }).when("/detail/:id", {
         templateUrl: "view/detail/template/detail.html",
-        controller: "detailController"
+        controller: "detailController",
+        resolve: {
+            check: function($location, customerService) {
+                if (!customerService.isUserLoggedIn()) {
+                    $location.path("/home");
+                }
+            }
+        }
     }).otherwise({ redirectTo: '/home' });
 });
 

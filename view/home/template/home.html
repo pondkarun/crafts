@@ -35,11 +35,11 @@
                 <div class="card h-100 shadow">
 
                     <a href="" class="warpper-card-img">
-                        <img class="card-img-top" src="{{item.path}}" alt="{{item.name}}">
+                        <img class="card-img-top" ng-click="ctrl.detail(item.id)" src="{{item.path}}" alt="{{item.name}}">
                     </a>
 
                     <div class="card-body">
-                        <a href="" style="color: black;">
+                        <a href="" ng-click="ctrl.detail(item.id)" style="color: black;">
                             <h5 class="card-text"><b>{{item.name}}</b> </h5>
                         </a>
                         <h5 class="text-red pt-2">฿ {{item.price}} </h5>

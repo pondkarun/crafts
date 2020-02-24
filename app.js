@@ -3,12 +3,6 @@
 var app = angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngRoute', 'kendo.directives', 'vAccordion', 'ngAnimate']);
 var loading = new loadingTopJS();
 
-var webURL = {
-    webApi: "http://localhost/crafts/api/",
-    webImagesView: "http://localhost/crafts/images/"
-}
-
-
 app.constant('msgSettings', {
     msgDelConfirm: "ยืนยันการลบข้อมูล",
     msgDelSucc: "ลบข้อมูลสำเร็จ",
@@ -43,5 +37,6 @@ app.constant('msgSettings', {
     msgErrUserNot: 'Username หรือ Password ไม่ถูกต้อง',
     msgErrorApi: 'มีบางอย่างผิดพลาด! กรุณาลองใหม่อีกครั้ง',
     msgRepeatedlyData: 'มีข้อมูลซ้ำกัน กรุณาลองทำรายการใหม่',
+    msgLogin: 'กรุณาเข้าสู่ระบบ',
 
 });

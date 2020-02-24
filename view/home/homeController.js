@@ -22,8 +22,12 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
             _this.searchHandmade();
         }
         this.detail = (id) => {
-            console.log(id);
-            $location.path("detail/" + id);
+            // console.log(id);
+            if (customerService.isUserLoggedIn()) {
+                $location.path("detail/" + id);
+            } else {
+                showAlertBox(msgSettings.msgLogin, null);
+            }
         }
 
         this.searchHandmade = () => {
