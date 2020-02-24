@@ -10,7 +10,7 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="inputUsername">ชื่อผู้ใช้งาน *</label>
-                    <input type="text" ng-model="ctrl.modelSave.username" class="form-control" ng-class="{'is-invalid': !ctrl.modelSave.username && register.$dirty}" ng-required="true" id="inputUsername" >
+                    <input type="text" ng-model="ctrl.modelSave.username" class="form-control" ng-class="{'is-invalid': !ctrl.modelSave.username && register.$dirty}" ng-required="true" id="inputUsername"  pattern="[A-Za-z0-9]*">
                 </div>
             </div>
 

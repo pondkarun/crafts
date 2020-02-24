@@ -15,6 +15,7 @@
     <link href="./backend/script/v-accordion.min.css" rel="stylesheet" type="text/css">
     <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="./style/main.css" rel="stylesheet" type="text/css">
+
     <title>ศูนย์ฝึกอาชีพเขตจตุจักร</title>
 </head>
 
@@ -23,7 +24,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-blue p-1">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="" ng-click="ctrl.routep('home')">
                 <img src="./images/logo.png" width="95px">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,7 +98,7 @@
     <footer class="semi-footer pt-3 p-5 text-center text-md-left">
         <div class="row">
             <div class="col-md-4">
-                <a class="navbar-brand row" href="#">
+                <a class="navbar-brand row" href="" ng-click="ctrl.routep('home')">
                     <img src="./images/logo.png" height="60" class="d-inline-block align-top" alt="">
                     <h3 class="pt-2">ศูนย์ฝึกอาชีพเขตจตุจักร</h3>
                 </a>
@@ -108,19 +109,26 @@
             </div>
             <div class="col-md-3">
                 <h4>เมนู</h4>
+
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php">หน้าแรก <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" ng-class="{'active': 'home' == states.activeItem}" ng-click="ctrl.routep('home')" href="">หน้าแรก</a>
+                    </li>
+                    <li class="nav-item" ng-if="showMenu()">
+                        <a class="nav-link" ng-class="{'active': item.ROUTEP == states.activeItem}" href="">ตรวจสอบสถานะ</a>
+                    </li>
+                    <li class="nav-item" ng-if="showMenu()">
+                        <a class="nav-link" ng-class="{'active': item.ROUTEP == states.activeItem}" href="">ข้อมูลส่วนตัว</a>
+                    </li>
+                    <li class="nav-item" ng-if="!showMenu()">
+                        <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter"> 
+                            เข้าสู่ระบบ
+                        </a>
                     </li>
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="index.php?pageto=blog">บทความ</a>
+                    <li class="nav-item" ng-if="showMenu()">
+                        <a class="nav-link" href="" ng-click="ctrl.logOut()">ออกจากระบบ</a>
                     </li>
-
-                    <li class="nav-item ">
-                        <a class="nav-link" href="index.php?pageto=activities">กิจกรรม</a>
-                    </li>
-
                 </ul>
             </div>
             <div class="col-md-5">
@@ -146,6 +154,7 @@
     <script src="./backend/script/js/sweetalert/sweetalert.min.js"></script>
     <script src="./backend/script/angular/angular.js"></script>
     <script src="./backend/script/angular/angular-animate.js"></script>
+    <script src='./backend/script/ui-bootstrap-tpls-1.3.1.js'></script>
     <script src="./backend/script/angular/angular-aria.js"></script>
     <script src="./backend/script/angular-material/angular-material.min.js"></script>
     <script src="./backend/script/angular/angular-cookies.js"></script>
@@ -154,6 +163,7 @@
     <script src="./backend/script/angular/angular-messages.js"></script>
     <script src="./backend/script/angular/angular-sanitize.js"></script>
     <script src="./backend/script/loadingTopJS/loadingTopJS.min.js"></script>
+
     <script src="./backend/script/v-accordion.js"></script>
     <script src="./backend/script/kendo-ui/kendo.all.js"></script>
     <script src="./backend/script/kendo-ui/cultures/kendo.culture.th-TH.js"></script>
@@ -163,6 +173,7 @@
     <script src="./backend/script/svg-assets-cache.js"></script>
     <script src="./backend/script/underscore-min.js"></script>
     <script src="./backend/script/ngInfiniteScroll.js"></script>
+
 
     <!-- Load app main script -->
     <script src="app.js"></script>
@@ -178,6 +189,7 @@
     <!-- Load Controller-->
     <script src="view/home/homeController.js"></script>
     <script src="view/register/registerController.js"></script>
+    <script src="view/detail/detailController.js"></script>
 
 </body>
 

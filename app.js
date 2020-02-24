@@ -1,6 +1,6 @@
 ﻿'use strict'
 
-var app = angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngRoute', 'kendo.directives', 'vAccordion', 'ngAnimate']);
+var app = angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngRoute', 'kendo.directives', 'vAccordion', 'ngAnimate', 'ui.bootstrap']);
 var loading = new loadingTopJS();
 
 app.constant('msgSettings', {
