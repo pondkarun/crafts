@@ -7,7 +7,9 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
             id: null,
             name: null,
             price: null,
+            type: null,
             type_id: null,
+            employed_name: null,
             color: [],
             size: [],
             imageStrings: []
@@ -29,6 +31,10 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
             }, 500);
         }
 
+        this.cancelForm = () => {
+            $location.path('home');
+        }
+
         const getHandmadeEdit = (ID) => {
 
             $http.post(webURL.webApi + "handmade/getViewEditHandmadeService.php", ID).then((res) => {
@@ -40,7 +46,9 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
                         id: res.data.id,
                         name: res.data.name,
                         price: Number(res.data.price),
+                        type: res.data.type,
                         type_id: res.data.type_id,
+                        employed_name: res.data.employed_name,
                         color: color,
                         size: size,
                         imageStrings: []

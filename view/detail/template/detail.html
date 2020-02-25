@@ -4,7 +4,7 @@
         <!-- <h1>สมัครสมาชิก</h1> -->
     </section>
     <section class="container main shadow">
-
+        <h2 class="text-center p-4"><u>{{ctrl.model.name}}</u></h2>
         <div class="w3-content w3-display-container">
             <div class="mySlides-img">
                 <img class="mySlides w3-display-middle shadow" src="{{item.path}}" ng-repeat="item in ctrl.model.imageStrings">
@@ -14,6 +14,51 @@
                 <button class="w3-button w3-black w3-display-right" ng-click="ctrl.plusDivs(1)">&#10095;</button>
             </div>
         </div>
+
+        <form name="employedForm" class="container" novalidate>
+            <h3 class="text-center p-4"><u>รายละเอียดงานฝีมือ</u></h3>
+            <md-content layout-padding>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex="70" flex-sm="100">
+                        <label>ชื่องานฝีมือ</label>
+                        <input type="text" required ng-model="ctrl.model.name" readonly>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex="30" flex-sm="100">
+                        <label>ราคา</label>
+                        <input type="number" min="0" required ng-model="ctrl.model.price" readonly>
+                    </md-input-container>
+                </div>
+
+                <div layout="row">
+
+                    <md-input-container class="md-block" flex="50" flex-sm="100">
+                        <label>ประเภทงานฝีมือ</label>
+                        <input type="text" min="0" required ng-model="ctrl.model.type" readonly>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex="50" flex-sm="100">
+                        <label>ผู้บจ้าง</label>
+                        <input type="text" min="0" required ng-model="ctrl.model.employed_name" readonly>
+                    </md-input-container>
+                </div>
+
+                <h3 class="text-center p-4"><u>สั่งซื้องานฝีมือ</u></h3>
+            </md-content>
+
+
+
+            <section>
+                <div class="footer-form-button pt-5" layout="row" layout-align="center center">
+                    <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveFormAdd()" ng-if="!isView">
+                        สั่งซื้องานฝีมือ
+                    </md-button>
+                    <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancelForm()">
+                        ยกเลิก
+                    </md-button>
+                </div>
+            </section>
+        </form>
 
     </section>
 </div>
