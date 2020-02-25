@@ -1,7 +1,7 @@
 'use strict'
 
 app.controller("detailController", ['$scope', '$rootScope', '$location', '$routeParams', 'customerService', '$http', 'customDialog', 'msgSettings',
-    function ($scope, $rootScope, $location, $routeParams, customerService, $http, customDialog, msgSettings) {
+    function($scope, $rootScope, $location, $routeParams, customerService, $http, customDialog, msgSettings) {
         var _this = this;
         this.model = {
             id: null,
@@ -13,17 +13,17 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
             imageStrings: []
         };
 
-        $scope.ShowId = function (event) {
+        $scope.ShowId = function(event) {
             alert(event.target.id);
         };
 
 
-        this.init = function () {
+        this.init = function() {
             loading.open();
             _this.typePage = $routeParams;
             getHandmadeEdit(_this.typePage.id);
             showDivs(slideIndex);
-            setTimeout(function () {
+            setTimeout(function() {
                 _this.plusDivs(1);
                 loading.close();
             }, 500);
@@ -47,7 +47,6 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
                     };
                     getHandmadeImageEdit(ID)
                 } else {
-
                     showAlertBox(msgSettings.msgErrorApi, null);
                 }
             }).catch((err) => {
