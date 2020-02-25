@@ -3,7 +3,8 @@
         <form class="justify-content-end">
             <div class="row">
                 <div class="col-11">
-                    <input class="form-control " type="search" ng-model="ctrl.modelSearch.name" placeholder="ค้นหา..." aria-label="ค้นหา">
+                    <input class="form-control " type="search" ng-model="ctrl.modelSearch.name" placeholder="ค้นหา..."
+                        aria-label="ค้นหา">
                 </div>
                 <div class="col-1">
                     <button type="submit" class="btn btn-success mb-2" ng-click="ctrl.searchHandmade()">ค้นหา</button>
@@ -17,13 +18,15 @@
         <ul class="nav justify-content-center pb-2">
 
             <li class="nav-item">
-                <a class="nav-link " ng-class="{'disabled': ctrl.modelSearch.type_id == 'all'}" href="" ng-click="ctrl.typeClick('all')">ทั้งหมด</a>
+                <a class="nav-link " ng-class="{'disabled': ctrl.modelSearch.type_id == 'all'}" href=""
+                    ng-click="ctrl.typeClick('all')">ทั้งหมด</a>
             </li>
 
 
 
             <li class="nav-item" ng-repeat="x in ctrl.listType">
-                <a class="nav-link" ng-class="{'disabled': x.id == ctrl.modelSearch.type_id}" href="" ng-click="ctrl.typeClick(x.id)">{{x.type}}</a>
+                <a class="nav-link" ng-class="{'disabled': x.id == ctrl.modelSearch.type_id}" href=""
+                    ng-click="ctrl.typeClick(x.id)">{{x.type}}</a>
             </li>
 
 
@@ -34,8 +37,8 @@
             <div class="col-12 col-sm-12 col-md-4 p-3" ng-repeat="item in ctrl.items">
                 <div class="card h-100 shadow">
 
-                    <a href="" class="warpper-card-img">
-                        <img class="card-img-top" ng-click="ctrl.detail(item.id)" src="{{item.path}}" alt="{{item.name}}">
+                    <a href="" ng-click="ctrl.detail(item.id)" class="warpper-card-img">
+                        <img class="card-img-top" src="{{item.path}}" alt="{{item.name}}">
                     </a>
 
                     <div class="card-body">
@@ -46,7 +49,8 @@
                     </div>
 
                     <div class="card-footer text-right" style="font-size: 16px;">
-                        <a href="" ng-click="ctrl.detail(item.id)" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a> {{item.datetime}}
+                        <a href="" ng-click="ctrl.detail(item.id)" class="btn btn-primary btn-block">อ่านเพิ่มเติม</a>
+                        {{item.datetime}}
                     </div>
                 </div>
             </div>
@@ -60,15 +64,18 @@
                         <a class="page-link" href="" ng-click="ctrl.setPage(1)">หน้าแรก</a>
                     </li>
                     <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === 1}">
-                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)" aria-label="Previous">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)"
+                            aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li class="page-item" ng-repeat="page in ctrl.pager.pages" ng-class="{active:ctrl.pager.currentPage === page}">
+                    <li class="page-item" ng-repeat="page in ctrl.pager.pages"
+                        ng-class="{active:ctrl.pager.currentPage === page}">
                         <a class="page-link" href="" ng-click="ctrl.setPage(page)">{{page}}</a>
                     </li>
                     <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
-                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)" aria-label="Next">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)"
+                            aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

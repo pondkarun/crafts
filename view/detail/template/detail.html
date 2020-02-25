@@ -1,3 +1,57 @@
+<style>
+    .mySlides {
+        display: none;
+    }
+
+    .w3-tooltip,
+    .w3-display-container {
+        position: relative
+    }
+
+    .w3-tooltip .w3-text {
+        display: none
+    }
+
+    .w3-tooltip:hover .w3-text {
+        display: inline-block
+    }
+
+    .w3-black,
+    .w3-hover-black:hover {
+        color: #fff !important;
+        background-color: #000 !important
+    }
+
+    .w3-display-left {
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        transform: translate(0%, -50%);
+        -ms-transform: translate(-0%, -50%)
+    }
+
+    .w3-display-right {
+        position: absolute;
+        top: 50%;
+        right: 0%;
+        transform: translate(0%, -50%);
+        -ms-transform: translate(0%, -50%)
+    }
+
+    .w3-content,
+    .w3-auto {
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    .w3-content {
+        max-width: 980px
+    }
+
+    .w3-auto {
+        max-width: 1140px
+    }
+</style>
 <div ng-controller="detailController as ctrl" ng-init="ctrl.init()">
 
     <section class="container p-3">
@@ -5,28 +59,11 @@
     </section>
 
     <section class="container main shadow">
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="http://www.smo-msci.com/crafts/images/crafts_164986253720200222_014631.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="http://www.smo-msci.com/crafts/images/crafts_61281634320200218_232817.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="http://www.smo-msci.com/crafts/images/crafts_43922597820200223_005241.jpg" class="d-block w-100" alt="...">
-                </div>
-            </div>
+        <div class="w3-content w3-display-container">
+            <img class="mySlides" src="{{item.path}}" style="width:100%; height: 500px;"
+                ng-repeat="item in ctrl.model.imageStrings">
+            <button class="w3-button w3-black w3-display-left" ng-click="ctrl.plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right" ng-click="ctrl.plusDivs(1)">&#10095;</button>
         </div>
-
-
-
-        <!-- <a href="" id="12345" data-ng-click="ShowId($event)">sdsd</a> -->
-
-
-
-
-
-
     </section>
 </div>
