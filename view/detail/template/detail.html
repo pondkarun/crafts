@@ -74,7 +74,17 @@
 
                 </div>
 
+                <md-input-container class="md-block">
+                    <label>Detail</label>
+                    <textarea ng-model="ctrl.modelSave.DETAIL" rows="5" md-select-on-focus ng-disabled=""></textarea>
+                </md-input-container>
 
+                <div layout="row">
+                    <md-input-container class="md-block" flex="50" flex-sm="100">
+                        <label>จำนวน</label>
+                        <input type="number" min="0" required ng-model="ctrl.modelSave.unit" readonly>
+                    </md-input-container>
+                </div>
 
             </md-content>
 
