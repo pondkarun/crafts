@@ -1,7 +1,7 @@
 'use strict'
 
 app.controller("detailController", ['$scope', '$rootScope', '$location', '$routeParams', 'customerService', '$http', 'customDialog', 'msgSettings',
-    function($scope, $rootScope, $location, $routeParams, customerService, $http, customDialog, msgSettings) {
+    function ($scope, $rootScope, $location, $routeParams, customerService, $http, customDialog, msgSettings) {
         var _this = this;
         this.model = {
             id: null,
@@ -14,18 +14,18 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
             size: [],
             imageStrings: []
         };
-
-        $scope.ShowId = function(event) {
+        this.listsizeAll = []
+        $scope.ShowId = function (event) {
             alert(event.target.id);
         };
 
 
-        this.init = function() {
+        this.init = function () {
             loading.open();
             _this.typePage = $routeParams;
             getHandmadeEdit(_this.typePage.id);
             showDivs(slideIndex);
-            setTimeout(function() {
+            setTimeout(function () {
                 _this.plusDivs(1);
                 loading.close();
             }, 500);
@@ -42,6 +42,7 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
                 if (res.data.status == "200") {
                     var color = (res.data.color) ? JSON.parse(res.data.color) : null;
                     var size = (res.data.size) ? JSON.parse(res.data.size) : null;
+                    _this.listsizeAll = angular.copy(size);
                     this.model = {
                         id: res.data.id,
                         name: res.data.name,
@@ -63,6 +64,16 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
             })
         }
 
+        this.filterColorSize = (item) => {
+            _this.listColorSize = [];
+            _this.modelSave.size = null;
+            _this.listsizeAll.filter((e) => {
+                if (e.color == item) {
+                    _this.listColorSize.push(e)
+                }
+            })
+        }
+
 
         const getHandmadeImageEdit = (ID) => {
             $http.post(webURL.webApi + "handmade/getViewEditHandmadeImageService.php", ID).then((res) => {
@@ -72,7 +83,6 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
 
             }).catch((err) => {
                 console.log("Error");
-
                 showAlertBox(msgSettings.msgErrorApi, null);
             })
         }
