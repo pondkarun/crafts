@@ -54,7 +54,7 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
                 $http.post(webURL.webApi + "order/addEditOrderService.php", _this.modelSave).then((res) => {
                     console.log("res.data", res.data);
                     showAlertBox(msgSettings.msgSaveSucc, null);
-                    // $location.path("home");
+                    $location.path("home");
                 }).catch((err) => {
                     showAlertBox(msgSettings.msgErrorApi, null);
                 })
