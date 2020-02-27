@@ -2,7 +2,7 @@
 error_reporting(E_ALL); //ถ้าปิด ใส่ 0
 
 $localhost = "103.22.183.220";
-$username_db = "smomscic";
+$username_db = "smomscic_crafts";
 $password_db = "Jj*5cQ6)ub5VK1";
 $db_name = "smomscic_crafts";
 

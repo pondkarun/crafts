@@ -24,7 +24,7 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
         this.detail = (id) => {
             // console.log(id);
             if (customerService.isUserLoggedIn()) {
-                $location.path("detail/" + id);
+                $location.path("detail/handmade/add/" + id);
             } else {
                 showAlertBox(msgSettings.msgLogin, null);
             }

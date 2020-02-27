@@ -24,7 +24,7 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                 }
             }
         }
-    }).when("/detail/:id", {
+    }).when("/detail/:handmade/:type/:id", {
         templateUrl: "view/detail/template/detail.html",
         controller: "detailController",
         resolve: {

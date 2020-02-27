@@ -36,7 +36,7 @@ if ($name) {
         $row = mysqli_fetch_array($result);
         $COUNT_CODE = $row['COUNT_CODE'] + 1;
 
-        $code_handmade = sprintf("HM1%04d", $COUNT_CODE);
+        $code_handmade = sprintf("HM%04d", $COUNT_CODE);
         $id = GUID();
 
 

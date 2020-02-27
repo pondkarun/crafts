@@ -7,8 +7,7 @@
         <h2 class="text-center p-4"><u>{{ctrl.model.name}}</u></h2>
         <div class="w3-content w3-display-container">
             <div class="mySlides-img">
-                <img class="mySlides w3-display-middle shadow" src="{{item.path}}"
-                    ng-repeat="item in ctrl.model.imageStrings">
+                <img class="mySlides w3-display-middle shadow" src="{{item.path}}" ng-repeat="item in ctrl.model.imageStrings">
             </div>
             <div ng-if="ctrl.model.imageStrings.length > 1">
                 <button class="w3-button w3-black w3-display-left" ng-click="ctrl.plusDivs(-1)">&#10094;</button>
@@ -16,18 +15,18 @@
             </div>
         </div>
 
-        <form name="employedForm" class="container" novalidate>
+        <form name="orderHandmade" class="container" novalidate>
             <h3 class="text-center p-4"><u>รายละเอียดงานฝีมือ</u></h3>
             <md-content layout-padding>
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex="70" flex-sm="100">
                         <label>ชื่องานฝีมือ</label>
-                        <input type="text" required ng-model="ctrl.model.name" readonly>
+                        <input type="text" ng-model="ctrl.model.name" readonly>
                     </md-input-container>
 
                     <md-input-container class="md-block" flex="30" flex-sm="100">
                         <label>ราคา</label>
-                        <input type="number" min="0" required ng-model="ctrl.model.price" readonly>
+                        <input type="number" min="0" ng-model="ctrl.model.price" readonly>
                     </md-input-container>
                 </div>
 
@@ -35,25 +34,24 @@
 
                     <md-input-container class="md-block" flex="50" flex-sm="100">
                         <label>ประเภทงานฝีมือ</label>
-                        <input type="text" min="0" required ng-model="ctrl.model.type" readonly>
+                        <input type="text" min="0" ng-model="ctrl.model.type" readonly>
                     </md-input-container>
 
                     <md-input-container class="md-block" flex="50" flex-sm="100">
                         <label>ผู้บจ้าง</label>
-                        <input type="text" min="0" required ng-model="ctrl.model.employed_name" readonly>
+                        <input type="text" min="0" ng-model="ctrl.model.employed_name" readonly>
                     </md-input-container>
                 </div>
 
                 <h3 class="text-center pt-4"><u>สั่งซื้องานฝีมือ</u></h3>
 
-                <div class="">
+                <div ng-if="ctrl.typePage.handmade == 'handmade'">
 
 
                     <label>สี/ประเภท</label>
-                    <md-input-container class="input-container " flex="100" layout="row">
+                    <md-input-container class="input-container" flex="100" layout="row">
 
-                        <md-radio-group ng-model="ctrl.modelSave.color" flex layout="row"
-                            ng-change="ctrl.filterColorSize(ctrl.modelSave.color)">
+                        <md-radio-group ng-model="ctrl.modelSave.color" required flex layout="row" ng-change="ctrl.filterColorSize(ctrl.modelSave.color)">
                             <md-radio-button value="{{x}}" ng-repeat="x in ctrl.model.color" ng-disabled="">
                                 <span class="pl-5">{{x}}</span>
                             </md-radio-button>
@@ -64,7 +62,7 @@
                     <label>ขนาด</label>
                     <md-input-container class="input-container " flex="100" layout="row">
 
-                        <md-radio-group ng-disabled="" ng-model="ctrl.modelSave.size" flex layout="row" ng-change="">
+                        <md-radio-group ng-model="ctrl.modelSave.size" readonly flex layout="row">
                             <md-radio-button value="{{x.size}}" ng-repeat="x in ctrl.listColorSize" ng-disabled="">
                                 <span class="pl-5">{{x.size}}</span>
                             </md-radio-button>
@@ -74,15 +72,38 @@
 
                 </div>
 
-                <md-input-container class="md-block">
-                    <label>Detail</label>
-                    <textarea ng-model="ctrl.modelSave.DETAIL" rows="5" md-select-on-focus ng-disabled=""></textarea>
-                </md-input-container>
+                <div ng-if="ctrl.typePage.handmade == 'handmadeMade'">
 
+                    <div layout="row">
+
+                        <md-input-container class="md-block" flex="50" flex-sm="100">
+                            <label>สี/ประเภท</label>
+                            <input type="text" min="0" required ng-model="ctrl.modelSave.color">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex="50" flex-sm="100">
+                            <label>ขนาด</label>
+                            <input type="text" min="0" required ng-model="ctrl.modelSave.size">
+                        </md-input-container>
+                    </div>
+
+
+                </div>
+                <div layout="row">
+                    <md-input-container class="md-block" flex="100" flex-sm="100">
+                        <label>เพิ่มเติม</label>
+                        <textarea ng-model="ctrl.modelSave.detail" rows="3" md-select-on-focus ng-disabled=""></textarea>
+                    </md-input-container>
+                </div>
                 <div layout="row">
                     <md-input-container class="md-block" flex="50" flex-sm="100">
                         <label>จำนวน</label>
-                        <input type="number" min="0" required ng-model="ctrl.modelSave.unit" readonly>
+                        <input type="number" min="0" ng-change="ctrl.calculator()" required ng-model="ctrl.modelSave.unit">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex="50" flex-sm="100">
+                        <label>ราคารวม</label>
+                        <input type="number" min="0" ng-model="ctrl.model.totel" readonly>
                     </md-input-container>
                 </div>
 
@@ -92,12 +113,15 @@
 
             <section>
                 <div class="footer-form-button pt-5" layout="row" layout-align="center center">
-                    <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center"
-                        ng-click="ctrl.saveFormAdd()" ng-if="!isView">
+                    <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveFormAdd()">
                         สั่งซื้องานฝีมือ
                     </md-button>
-                    <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center"
-                        ng-click="ctrl.cancelForm()">
+
+                    <md-button type="submit" class="md-raised md-success" layout="row" layout-align="center center" ng-click="ctrl.handmadeMade()" ng-if="ctrl.typePage.handmade == 'handmade'">
+                        สั่งทำงานฝีมือ
+                    </md-button>
+
+                    <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancelForm()">
                         ยกเลิก
                     </md-button>
                 </div>
