@@ -1,0 +1,69 @@
+<div ng-controller="verifyController as ctrl" ng-init="ctrl.init()">
+
+    <section class="container p-3">
+        <!-- <h1>สมัครสมาชิก</h1> -->
+    </section>
+    <section class="container main shadow">
+
+        <ul class="nav justify-content-center pb-2">
+
+            <li class="nav-item">
+                <a class="nav-link " ng-class="{'disabled': ctrl.modelSearch.status == 'all'}" href="" ng-click="ctrl.statusClick('all')">ทั้งหมด</a>
+            </li>
+
+            <li class="nav-item" ng-repeat="x in ctrl.listStatus">
+                <a class="nav-link" ng-class="{'disabled': x.status == ctrl.modelSearch.status}" href="" ng-click="ctrl.statusClick(x.status)">{{x.status}}</a>
+            </li>
+
+
+        </ul>
+
+
+
+        <div class="col-12 col-sm-12 col-md-12 p-3" ng-repeat="item in ctrl.items">
+            <div class="card h-100 shadow-hover">
+                <div class="row ">
+                    <div class="col-md-4">
+                        <a href="" ng-click="ctrl.detail(item.id)" class="card-warpper-img">
+                            <img src="{{item.path}}" class="card-img" alt="{{item.name}}">
+                        </a>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <a href="" ng-click="ctrl.detail(item.id)" style="color: black;">
+                                <h5 class="card-text"><b>{{item.name}}</b> </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center pt-3">
+            <nav aria-label="Page navigation example">
+                <ul ng-if="ctrl.pager.pages.length" class="pagination justify-content-center">
+                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === 1}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(1)">หน้าแรก</a>
+                    </li>
+                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === 1}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item" ng-repeat="page in ctrl.pager.pages" ng-class="{active:ctrl.pager.currentPage === page}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(page)">{{page}}</a>
+                    </li>
+                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.totalPages)">หน้าสุดท้าย</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </section>
+</div>

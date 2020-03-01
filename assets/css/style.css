@@ -90,7 +90,7 @@ body {
     padding: 10px 0;
 }
 
-.footer {
+.k-footer {
     background: #000;
     color: #fff;
     font-size: 0.7rem;
@@ -107,4 +107,9 @@ body {
 
 .text-red {
     color: red;
+}
+
+.shadow-hover:hover {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    transform: scale(1.015)
 }

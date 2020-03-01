@@ -34,6 +34,16 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                 }
             }
         }
+    }).when("/verify", {
+        templateUrl: "view/verify/template/verify.html",
+        controller: "verifyController",
+        resolve: {
+            check: function($location, customerService) {
+                if (!customerService.isUserLoggedIn()) {
+                    $location.path("/home");
+                }
+            }
+        }
     }).otherwise({ redirectTo: '/home' });
 });
 

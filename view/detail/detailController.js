@@ -50,11 +50,12 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
 
         this.saveFormAdd = () => {
             if ($scope.orderHandmade.$valid) {
-                console.log("modelSave", _this.modelSave);
+                // console.log("modelSave", _this.modelSave);
                 $http.post(webURL.webApi + "order/addEditOrderService.php", _this.modelSave).then((res) => {
-                    console.log("res.data", res.data);
+                    // console.log("res.data", res.data);
                     showAlertBox(msgSettings.msgSaveSucc, null);
-                    $location.path("home");
+                    $location.path("verify");
+                    $scope.states.activeItem = "verify"
                 }).catch((err) => {
                     showAlertBox(msgSettings.msgErrorApi, null);
                 })

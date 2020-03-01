@@ -1,0 +1,26 @@
+﻿<kendo-grid options="gridOptions">
+        <div k-detail-template ng-class="{'hideexpand' : dataItem.USER_GROUP_ASSOC_IDENTITY_USER.length == 0 }">
+            <div ng-if="dataItem.USER_GROUP_ASSOC_IDENTITY_USER.length > 0" style="margin: 15px 15px 15px -20px;">
+                <table style="border:1px solid rgba(83, 101, 145, 0.3)">
+                    <thead>
+                        <tr>
+                            <th>ยศ ซื่อ-สกุล</th>
+                            <th>สังกัด</th>
+                            <th>ตำแหน่ง</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="item in dataItem.USER_GROUP_ASSOC_IDENTITY_USER">
+                        <td>
+                            {{item.PERSON_NAME}}
+                        </td>
+                        <td>
+                            {{item.ROSTER_NAME}}
+                        </td>
+                        <td>
+                            {{item.DEPARTMENT_NAME}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</kendo-grid>
