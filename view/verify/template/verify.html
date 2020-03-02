@@ -22,19 +22,37 @@
 
         <div class="col-12 col-sm-12 col-md-12 p-3" ng-repeat="item in ctrl.items">
             <div class="card h-100 shadow-hover">
-                <div class="row ">
-                    <div class="col-md-4">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>{{item.NameTH}}</h6>
+                        </div>
+                        <div class="col-6 text-right">
+                            <h6>สถานะ: {{item.status}}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5 col-md-4 col-xl-2">
                         <a href="" ng-click="ctrl.detail(item.id)" class="card-warpper-img">
                             <img src="{{item.path}}" class="card-img" alt="{{item.name}}">
                         </a>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-7 col-md-8 col-xl-10">
                         <div class="card-body">
                             <a href="" ng-click="ctrl.detail(item.id)" style="color: black;">
-                                <h5 class="card-text"><b>{{item.name}}</b> </h5>
+                                <h4 class="card-text"><b>{{item.name}}</b> <span ng-if="item.status_type == 'handmadeMade'" class="text-red">(สั่งทำงานฝีมือ)</span> x {{item.unit}}</h4>
                             </a>
+
+                            <p class="text-right">฿ {{item.price}}</p>
                         </div>
                     </div>
+
+                </div>
+                <div class="card-footer text-right">
+                    <h5>ยอดคำสั่งซื้อทั้งหมด: <span class="text-red pl-3"> ฿ {{item.unit * item.price}} </span></h5>
+                    <button type="submit">sdsd</button>
+                    <button type="submit">sdsd</button>
                 </div>
             </div>
         </div>

@@ -34,9 +34,14 @@ try {
     t.type,
     h.is_use,
     h.datetime,
+    o.unit,
+    o.status_type,
+    o.status,
+    CONCAT(e.name  , ' ' ,  e.surname) AS NameTH,
     (SELECT image FROM handmade_image WHERE id_handmade = h.id LIMIT 1) AS path
     FROM order_handmade AS o
     INNER JOIN handmade AS h ON o.id_handmade = h.id
+    INNER JOIN employed AS e ON h.employed_id = e.id
     INNER JOIN type AS t ON t.id = h.type_id 
     WHERE 1";
 
