@@ -50,9 +50,14 @@
 
                 </div>
                 <div class="card-footer text-right">
-                    <h5>ยอดคำสั่งซื้อทั้งหมด: <span class="text-red pl-3"> ฿ {{item.unit * item.price}} </span></h5>
-                    <button type="submit">sdsd</button>
-                    <button type="submit">sdsd</button>
+                    <h5>ยอดคำสั่งซื้อทั้งหมด : <span class="text-red pl-2">฿ {{item.unit * item.price | number}} </span></h5>
+                    <h5 ng-if="item.status_type == 'handmadeMade'">ยอดมัดจำ 30% : <span class="text-red pl-2">฿ {{((item.unit * item.price) * 30 ) / 100 | number:0}} </span></h5>
+                    <md-button type="button" class="md-raised md-primary" layout-align="center" ng-if="item.status == 'รอการชำระเงิน' || item.status == 'การชำระเงินไม่ถูกต้อง'" ng-click="">
+                        ชำระเงิน
+                    </md-button>
+                    <md-button type="button" class="md-raised md-secondary" layout-align="center" ng-if="item.status == 'รอการชำระเงิน' || item.status == 'รอการยืนยันจากผู้รับจ้าง'" ng-click="">
+                        ยกเลิก
+                    </md-button>
                 </div>
             </div>
         </div>

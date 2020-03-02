@@ -27,8 +27,8 @@ try {
 
 
     $query = "SELECT 
-	h.id,
-    h.code_handmade,
+	o.id,
+    o.order_code,
     h.name,
     h.price,
     t.type,
@@ -45,9 +45,7 @@ try {
     INNER JOIN type AS t ON t.id = h.type_id 
     WHERE 1";
 
-    if ($code_handmade) {
-        $query .= " AND (h.code_handmade LIKE '%" . $code_handmade . "%') ";
-    }
+
     if ($name) {
         $query .= " AND (h.name LIKE  '%" . $name . "%') ";
     }
