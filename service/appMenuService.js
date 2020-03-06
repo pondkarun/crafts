@@ -44,6 +44,16 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                 }
             }
         }
+    }).when("/payment/:id", {
+        templateUrl: "view/payment/template/payment.html",
+        controller: "paymentController",
+        resolve: {
+            check: function($location, customerService) {
+                if (!customerService.isUserLoggedIn()) {
+                    $location.path("/home");
+                }
+            }
+        }
     }).otherwise({ redirectTo: '/home' });
 });
 

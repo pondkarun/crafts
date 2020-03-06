@@ -5,6 +5,7 @@ var loading = new loadingTopJS();
 
 app.constant('msgSettings', {
     msgDelConfirm: "ยืนยันการลบข้อมูล",
+    msgCancelConfirm: "ยืนยันการยกเลิก",
     msgDelSucc: "ลบข้อมูลสำเร็จ",
     msgDelFail: "ลบข้อมูลไม่สำเร็จ",
     msgDelMasterFail: "ไม่สามารถลบข้อมูลที่เลือกได้ กรุณาลบข้อมูลที่เชื่อมโยงกับข้อมูลที่เลือกก่อน",
