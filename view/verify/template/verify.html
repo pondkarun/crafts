@@ -34,13 +34,13 @@
                 </div>
                 <div class="row">
                     <div class="col-5 col-md-4 col-xl-2">
-                        <a href="" ng-click="ctrl.detail(item.id)" class="card-warpper-img">
+                        <a href="" ng-click="ctrl.detail(item)" class="card-warpper-img">
                             <img src="{{item.path}}" class="card-img" alt="{{item.name}}">
                         </a>
                     </div>
                     <div class="col-7 col-md-8 col-xl-10">
                         <div class="card-body">
-                            <a href="" ng-click="ctrl.detail(item.id)" style="color: black;">
+                            <a href="" ng-click="ctrl.detail(item)" style="color: black;">
                                 <h4 class="card-text"><b>{{item.name}}</b> <span ng-if="item.status_type == 'handmadeMade'" class="text-red">(สั่งทำงานฝีมือ)</span> x {{item.unit}}</h4>
                             </a>
 

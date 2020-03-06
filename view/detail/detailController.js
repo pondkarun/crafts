@@ -1,9 +1,9 @@
 'use strict'
 
 app.controller("detailController", ['$scope', '$rootScope', '$location', '$routeParams', 'customerService', '$http', 'customDialog', 'msgSettings',
-    function($scope, $rootScope, $location, $routeParams, customerService, $http, customDialog, msgSettings) {
+    function ($scope, $rootScope, $location, $routeParams, customerService, $http, customDialog, msgSettings) {
         var _this = this;
-
+        this.IsView = false;
         function defaultModelSave() {
             _this.modelSave = {
                 id: null,
@@ -35,14 +35,14 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
         }
 
         this.listsizeAll = []
-        this.init = function() {
+        this.init = function () {
             defaultModelSave()
             defaultModel()
             loading.open();
             _this.typePage = $routeParams;
             checkParams()
             showDivs(slideIndex);
-            setTimeout(function() {
+            setTimeout(function () {
                 _this.plusDivs(1);
                 loading.close();
             }, 500);
@@ -66,7 +66,11 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
         }
 
         this.cancelForm = () => {
-            $location.path('home');
+            if(_this.IsView){
+                $location.path('verify');
+            }else{
+                $location.path('home');
+            }
         }
 
         const getHandmadeEdit = (ID) => {
@@ -89,6 +93,54 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
                         imageStrings: []
                     };
                     getHandmadeImageEdit(ID)
+                } else {
+                    showAlertBox(msgSettings.msgErrorApi, null);
+                }
+            }).catch((err) => {
+                console.log("Error");
+                showAlertBox(msgSettings.msgErrorApi, null);
+            })
+        }
+
+        const getVerifyViewEdit = (ID) => {
+
+            $http.post(webURL.webApi + "verify/getViewEditVerifyService.php", ID).then((res) => {
+                // console.log("res.data", res.data);
+                if (res.data.status == "200") {
+                    var color = (res.data.color) ? JSON.parse(res.data.color) : null;
+                    var size = (res.data.size) ? JSON.parse(res.data.size) : null;
+                    _this.listsizeAll = angular.copy(size);
+                    this.model = {
+                        name: res.data.name,
+                        price: Number(res.data.price),
+                        type: res.data.type,
+                        type_id: res.data.type_id,
+                        employed_name: res.data.employed_name,
+                        color: color,
+                        size: size,
+                        imageStrings: []
+                    };
+       
+                    _this.modelSave = {
+                        id: res.data.id,
+                        order_code: res.data.order_code_o,
+                        unit: Number(res.data.unit_o),
+                        color: res.data.color_o,
+                        size: res.data.size_o,
+                        detail: res.data.detail_o,
+                        status: res.data.status_o,
+                        id_handmade: res.data.id_handmade_o,
+                        id_customers: res.data.id_customers_o,
+                        status_type: res.data.status_type_o
+                    };
+                    getHandmadeImageEdit(res.data.id_handmade_o)
+                    _this.calculator()
+                    _this.listColorSize = [];
+                    _this.listsizeAll.filter((e) => {
+                        if (e.color == res.data.color_o) {
+                            _this.listColorSize.push(e)
+                        }
+                    })
                 } else {
                     showAlertBox(msgSettings.msgErrorApi, null);
                 }
@@ -145,8 +197,11 @@ app.controller("detailController", ['$scope', '$rootScope', '$location', '$route
 
         function checkParams() {
             if (_this.typePage.handmade == "handmade" || _this.typePage.handmade == "handmadeMade") {
-                if (_this.typePage.type == "add" || _this.typePage.type == "edit" || _this.typePage.type == "view") {
+                if (_this.typePage.type == "add" ) {
                     getHandmadeEdit(_this.typePage.id);
+                } else if (_this.typePage.type == "edit" || _this.typePage.type == "view") {
+                    _this.IsView = true;
+                    getVerifyViewEdit(_this.typePage.id);
                 } else {
                     $location.path('home');
                 }

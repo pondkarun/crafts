@@ -52,7 +52,7 @@
                     <md-input-container class="input-container" flex="100" layout="row">
 
                         <md-radio-group ng-model="ctrl.modelSave.color" required flex layout="row" ng-change="ctrl.filterColorSize(ctrl.modelSave.color)">
-                            <md-radio-button value="{{x}}" ng-repeat="x in ctrl.model.color" ng-disabled="">
+                            <md-radio-button value="{{x}}" ng-repeat="x in ctrl.model.color" ng-disabled="ctrl.IsView">
                                 <span class="pl-5">{{x}}</span>
                             </md-radio-button>
                         </md-radio-group>
@@ -63,7 +63,7 @@
                     <md-input-container class="input-container " flex="100" layout="row">
 
                         <md-radio-group ng-model="ctrl.modelSave.size" readonly flex layout="row">
-                            <md-radio-button value="{{x.size}}" ng-repeat="x in ctrl.listColorSize" ng-disabled="">
+                            <md-radio-button value="{{x.size}}" ng-repeat="x in ctrl.listColorSize" ng-disabled="ctrl.IsView">
                                 <span class="pl-5">{{x.size}}</span>
                             </md-radio-button>
                         </md-radio-group>
@@ -78,12 +78,12 @@
 
                         <md-input-container class="md-block" flex="50" flex-sm="100">
                             <label>สี/ประเภท</label>
-                            <input type="text" min="0" required ng-model="ctrl.modelSave.color">
+                            <input type="text" min="0" required ng-model="ctrl.modelSave.color" ng-disabled="ctrl.IsView">
                         </md-input-container>
 
                         <md-input-container class="md-block" flex="50" flex-sm="100">
                             <label>ขนาด</label>
-                            <input type="text" min="0" required ng-model="ctrl.modelSave.size">
+                            <input type="text" min="0" required ng-model="ctrl.modelSave.size" ng-disabled="ctrl.IsView">
                         </md-input-container>
                     </div>
 
@@ -92,18 +92,18 @@
                 <div layout="row">
                     <md-input-container class="md-block" flex="100" flex-sm="100">
                         <label>เพิ่มเติม</label>
-                        <textarea ng-model="ctrl.modelSave.detail" rows="3" md-select-on-focus ng-disabled=""></textarea>
+                        <textarea ng-model="ctrl.modelSave.detail" rows="3" md-select-on-focus ng-disabled="ctrl.IsView"></textarea>
                     </md-input-container>
                 </div>
                 <div layout="row">
                     <md-input-container class="md-block" flex="50" flex-sm="100">
                         <label>จำนวน</label>
-                        <input type="number" min="0" ng-change="ctrl.calculator()" required ng-model="ctrl.modelSave.unit">
+                        <input type="number" min="0" ng-change="ctrl.calculator()" required ng-model="ctrl.modelSave.unit" ng-disabled="ctrl.IsView">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex="50" flex-sm="100">
                         <label>ราคารวม</label>
-                        <input type="number" min="0" ng-model="ctrl.model.totel" readonly>
+                        <input type="number" min="0" ng-model="ctrl.model.totel" readonly ng-disabled="ctrl.IsView">
                     </md-input-container>
                 </div>
 
@@ -113,11 +113,11 @@
 
             <section>
                 <div class="footer-form-button pt-5" layout="row" layout-align="center center">
-                    <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveFormAdd()">
+                    <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveFormAdd()" ng-if="!ctrl.IsView">
                         สั่งซื้องานฝีมือ
                     </md-button>
 
-                    <md-button type="submit" class="md-raised md-success" layout="row" layout-align="center center" ng-click="ctrl.handmadeMade()" ng-if="ctrl.typePage.handmade == 'handmade'">
+                    <md-button type="submit" class="md-raised md-success" layout="row" layout-align="center center" ng-click="ctrl.handmadeMade()" ng-if="ctrl.typePage.handmade == 'handmade' && !ctrl.IsView">
                         สั่งทำงานฝีมือ
                     </md-button>
 

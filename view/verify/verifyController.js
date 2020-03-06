@@ -48,10 +48,10 @@ app.controller("verifyController", ['$scope', '$rootScope', '$location', '$route
             _this.searchOrder();
         }
 
-        this.detail = (id) => {
-            // console.log(id);
+        this.detail = (item) => {
+            console.log(item);
             if (customerService.isUserLoggedIn()) {
-                $location.path("detail/handmade/add/" + id);
+                $location.path("detail/" + item.status_type + "/view/" + item.id);
             } else {
                 showAlertBox(msgSettings.msgLogin, null);
             }
