@@ -1,90 +1,112 @@
 <div ng-controller="verifyController as ctrl" ng-init="ctrl.init()">
+    <div class="container-fluid p-5">
+        <div class="row">
+            <div class="col-3">
+                <section class=" shadow">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" ng-repeat="x in ctrl.listStatus">
+                            <a class="nav-link" ng-class="{'disabled': x.status == ctrl.modelSearch.status}" href=""
+                                ng-click="ctrl.statusClick(x.status)"> o {{x.status}}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a class="nav-link " ng-class="{'disabled': ctrl.modelSearch.status == 'all'}" href=""
+                                ng-click="ctrl.statusClick('all')"> o ทั้งหมด</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="col-9">
+                <section class="main shadow">
 
-    <section class="container p-3">
-        <!-- <h1>สมัครสมาชิก</h1> -->
-    </section>
-    <section class="container main shadow">
+                    <div class="col-12 col-sm-12 col-md-12 p-3" ng-repeat="item in ctrl.items">
+                        <div class="card h-100 shadow-hover">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6>{{item.NameTH}} <small ng-if="item.status_type == 'handmadeMade'"
+                                                style="color: red;">(
+                                                {{item.queue}} คิว )</small></h6>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <h6>สถานะ: {{item.status}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5 col-md-4 col-xl-2">
+                                    <a href="" ng-click="ctrl.detail(item)" class="card-warpper-img">
+                                        <img src="{{item.path}}" class="card-img" alt="{{item.name}}">
+                                    </a>
+                                </div>
+                                <div class="col-7 col-md-8 col-xl-10">
+                                    <div class="card-body">
+                                        <a href="" ng-click="ctrl.detail(item)" style="color: black;">
+                                            <h4 class="card-text"><b>{{item.name}}</b> <span
+                                                    ng-if="item.status_type == 'handmadeMade'"
+                                                    class="text-red">(สั่งทำงานฝีมือ)</span> x {{item.unit}}</h4>
+                                        </a>
+                                        <small style="color: darkgrey;">#{{item.order_code}}</small>
+                                        <p class="text-right">฿ {{item.price}}</p>
+                                    </div>
+                                </div>
 
-        <ul class="nav justify-content-center pb-2">
-            
-            <li class="nav-item" ng-repeat="x in ctrl.listStatus">
-                <a class="nav-link" ng-class="{'disabled': x.status == ctrl.modelSearch.status}" href="" ng-click="ctrl.statusClick(x.status)">{{x.status}}</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link " ng-class="{'disabled': ctrl.modelSearch.status == 'all'}" href="" ng-click="ctrl.statusClick('all')">ทั้งหมด</a>
-            </li>
-        </ul>
-
-
-
-        <div class="col-12 col-sm-12 col-md-12 p-3" ng-repeat="item in ctrl.items">
-            <div class="card h-100 shadow-hover">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-6">
-                            <h6>{{item.NameTH}}  <small ng-if="item.status_type == 'handmadeMade'" style="color: red;">( {{item.queue}} คิว )</small></h6>
-                        </div>
-                        <div class="col-6 text-right">
-                            <h6>สถานะ: {{item.status}}</h6>
+                            </div>
+                            <div class="card-footer text-right">
+                                <h5>ยอดคำสั่งซื้อทั้งหมด : <span class="text-red pl-2">฿
+                                        {{item.unit * item.price | number}}
+                                    </span>
+                                </h5>
+                                <h5 ng-if="item.status_type == 'handmadeMade'">ยอดมัดจำ 30% : <span
+                                        class="text-red pl-2">฿
+                                        {{((item.unit * item.price) * 30 ) / 100 | number:0}} </span></h5>
+                                <md-button type="button" class="md-raised md-primary" layout-align="center"
+                                    ng-if="item.status == 'รอการชำระเงิน' || item.status == 'การชำระเงินไม่ถูกต้อง'"
+                                    ng-click="ctrl.payment(item)">
+                                    ชำระเงิน
+                                </md-button>
+                                <md-button type="button" class="md-raised md-secondary" layout-align="center"
+                                    ng-if="item.status == 'รอการชำระเงิน' || item.status == 'รอการยืนยันจากผู้รับจ้าง'"
+                                    ng-click="ctrl.cancel(item)">
+                                    ยกเลิก
+                                </md-button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-5 col-md-4 col-xl-2">
-                        <a href="" ng-click="ctrl.detail(item)" class="card-warpper-img">
-                            <img src="{{item.path}}" class="card-img" alt="{{item.name}}">
-                        </a>
-                    </div>
-                    <div class="col-7 col-md-8 col-xl-10">
-                        <div class="card-body">
-                            <a href="" ng-click="ctrl.detail(item)" style="color: black;">
-                                <h4 class="card-text"><b>{{item.name}}</b> <span ng-if="item.status_type == 'handmadeMade'" class="text-red">(สั่งทำงานฝีมือ)</span> x {{item.unit}}</h4> 
-                            </a>
-                            <small style="color: darkgrey;">#{{item.order_code}}</small>
-                            <p class="text-right">฿ {{item.price}}</p>
-                        </div>
+
+                    <div class="text-center pt-3">
+                        <nav aria-label="Page navigation example">
+                            <ul ng-if="ctrl.pager.pages.length" class="pagination justify-content-center">
+                                <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === 1}">
+                                    <a class="page-link" href="" ng-click="ctrl.setPage(1)">หน้าแรก</a>
+                                </li>
+                                <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === 1}">
+                                    <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)"
+                                        aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" ng-repeat="page in ctrl.pager.pages"
+                                    ng-class="{active:ctrl.pager.currentPage === page}">
+                                    <a class="page-link" href="" ng-click="ctrl.setPage(page)">{{page}}</a>
+                                </li>
+                                <li class="page-item"
+                                    ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+                                    <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)"
+                                        aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"
+                                    ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
+                                    <a class="page-link" href=""
+                                        ng-click="ctrl.setPage(ctrl.pager.totalPages)">หน้าสุดท้าย</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
 
-                </div>
-                <div class="card-footer text-right">
-                    <h5>ยอดคำสั่งซื้อทั้งหมด : <span class="text-red pl-2">฿ {{item.unit * item.price | number}} </span></h5>
-                    <h5 ng-if="item.status_type == 'handmadeMade'">ยอดมัดจำ 30% : <span class="text-red pl-2">฿ {{((item.unit * item.price) * 30 ) / 100 | number:0}} </span></h5>
-                    <md-button type="button" class="md-raised md-primary" layout-align="center" ng-if="item.status == 'รอการชำระเงิน' || item.status == 'การชำระเงินไม่ถูกต้อง'" ng-click="ctrl.payment(item)">
-                        ชำระเงิน
-                    </md-button>
-                    <md-button type="button" class="md-raised md-secondary" layout-align="center" ng-if="item.status == 'รอการชำระเงิน' || item.status == 'รอการยืนยันจากผู้รับจ้าง'" ng-click="ctrl.cancel(item)">
-                        ยกเลิก
-                    </md-button>
-                </div>
+                </section>
             </div>
         </div>
-
-        <div class="text-center pt-3">
-            <nav aria-label="Page navigation example">
-                <ul ng-if="ctrl.pager.pages.length" class="pagination justify-content-center">
-                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === 1}">
-                        <a class="page-link" href="" ng-click="ctrl.setPage(1)">หน้าแรก</a>
-                    </li>
-                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === 1}">
-                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage - 1)" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item" ng-repeat="page in ctrl.pager.pages" ng-class="{active:ctrl.pager.currentPage === page}">
-                        <a class="page-link" href="" ng-click="ctrl.setPage(page)">{{page}}</a>
-                    </li>
-                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
-                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.currentPage + 1)" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item" ng-class="{disabled:ctrl.pager.currentPage === ctrl.pager.totalPages}">
-                        <a class="page-link" href="" ng-click="ctrl.setPage(ctrl.pager.totalPages)">หน้าสุดท้าย</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-    </section>
+    </div>
 </div>

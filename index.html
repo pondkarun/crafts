@@ -27,29 +27,35 @@
             <a class="navbar-brand" href="" ng-click="ctrl.routep('home')">
                 <img src="./images/logo.png" width="95px">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
 
                 <ul class="navbar-nav ml-auto text-center">
                     <li class="nav-item">
-                        <a class="nav-link" ng-class="{'active': 'home' == states.activeItem}" ng-click="ctrl.routep('home')" href="">หน้าแรก</a>
+                        <a class="nav-link" ng-class="{'active': 'home' == states.activeItem}"
+                            ng-click="ctrl.routep('home')" href=""><i class="fa fa-home"></i> หน้าแรก</a>
                     </li>
                     <li class="nav-item" ng-if="showMenu()">
-                        <a class="nav-link" ng-class="{'active': 'verify' == states.activeItem}" ng-click="ctrl.routep('verify')" href="">ตรวจสอบสถานะ</a>
+                        <a class="nav-link" ng-class="{'active': 'verify' == states.activeItem}"
+                            ng-click="ctrl.routep('verify')" href=""><i class="fa fa-shopping-cart"></i>
+                            ตรวจสอบสถานะ</a>
                     </li>
                     <li class="nav-item" ng-if="showMenu()">
-                        <a class="nav-link" ng-class="{'active': item.ROUTEP == states.activeItem}" href="">ข้อมูลส่วนตัว</a>
+                        <a class="nav-link" ng-class="{'active': item.ROUTEP == states.activeItem}" href=""><i
+                                class="fa fa-user"></i> ข้อมูลส่วนตัว</a>
                     </li>
                     <li class="nav-item" ng-if="!showMenu()">
-                        <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter"> 
-                            เข้าสู่ระบบ
+                        <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter">
+                            <i class="fa fa-sign-in"></i> เข้าสู่ระบบ
                         </a>
                     </li>
 
                     <li class="nav-item" ng-if="showMenu()">
-                        <a class="nav-link" href="" ng-click="ctrl.logOut()">ออกจากระบบ</a>
+                        <a class="nav-link" href="" ng-click="ctrl.logOut()"><i class="fa fa-sign-out"></i>
+                            ออกจากระบบ</a>
                     </li>
                 </ul>
             </div>
@@ -58,7 +64,8 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <form class="modal-content">
 
@@ -72,17 +79,20 @@
 
                     <div class="form-group">
                         <label for="exampleInputUsername">Username</label>
-                        <input type="text" ng-model="ctrl.modelLogin.username" class="form-control" id="exampleInputUsername" placeholder="ชื่อผู้ใช้">
+                        <input type="text" ng-model="ctrl.modelLogin.username" class="form-control"
+                            id="exampleInputUsername" placeholder="ชื่อผู้ใช้">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword">Password</label>
-                        <input type="password" ng-model="ctrl.modelLogin.password" class="form-control" id="exampleInputPassword" placeholder="รหัสผ่าน">
+                        <input type="password" ng-model="ctrl.modelLogin.password" class="form-control"
+                            id="exampleInputPassword" placeholder="รหัสผ่าน">
                     </div>
                     <a href="" ng-click="register()" data-dismiss="modal"><small>สมัครสมาชิก</small></a>
 
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="submit" class="btn btn-primary" ng-click="ctrl.login()" data-dismiss="modal">เข้าสู่ระบบ {{modal}}</button>
+                    <button type="submit" class="btn btn-primary" ng-click="ctrl.login()"
+                        data-dismiss="modal">เข้าสู่ระบบ {{modal}}</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                 </div>
 
@@ -105,45 +115,52 @@
                     </a>
                     <p>
                         <i class="fa fa-phone"></i> 084-207-4588<br>
-                        <i class="fa fa-facebook"></i> <a href="https://www.messenger.com/login.php?next=https%3A%2F%2Fwww.messenger.com%2Ft%2F1646603122265936%2F%3Fmessaging_source%3Dsource%253Apages%253Amessage_shortlink" target="_blank">m.me/jj.training.center</a><br>
-                        <i class="fa fa-map"></i> ศูนย์ฝึกอาชีพกรุงเทพมหานคร จตุจักร 1 สำนักงาน, แขวง จตุจักร เขตจตุจักร กรุงเทพมหานคร 10900 </p>
+                        <i class="fa fa-facebook"></i> <a
+                            href="https://www.messenger.com/login.php?next=https%3A%2F%2Fwww.messenger.com%2Ft%2F1646603122265936%2F%3Fmessaging_source%3Dsource%253Apages%253Amessage_shortlink"
+                            target="_blank">m.me/jj.training.center</a><br>
+                        <i class="fa fa-map"></i> ศูนย์ฝึกอาชีพกรุงเทพมหานคร จตุจักร 1 สำนักงาน, แขวง จตุจักร เขตจตุจักร
+                        กรุงเทพมหานคร 10900 </p>
                 </div>
                 <div class="col-md-3">
                     <h4>เมนู</h4>
 
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" ng-class="{'active': 'home' == states.activeItem}" ng-click="ctrl.routep('home')" href="">หน้าแรก</a>
+                        <li class="nav-item" ng-class="{'active': 'home' == states.activeItem}">
+                            <a class="nav-link" ng-click="ctrl.routep('home')" href=""><i class="fa fa-home"></i>
+                                หน้าแรก</a>
                         </li>
-                        <li class="nav-item" ng-if="showMenu()">
-                            <a class="nav-link" ng-class="{'active': item.ROUTEP == states.activeItem}" href="">ตรวจสอบสถานะ</a>
+                        <li class="nav-item" ng-if="showMenu()" ng-class="{'active': 'verify' == states.activeItem}">
+                            <a class="nav-link" ng-click="ctrl.routep('verify')" href=""><i
+                                    class="fa fa-shopping-cart"></i> ตรวจสอบสถานะ</a>
                         </li>
-                        <li class="nav-item" ng-if="showMenu()">
-                            <a class="nav-link" ng-class="{'active': item.ROUTEP == states.activeItem}" href="">ข้อมูลส่วนตัว</a>
+                        <li class="nav-item" ng-if="showMenu()" ng-class="{'active': item.ROUTEP == states.activeItem}">
+                            <a class="nav-link" href=""><i class="fa fa-user"></i> ข้อมูลส่วนตัว</a>
                         </li>
                         <li class="nav-item" ng-if="!showMenu()">
-                            <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter"> 
-                            เข้าสู่ระบบ
-                        </a>
+                            <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter">
+                                <i class="fa fa-sign-in"></i> เข้าสู่ระบบ
+                            </a>
                         </li>
 
                         <li class="nav-item" ng-if="showMenu()">
-                            <a class="nav-link" href="" ng-click="ctrl.logOut()">ออกจากระบบ</a>
+                            <a class="nav-link" href="" ng-click="ctrl.logOut()"><i class="fa fa-sign-out"></i>
+                                ออกจากระบบ</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-5">
                     <h4>แผนที่</h4>
-                    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.170944035951!2d100.5578017148314!3d13.8287716902977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29c3ff7fe25d3%3A0x90955ac823933a04!2z4Lio4Li54LiZ4Lii4LmM4Lid4Li24LiB4Lit4Liy4LiK4Li14Lie4LiB4Lij4Li44LiH4LmA4LiX4Lie4Lih4Lir4Liy4LiZ4LiE4LijIOC4iOC4leC4uOC4iOC4seC4geC4oyAx!5e0!3m2!1sth!2sth!4v1582370620500!5m2!1sth!2sth"
+                    <iframe class="map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.170944035951!2d100.5578017148314!3d13.8287716902977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29c3ff7fe25d3%3A0x90955ac823933a04!2z4Lio4Li54LiZ4Lii4LmM4Lid4Li24LiB4Lit4Liy4LiK4Li14Lie4LiB4Lij4Li44LiH4LmA4LiX4Lie4Lih4Lir4Liy4LiZ4LiE4LijIOC4iOC4leC4uOC4iOC4seC4geC4oyAx!5e0!3m2!1sth!2sth!4v1582370620500!5m2!1sth!2sth"
                         frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                 </div>
             </div>
         </div>
         <div class="k-footer">
             <span> COPYRIGHT © 2020
-            <a href="./backend" target="_blank">เข้าสู่ระบบ</a>
-            ALL Right Reserved
-        </span>
+                <a href="./backend" target="_blank">เข้าสู่ระบบ</a>
+                ALL Right Reserved
+            </span>
         </div>
     </footer>
     <script src="./backend/script/jquery-2-2.4.min.js"></script>
