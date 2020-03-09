@@ -2592,13 +2592,10 @@ div#gridSearchBank[kendo-grid] table colgroup col:first-of-type {
   width: 100px;
 }
 div#gridSearchBank[kendo-grid] table colgroup col:nth-child(2) {
-  width: 150px;
-}
-div#gridSearchBank[kendo-grid] table colgroup col:nth-child(3) {
-  width: 150px;
+  width: 250px;
 }
 div#gridSearchBank[kendo-grid] table colgroup col:last-of-type {
-  width: 100px;
+  width: 125px;
 }
 div#gridSearchBank[kendo-grid] table tbody tr td {
   word-wrap: break-word;

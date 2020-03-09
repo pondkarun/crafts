@@ -91,3 +91,34 @@ div#gridSearchHandmade[kendo-grid] {
         }
     }
 }
+
+div#gridSearchBank[kendo-grid] {
+    table {
+        colgroup {
+            col {
+                @include first-child() {
+                    width: 100px;
+                }
+                &:nth-child(2) {
+                    width: 150px;
+                }
+                &:nth-child(3) {
+                    width: 150px;
+                }
+                @include last-child() {
+                    width: 100px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    word-wrap: break-word;
+                    @include first-child() {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}

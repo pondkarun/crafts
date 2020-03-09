@@ -884,3 +884,22 @@ div#gridSearchHandmade[kendo-grid] table tbody tr td {
 div#gridSearchHandmade[kendo-grid] table tbody tr td:first-of-type {
   text-align: left;
 }
+
+div#gridSearchBank[kendo-grid] table colgroup col:first-of-type {
+  width: 100px;
+}
+div#gridSearchBank[kendo-grid] table colgroup col:nth-child(2) {
+  width: 150px;
+}
+div#gridSearchBank[kendo-grid] table colgroup col:nth-child(3) {
+  width: 150px;
+}
+div#gridSearchBank[kendo-grid] table colgroup col:last-of-type {
+  width: 100px;
+}
+div#gridSearchBank[kendo-grid] table tbody tr td {
+  word-wrap: break-word;
+}
+div#gridSearchBank[kendo-grid] table tbody tr td:first-of-type {
+  text-align: left;
+}

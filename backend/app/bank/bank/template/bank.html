@@ -1,0 +1,56 @@
+<div ng-controller="bankController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">จัดการงานฝีมือ</h1>
+    </div>
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+
+                    <form name="bankForm" novalidate>
+
+                        <div layout-gt-sm="row" class="pl-5">
+                            <h4 class="pr-3">เพิ่ม :</h4>
+
+                            <md-input-container flex="15">
+                                <label>ธนาคาร</label>
+                                <md-select name="type" ng-model="ctrl.modelSave.id_bank" ng-required="true">
+                                    <md-option ng-repeat="x in ctrl.listBank" value="{{x.id}}">{{x.bank}}</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container flex="30">
+                                <label>เลขบัญชี</label>
+                                <input name="text" ng-model="ctrl.modelSave.number" ng-required="true">
+                            </md-input-container>
+
+                            <md-input-container flex="30">
+                                <label>ชื่อบัญชี</label>
+                                <input name="text" ng-model="ctrl.modelSave.name_bank" ng-required="true">
+                            </md-input-container>
+
+                           
+                            <md-input-container flex="" class="pl-3">
+                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
+                                    ng-click="ctrl.addEditBank()">
+                                    <i class="fas fa-plus fa-sm text-white-50"></i> เพิ่ม
+                                </button>
+                                <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm"
+                                    ng-click="ctrl.clearBank()">
+                                    <i class="fas fa-repeat fa-sm text-white-50"></i> ค่าเริ่มต้น
+                                </button>
+                            </md-input-container>
+                        </div>
+                    </form>
+                    <grid-search flex="100" g-option="ctrl.gridOptions" on-callback-edit="ctrl.gridCallbackEdit" on-callback-del="ctrl.gridCallbackDel">
+                    </grid-search>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

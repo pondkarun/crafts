@@ -94,11 +94,6 @@ app.controller("handmadeController", ['$scope', '$rootScope', '$location', '$rou
             } else {
                 loading.open();
                 $http.post(webURL.webApi + "handmade/searchHandmadeService.php", _this.modelSearch).then((res) => {
-                    // console.log("res.data", res.data);
-                    res.data.filter((e) => {
-                        e.price = Number(e.price).toLocaleString()
-                        e.is_use = (e.is_use == 'true') ? 'ปกติ' : 'ยกเลิกรายการ';
-                    })
                     _this.gridOptions.dataSource.data(res.data);
                     loading.close();
                 }).catch((err) => {
