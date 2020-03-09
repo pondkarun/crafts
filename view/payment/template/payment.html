@@ -1,29 +1,71 @@
-<div ng-controller="paymentController as ctrl" ng-init="ctrl.init()">
+<md-content ng-controller="paymentController as ctrl" ng-init="ctrl.init()">
 
     <section class="container p-3">
         <!-- <h1>สมัครสมาชิก</h1> -->
     </section>
 
     <section class="container main shadow">
-        <table class="table table-bordered">
-            <thead>
-              <tr class="text-center">
-                <th width="100px">เลือก</th>
-                <th>รูป</th>
-                <th>ธนาคาร</th>
-                <th>เลขบัญชี</th>
-                <th>ชื่อบัญชี</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="text-center" ng-repeat="x in ctrl.listBank">
-                <th><input type="radio" ng-model="ctrl.modelSave.id_bank_employed" ng-value="x.id"></th>
-                <td><img src="{{x.path}}" width="30%"></td>
-                <td>{{x.bank}}</td>
-                <td>{{x.number}}</td>
-                <td>{{x.name_bank}}</td>
-              </tr>
-            </tbody>
-          </table>
+        <form name="payment" class="container" novalidate>
+            <md-content layout-padding layout="row">
+
+                <md-input-container class="md-block" flex="30" flex-sm="100">
+                    <label>เลขที่อ้างอิง</label>
+                    <input type="text" min="0" ng-model="ctrl.modelSave.reference " required>
+                </md-input-container>
+
+                <div flow-init flow-name="uploader.flow" flow-files-added="ctrl.processFiles($files)" layout="row">
+                    <div class="upload-btn-wrapper">
+                        <button class="btn-upload">อัพโหลดสลิป</button>
+                        <input flow-btn type="file" multiple>
+                    </div>
+                    <ul ng-repeat="file in uploader.flow.files track by $index">
+                        <li>
+                            {{file.name}}
+                            <a href="" ng-click="file.cancel(); ctrl.delImg(file.name)" class="pl-1">X</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </md-content>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th width="100px">เลือก</th>
+                        <th>รูป</th>
+                        <th>ธนาคาร</th>
+                        <th>เลขบัญชี</th>
+                        <th>ชื่อบัญชี</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center" ng-repeat="x in ctrl.listBank">
+                        <th><input type="radio" ng-model="ctrl.modelSave.id_bank_employed" ng-value="x.id" required>
+                        </th>
+                        <td><img src="{{x.path}}" width="30%"></td>
+                        <td>{{x.bank}}</td>
+                        <td>{{x.number}}</td>
+                        <td>{{x.name_bank}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+            <section>
+                <div class="footer-form-button pt-5" layout="row" layout-align="center center">
+                    <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center"
+                        ng-click="ctrl.saveForm()" ng-if="!ctrl.IsView">
+                        แจ้งชำระ
+                    </md-button>
+
+                    <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center"
+                        ng-click="ctrl.cancelForm()">
+                        ยกเลิก
+                    </md-button>
+                </div>
+            </section>
+
+        </form>
     </section>
-</div>
+    </div>

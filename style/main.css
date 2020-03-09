@@ -2468,6 +2468,30 @@ div[kendo-scheduler].k-scheduler .k-editor-toolbar .k-editor-dropdown {
   }
 }
 
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn-upload {
+  border: 2px solid #4e73df;
+  color: #4e73df;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
 div#gridSearchInventory[kendo-grid] table colgroup col:first-of-type {
   width: 125px;
 }
@@ -2823,6 +2847,30 @@ div#gridSearchReport[kendo-grid] table tbody tr td:first-of-type {
     margin-top: 5px;
     margin-left: -35px;
   }
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn-upload {
+  border: 2px solid #4e73df;
+  color: #4e73df;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 
 /**
