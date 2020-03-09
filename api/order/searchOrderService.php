@@ -33,6 +33,7 @@ try {
     h.datetime,
     o.unit,
     o.status_type,
+    h.employed_id,
     o.status,
     CONCAT(e.name  , ' ' ,  e.surname) AS NameTH,
     (SELECT image FROM handmade_image WHERE id_handmade = h.id LIMIT 1) AS path

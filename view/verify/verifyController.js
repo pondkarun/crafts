@@ -111,7 +111,7 @@ app.controller("verifyController", ['$scope', '$rootScope', '$location', '$route
         }
 
         this.payment = (item) => {
-            $location.path("payment/" + item.id);
+            $location.path("payment/" + item.id + "/" + item.employed_id);
         }
 
         this.cancel = (item) => {

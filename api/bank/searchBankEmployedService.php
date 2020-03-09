@@ -19,6 +19,7 @@ try {
     bm.number,
     bm.name_bank,
     bm.id_bank,
+    b.img,
     b.bank
     FROM bank_employed AS bm
     INNER JOIN bank AS b ON bm.id_bank = b.id 

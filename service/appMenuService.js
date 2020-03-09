@@ -44,7 +44,7 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                 }
             }
         }
-    }).when("/payment/:id", {
+    }).when("/payment/:id/:employed_id", {
         templateUrl: "view/payment/template/payment.html",
         controller: "paymentController",
         resolve: {

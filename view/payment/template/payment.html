@@ -9,15 +9,19 @@
             <thead>
               <tr class="text-center">
                 <th width="100px">เลือก</th>
+                <th>รูป</th>
                 <th>ธนาคาร</th>
                 <th>เลขบัญชี</th>
+                <th>ชื่อบัญชี</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="text-center">
-                <th><input type="radio" name="" id=""></th>
-                <td>Mark</td>
-                <td>Otto</td>
+              <tr class="text-center" ng-repeat="x in ctrl.listBank">
+                <th><input type="radio" ng-model="ctrl.modelSave.id_bank_employed" ng-value="x.id"></th>
+                <td><img src="{{x.path}}" width="30%"></td>
+                <td>{{x.bank}}</td>
+                <td>{{x.number}}</td>
+                <td>{{x.name_bank}}</td>
               </tr>
             </tbody>
           </table>
