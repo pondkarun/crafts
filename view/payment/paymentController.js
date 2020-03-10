@@ -20,15 +20,17 @@ app.controller("paymentController", ['$scope', '$rootScope', '$location', '$rout
         this.saveForm = () => { 
            
             if ($scope.payment.$valid && _this.modelSave.imageStrings.length > 0) {
-                console.log("modelSave" , _this.modelSave);   
-                // $http.post(webURL.webApi + "order/addEditOrderService.php", _this.modelSave).then((res) => {
-                //     // console.log("res.data", res.data);
-                //     showAlertBox(msgSettings.msgSaveSucc, null);
-                //     $location.path("verify");
-                //     $scope.states.activeItem = "verify"
-                // }).catch((err) => {
-                //     showAlertBox(msgSettings.msgErrorApi, null);
-                // })
+                // console.log("modelSave" , _this.modelSave);   
+                let path = () => {
+                    $location.path("verify");
+                    $scope.states.activeItem = "verify"
+                }
+                $http.post(webURL.webApi + "payment/paymentService.php", _this.modelSave).then((res) => {
+                    // console.log("res.data", res.data);
+                    showAlertBox(msgSettings.msgSaveSucc, path()); 
+                }).catch((err) => {
+                    showAlertBox(msgSettings.msgErrorApi, null);
+                })
             } else {
                 showAlertBox(msgSettings.msgValidForm, null);
             }

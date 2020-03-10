@@ -117,7 +117,7 @@ app.controller("bankController", ['$scope', '$rootScope', '$location', '$routePa
         }
 
         const getBank = () => {
-            $http.get(webURL.webApi + "Bank/getBankService.php").then((res) => {
+            $http.get(webURL.webApi + "bank/getBankService.php").then((res) => {
                 // console.log("res.data", res.data);
                 _this.listBank = res.data
             }).catch((err) => {
