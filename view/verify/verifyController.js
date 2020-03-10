@@ -7,44 +7,14 @@ app.controller("verifyController", ['$scope', '$rootScope', '$location', '$route
         this.modelSearch = {
             name: null,
             is_use: "true",
-            type_id: "all",
             status: "รอการชำระเงิน",
+            status_show: "รอการชำระเงิน",
+            status_type: "handmade",
+            status_type_show: "สั่งซื้องานฝีมือ",
             id_customers: customerService.getID()
         }
         this.listOrder = [];
-        this.listStatus = [{
-            id: 1,
-            status: "รอการชำระเงิน"
-        },
-        {
-            id: 2,
-            status: "รอการยืนยันจากผู้รับจ้าง"
-        },
-        {
-            id: 3,
-            status: "รอการตรวจสอบการชำระเงิน"
-        },
-        {
-            id: 4,
-            status: "การชำระเงินไม่ถูกต้อง"
-        },
-        {
-            id: 5,
-            status: "การชำระเงินสำเร็จ"
-        },
-        {
-            id: 5,
-            status: "กำลังทำงานฝีมือ"
-        },
-        {
-            id: 5,
-            status: "ยกเลิก"
-        },
-        {
-            id: 6,
-            status: "เสร็จสิ้น"
-        },
-        ];
+
 
         this.init = function () {
             _this.queue();
@@ -52,7 +22,15 @@ app.controller("verifyController", ['$scope', '$rootScope', '$location', '$route
 
         this.statusClick = (item) => {
             // console.log("item", item);
-            this.modelSearch.status = item;
+            this.modelSearch = {
+                name: null,
+                is_use: "true",
+                status: item.status,
+                status_show: item.status_show,
+                status_type: item.status_type,
+                status_type_show: item.status_type_show,
+                id_customers: customerService.getID()
+            }
             _this.queue();
         }
 
@@ -66,7 +44,7 @@ app.controller("verifyController", ['$scope', '$rootScope', '$location', '$route
         }
         this.queue = () => {
             $http.post(webURL.webApi + "order/getQueueOrder.php").then((res) => {
-                console.log("res.data", res.data);
+                // console.log("res.data", res.data);
                 _this.listQueue = res.data;
                 _this.searchOrder();
             }).catch((err) => {
@@ -146,6 +124,137 @@ app.controller("verifyController", ['$scope', '$rootScope', '$location', '$route
             customDialog.confirm(okCallback, cancelCallback, dialog);
         }
 
+        this.changeSelected = (item) => {
+            if (item == "สั่งซื้องานฝีมือ") {
+                this.modelSearch = {
+                    name: null,
+                    is_use: "true",
+                    status: "รอการชำระเงิน",
+                    status_show: "รอการชำระเงิน",
+                    status_type: "handmade",
+                    status_type_show: "สั่งซื้องานฝีมือ",
+                    id_customers: customerService.getID()
+                }
+            } else {
+                this.modelSearch = {
+                    name: null,
+                    is_use: "true",
+                    status: "รอการยืนยันจากผู้รับจ้าง",
+                    status_show: "รอการยืนยันจากผู้รับจ้าง",
+                    status_type: "handmadeMade",
+                    status_type_show: "สั่งทำงานฝีมือ",
+                    id_customers: customerService.getID()
+                }
+            }
 
+            this.searchOrder();
+        }
+
+        this.status = "สั่งซื้องานฝีมือ"
+
+        this.listHandmade = [
+            {
+                id: 1,
+                status_show: "รอการชำระเงิน",
+                status_type_show: "สั่งซื้องานฝีมือ",
+                status: "รอการชำระเงิน",
+                status_type: "handmade"
+            },
+            {
+                id: 2,
+                status_show: "รอการตรวจสอบการชำระเงิน",
+                status_type_show: "สั่งซื้องานฝีมือ",
+                status: "รอการตรวจสอบการชำระเงิน",
+                status_type: "handmade"
+            },
+            {
+                id: 3,
+                status_show: "การชำระเงินไม่ถูกต้อง",
+                status_type_show: "สั่งซื้องานฝีมือ",
+                status: "การชำระเงินไม่ถูกต้อง",
+                status_type: "handmade"
+            },
+            {
+                id: 4,
+                status_show: "ยกเลิก",
+                status_type_show: "สั่งซื้องานฝีมือ",
+                status: "ยกเลิก",
+                status_type: "handmade"
+            },
+            {
+                id: 5,
+                status_show: "เสร็จสิ้น",
+                status_type_show: "สั่งซื้องานฝีมือ",
+                status: "เสร็จสิ้น",
+                status_type: "handmade"
+            },
+            {
+                id: 6,
+                status_show: "ทั้งหมด",
+                status_type_show: "สั่งซื้องานฝีมือ",
+                status: "all",
+                status_type: "handmade"
+            },
+
+
+
+            {
+                id: 7,
+                status_show: "รอการยืนยันจากผู้รับจ้าง",
+                status_type_show: "สั่งทำงานฝีมือ",
+                status: "รอการยืนยันจากผู้รับจ้าง",
+                status_type: "handmadeMade"
+            },
+
+            {
+                id: 8,
+                status_show: "รอการชำระเงิน",
+                status_type_show: "สั่งทำงานฝีมือ",
+                status: "รอการชำระเงิน",
+                status_type: "handmadeMade"
+            },
+            {
+                id: 9,
+                status_show: "รอการตรวจสอบการชำระเงิน",
+                status_type_show: "สั่งทำงานฝีมือ",
+                status: "รอการตรวจสอบการชำระเงิน",
+                status_type: "handmadeMade"
+            },
+            {
+                id: 10,
+                status_show: "การชำระเงินไม่ถูกต้อง",
+                status_type_show: "สั่งทำงานฝีมือ",
+                status: "การชำระเงินไม่ถูกต้อง",
+                status_type: "handmadeMade"
+            },
+            {
+                id: 11,
+                status_show: "กำลังทำงานฝีมือ",
+                status_type_show: "สั่งทำงานฝีมือ",
+                status: "กำลังทำงานฝีมือ",
+                status_type: "handmadeMade"
+            },
+            {
+                id: 12,
+                status_show: "ยกเลิก",
+                status_type_show: "สั่งทำงานฝีมือ",
+                status: "ยกเลิก",
+                status_type: "handmadeMade"
+            },
+            {
+                id: 13,
+                status_show: "เสร็จสิ้น",
+                status_type_show: "สั่งทำงานฝีมือ",
+                status: "เสร็จสิ้น",
+                status_type: "handmadeMade"
+            },
+            {
+                id: 14,
+                status_show: "ทั้งหมด",
+                status_type_show: "สั่งทำงานฝีมือ",
+                status: "all",
+                status_type: "handmadeMade"
+            },
+        ];
     }
 ]);

@@ -17,7 +17,6 @@ try {
     o.detail AS detail_o,
     o.status AS status_o,
     o.status_type AS status_type_o,
-    o.image_slip AS image_slip_o,
     o.comment AS comment_o, 
      h.code_handmade,
      h.name,
@@ -46,7 +45,6 @@ try {
         $response['detail_o'] = $row['detail_o'];
         $response['status_o'] = $row['status_o'];
         $response['status_type_o'] = $row['status_type_o'];
-        $response['image_slip_o'] = $row['image_slip_o'];
         $response['comment_o'] = $row['comment_o'];
         $response['code_handmade'] = $row['code_handmade'];
         $response['name'] = $row['name'];

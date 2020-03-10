@@ -18,6 +18,7 @@ $postRequest = json_decode($input);
 @$id_customers = $postRequest->id_customers;
 @$is_use = $postRequest->is_use;
 @$status = $postRequest->status;
+@$status_type = $postRequest->status_type;
 
 $data = array();
 
@@ -70,6 +71,10 @@ try {
 
     if ($status && $status != 'all') {
         $query .= " AND (o.status  LIKE '".$status."') ";
+    }
+
+    if ($status_type) {
+        $query .= " AND (o.status_type  LIKE '".$status_type."') ";
     }
 
     $query .= '  ORDER BY o.datetime DESC ';
