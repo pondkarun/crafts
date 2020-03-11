@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings', 'commonService',
+app.controller("addEditViewOrderController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings', 'commonService',
     function($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
         let _this = this;
         this.modelSave = {
@@ -111,6 +111,21 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
             }
         }
 
+        const getVerifyViewEdit = (ID) => {
+            $http.post(webURL.webApi + "verify/getViewEditVerifyService.php", ID).then((res) => {
+                if (res.data.status == "200") {
+                    var color = (res.data.color) ? JSON.parse(res.data.color) : null;
+                    var size = (res.data.size) ? JSON.parse(res.data.size) : null;
+                    console.log("res.data", res.data);
+                    getHandmadeImageEdit(res.data.id_handmade_o)
+                } else {
+                    showAlertBox(msgSettings.msgErrorApi, null);
+                }
+            }).catch((err) => {
+                console.log("Error");
+                showAlertBox(msgSettings.msgErrorApi, null);
+            })
+        }
 
 
         function showAlertBox(msg, callback) {
@@ -121,14 +136,9 @@ app.controller("addEditViewHandmadeController", ['$scope', '$rootScope', '$locat
 
         function checkRouteParams() {
             _this.typePage = $routeParams;
-            if (_this.typePage.Type == "edit") {
-                $scope.title = "แก้ไขงานฝีมือ";
-                getHandmadeEdit(_this.typePage.ID);
-            } else if (_this.typePage.Type == "add") {
-                $scope.title = "เพิ่มงานฝีมือ";
-            } else if (_this.typePage.Type == "view") {
+             if (_this.typePage.Type == "view") {
                 $scope.title = "ข้อมูลงานฝีมือ";
-                getHandmadeEdit(_this.typePage.ID);
+                getVerifyViewEdit(_this.typePage.ID)
                 $scope.isView = true;
             } else {
                 $location.path("handmade");

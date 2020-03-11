@@ -89,7 +89,7 @@ app.controller("orderController", ['$scope', '$rootScope', '$location', '$routeP
 
 
         this.gridCallbackView = (item) => {
-            $location.path("handmade" + "/view/" + item.id);
+            $location.path("order" + "/view/" + item.id);
         }
 
 
