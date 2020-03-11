@@ -1,0 +1,74 @@
+<div ng-controller="orderController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">จัดการงานฝีมือ</h1>
+        
+    </div>
+
+
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+
+
+
+
+                    <form name="employedForm" novalidate>
+                        <h4 class="pr-3">ค้นหา :</h4>
+                        <div layout-gt-sm="row" class="pl-5">
+
+                            <md-input-container flex="20" flex-gt-sm>
+                                <md-select name="status_type" ng-model="ctrl.modelSearch.status_type" ng-change="ctrl.changeSelected(ctrl.modelSearch.status_type)">
+                                    <md-option value="handmade">สั่งซื้องานฝีมือ</md-option>
+                                    <md-option value="handmadeMade">สั่งทำงานฝีมือ</md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container flex="20">
+                                <label>รหัสงานฝีมือ</label>
+                                <input name="order_code" ng-model="ctrl.modelSearch.order_code">
+                            </md-input-container>
+
+                            <md-input-container flex="20">
+                                <label>รายการงานฝีมือ</label>
+                                <input name="name" ng-model="ctrl.modelSearch.name">
+                            </md-input-container>
+                            <md-input-container flex="20">
+                                <label>สถานะ</label>
+                                <md-select name="type" ng-model="ctrl.modelSearch.status">
+                                    <md-option
+                                        ng-repeat="item in ctrl.listStatusOrder"
+                                        value="{{ item.status }}">
+                                        {{ item.status_show }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
+                            <md-input-container flex="" class="pl-3">
+                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
+                                    ng-click="ctrl.searchOrder()">
+                                    <i class="fas fa-search fa-sm text-white-50"></i> ค้นหา
+                                </button>
+                                <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm"
+                                    ng-click="ctrl.clearOrder()">
+                                    <i class="fas fa-repeat fa-sm text-white-50"></i> ค่าเริ่มต้น
+                                </button>
+                            </md-input-container>
+                        </div>
+                    </form>
+
+
+                    <grid-search flex="100" g-option="ctrl.gridOptions" on-callback-view="ctrl.gridCallbackView"
+                        on-callback-edit="ctrl.gridCallbackEdit">
+                    </grid-search>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>

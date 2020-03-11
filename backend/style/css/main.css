@@ -2592,15 +2592,46 @@ div#gridSearchBank[kendo-grid] table colgroup col:first-of-type {
   width: 100px;
 }
 div#gridSearchBank[kendo-grid] table colgroup col:nth-child(2) {
-  width: 250px;
+  width: 150px;
+}
+div#gridSearchBank[kendo-grid] table colgroup col:nth-child(3) {
+  width: 150px;
 }
 div#gridSearchBank[kendo-grid] table colgroup col:last-of-type {
-  width: 125px;
+  width: 100px;
 }
 div#gridSearchBank[kendo-grid] table tbody tr td {
   word-wrap: break-word;
 }
 div#gridSearchBank[kendo-grid] table tbody tr td:first-of-type {
+  text-align: left;
+}
+
+div#gridSearchOrder[kendo-grid] table colgroup col:first-of-type {
+  width: 100px;
+}
+div#gridSearchOrder[kendo-grid] table colgroup col:nth-child(2) {
+  width: 200px;
+}
+div#gridSearchOrder[kendo-grid] table colgroup col:nth-child(3) {
+  width: 125px;
+}
+div#gridSearchOrder[kendo-grid] table colgroup col:nth-child(4) {
+  width: 125px;
+}
+div#gridSearchOrder[kendo-grid] table colgroup col:nth-child(5) {
+  width: 125px;
+}
+div#gridSearchOrder[kendo-grid] table colgroup col:nth-child(6) {
+  width: 150px;
+}
+div#gridSearchOrder[kendo-grid] table colgroup col:last-of-type {
+  width: 100px;
+}
+div#gridSearchOrder[kendo-grid] table tbody tr td {
+  word-wrap: break-word;
+}
+div#gridSearchOrder[kendo-grid] table tbody tr td:first-of-type {
   text-align: left;
 }
 

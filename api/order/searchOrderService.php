@@ -10,6 +10,7 @@ $input = file_get_contents('php://input');
 $postRequest = json_decode($input);
 
 @$code_handmade = $postRequest->code_handmade;
+@$order_code = $postRequest->order_code;
 @$name = $postRequest->name;
 @$type_id = $postRequest->type_id;
 @$price1 = $postRequest->price1;
@@ -75,6 +76,10 @@ try {
 
     if ($status_type) {
         $query .= " AND (o.status_type  LIKE '".$status_type."') ";
+    }
+
+    if ($order_code) {
+        $query .= " AND (o.order_code  LIKE '%".$order_code."%') ";
     }
 
     $query .= '  ORDER BY o.datetime DESC ';

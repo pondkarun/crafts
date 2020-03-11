@@ -122,3 +122,43 @@ div#gridSearchBank[kendo-grid] {
         }
     }
 }
+
+div#gridSearchOrder[kendo-grid] {
+    table {
+        colgroup {
+            col {
+                @include first-child() {
+                    width: 100px;
+                }
+                &:nth-child(2) {
+                    width: 200px;
+                }
+                &:nth-child(3) {
+                    width: 125px;
+                }
+                &:nth-child(4) {
+                    width: 125px;
+                }
+                &:nth-child(5) {
+                    width: 125px;
+                }
+                &:nth-child(6) {
+                    width: 150px;
+                }
+                @include last-child() {
+                    width: 100px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    word-wrap: break-word;
+                    @include first-child() {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}

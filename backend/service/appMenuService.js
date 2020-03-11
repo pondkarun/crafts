@@ -131,6 +131,46 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                 }
             },
         },
+    }).when("/order", {
+        templateUrl: "app/order/searchorder/template/order.html",
+        controller: "orderController",
+        resolve: {
+            check: function($location, userService, $http) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path('/login');
+                } else {
+                    let model = {
+                        ROUTEP: "order",
+                        ID_STATUS_EM: userService.getStatusID()
+                    }
+                    $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
+                        if (Number(res.data.COUNT_ID) <= 0) {
+                            $location.path('/account');
+                        }
+                    })
+                }
+            },
+        },
+    }).when("/order/:Type/:ID", {
+        templateUrl: "app/order/addEditViewOrder/template/addEditViewOrder.html",
+        controller: "addEditViewOrderController",
+        resolve: {
+            check: function($location, userService, $http) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path('/login');
+                } else {
+                    let model = {
+                        ROUTEP: "order",
+                        ID_STATUS_EM: userService.getStatusID()
+                    }
+                    $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
+                        if (Number(res.data.COUNT_ID) <= 0) {
+                            $location.path('/account');
+                        }
+                    })
+                }
+            },
+        },
     }).otherwise({ redirectTo: '/account' });
 
 });
