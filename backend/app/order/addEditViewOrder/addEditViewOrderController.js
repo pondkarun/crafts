@@ -20,6 +20,7 @@ app.controller("addEditViewOrderController", ['$scope', '$rootScope', '$location
             address: null,
             id_bank: null,
         };
+        $scope.handmade = null
         this.typePage = {};
         $scope.isView = false;
         this.init = function () {
@@ -31,10 +32,22 @@ app.controller("addEditViewOrderController", ['$scope', '$rootScope', '$location
         }
 
         this.saveFormAdd = () => {
+            if (_this.model.status_type == "handmadeMade") {
+                alert("handmadeMade")
+                // if (_this.model.status == 'รอการตรวจสอบการชำระเงิน') {
+                //     alert("รอการตรวจสอบการชำระเงิน")
+                // }
+            } else if (_this.model.status_type == "handmade") {
+                alert("handmade")
+                // if (_this.model.status == 'รอการตรวจสอบการชำระเงิน') {
+                //     alert("รอการตรวจสอบการชำระเงิน")
+                // }
 
+            }
         }
 
         const getVerifyViewEdit = (ID) => {
+            loading.open();
             $http.post(webURL.webApi + "order/getViewOrderService.php", ID).then((res) => {
                 if (res.data.status == "400") {
                     showAlertBox(msgSettings.msgErrorApi, null);
@@ -42,9 +55,17 @@ app.controller("addEditViewOrderController", ['$scope', '$rootScope', '$location
                     console.log("res.data", res.data);
                     getBank(res.data.employed_id)
                     _this.model = res.data
-                    let deposit = ((res.data.unit * res.data.price_handmade) * 30 ) / 100
-                    _this.model.priceFull =  Number(res.data.unit) * Number(res.data.price_handmade)
-                    _this.model.deposit = (res.data.status_type == "handmadeMade") ? deposit.toFixed() : 0 ;
+                    let deposit = ((res.data.unit * res.data.price_handmade) * 30) / 100
+                    _this.model.priceFull = Number(res.data.unit) * Number(res.data.price_handmade)
+
+                    if (res.data.status_type == "handmadeMade") {
+                        _this.model.deposit = deposit.toFixed()
+                        $scope.handmade = "ทำงานฝีมือ"
+                    } else if (res.data.status_type == "handmade") {
+                        _this.model.deposit = 0
+                        $scope.handmade = "ซื้องานฝีมือ"
+                    }
+
                 }
             }).catch((err) => {
                 console.log("Error");
@@ -62,7 +83,6 @@ app.controller("addEditViewOrderController", ['$scope', '$rootScope', '$location
         function checkRouteParams() {
             _this.typePage = $routeParams;
             if (_this.typePage.Type == "view") {
-                $scope.title = "ข้อมูลงานฝีมือ";
                 getVerifyViewEdit(_this.typePage.ID)
                 $scope.isView = true;
             } else {
@@ -75,7 +95,6 @@ app.controller("addEditViewOrderController", ['$scope', '$rootScope', '$location
             _this.getBank = {
                 id_employed: id
             }
-            loading.open();
             $http.post(webURL.webApi + "bank/searchBankEmployedService.php", _this.getBank).then((res) => {
                 // console.log("res.data", res.data);
                 res.data.filter((e) => {

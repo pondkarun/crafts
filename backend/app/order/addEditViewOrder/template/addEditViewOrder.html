@@ -10,9 +10,10 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="container">
-                        <h4 class="text-center"><u>รายละเอียดลูกค้า</u></h4>
+
 
                         <md-content layout-padding>
+                            <h4 class="text-center"><u>รายละเอียดลูกค้า</u></h4>
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex="60" flex-gt-sm>
                                     <label>ชื่อ - สกุล</label>
@@ -38,8 +39,9 @@
                         </md-content>
 
 
-                        <h4 class="text-center"><u>รายละเอียดคำสั่งซื่้อฝีมือ</u></h4>
+
                         <md-content layout-padding>
+                            <h4 class="text-center"><u>รายละเอียดคำสั่ง{{handmade}}</u></h4>
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex="70" flex-gt-sm>
                                     <label>ชื่องานฝีมือ</label>
@@ -48,7 +50,8 @@
 
                                 <md-input-container class="md-block" flex="30" flex-gt-sm>
                                     <label>ราคา</label>
-                                    <input type="text" min="0" ng-model="ctrl.model.price_handmade" ng-disabled="isView">
+                                    <input type="text" min="0" ng-model="ctrl.model.price_handmade"
+                                        ng-disabled="isView">
                                 </md-input-container>
                             </div>
 
@@ -91,57 +94,63 @@
                                 </md-input-container>
                             </div>
                         </md-content>
-                       
 
 
-                        <h4 class="text-center"><u>รายละเอียดการชำระ</u></h4>
 
-                        <md-content layout-padding layout="row">
 
-                            <md-input-container class="md-block" flex="100" flex-sm="100">
-                                <label>เลขที่อ้างอิง</label>
-                                <input type="text" min="0" ng-model="ctrl.model.reference " ng-disabled="isView">
-                            </md-input-container>
+                        <section ng-if="ctrl.model.id_bank  && ctrl.model.status != 'การชำระเงินไม่ถูกต้อง'">
+                            <h4 class="text-center p-3"><u>รายละเอียดการชำระ</u></h4>
+                            <md-content layout-padding layout="row">
 
-                            <md-input-container class="md-block" flex="100" flex-sm="100">
-                                <label>สถานะ</label>
-                                <input type="text" min="0" ng-model="ctrl.model.status " ng-disabled="isView">
-                            </md-input-container>
-        
-                        </md-content>
+                                <md-input-container class="md-block" flex="100" flex-sm="100">
+                                    <label>เลขที่อ้างอิง</label>
+                                    <input type="text" min="0" ng-model="ctrl.model.reference " ng-disabled="isView">
+                                </md-input-container>
 
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr class="text-center">
-                                    <th width="100px">เลือก</th>
-                                    <th>รูป</th>
-                                    <th>ธนาคาร</th>
-                                    <th>เลขบัญชี</th>
-                                    <th>ชื่อบัญชี</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-center" ng-repeat="x in ctrl.listBank">
-                                    <th><input type="radio" ng-model="ctrl.model.id_bank" ng-value="x.id" ng-disabled="isView">
-                                    </th>
-                                    <td><img src="{{x.path}}" width="30%"></td>
-                                    <td>{{x.bank}}</td>
-                                    <td>{{x.number}}</td>
-                                    <td>{{x.name_bank}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <md-input-container class="md-block" flex="100" flex-sm="100">
+                                    <label>สถานะ</label>
+                                    <input type="text" min="0" ng-model="ctrl.model.status" ng-disabled="isView">
+                                </md-input-container>
 
-                        <section>
+                            </md-content>
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th width="100px">เลือก</th>
+                                        <th>รูป</th>
+                                        <th>ธนาคาร</th>
+                                        <th>เลขบัญชี</th>
+                                        <th>ชื่อบัญชี</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-center" ng-repeat="x in ctrl.listBank">
+                                        <th><input type="radio" ng-model="ctrl.model.id_bank" ng-value="x.id"
+                                                ng-disabled="isView">
+                                        </th>
+                                        <td><img src="{{x.path}}" width="30%"></td>
+                                        <td>{{x.bank}}</td>
+                                        <td>{{x.number}}</td>
+                                        <td>{{x.name_bank}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <!-- สั่งซื้อ -->
+                        <section ng-if="ctrl.model.status_type == 'handmade' ">
                             <div class="footer-form-button pt-5" layout="row" layout-align="center center">
 
                                 <md-button type="submit" class="md-raised md-primary" layout="row"
-                                    layout-align="center center" ng-click="ctrl.saveFormAdd()">
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd('เสร็จสิ้น')"
+                                    ng-if="ctrl.model.status == 'รอการตรวจสอบการชำระเงิน'">
                                     ชำระเงินถูกต้อง
                                 </md-button>
 
                                 <md-button type="submit" class="md-raised md-warn" layout="row"
-                                    layout-align="center center" ng-click="ctrl.saveFormAdd()">
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd('การชำระเงินไม่ถูกต้อง')"
+                                    ng-if="ctrl.model.status == 'รอการตรวจสอบการชำระเงิน' ">
                                     ชำระเงินไม่ถูกต้อง
                                 </md-button>
 
@@ -151,10 +160,50 @@
                                 </md-button>
                             </div>
                         </section>
+
+                        <!-- สั่งทำ -->
+                        <section ng-if="ctrl.model.status_type == 'handmadeMade' ">
+                            <div class="footer-form-button pt-5" layout="row" layout-align="center center">
+
+                                <md-button type="submit" class="md-raised md-primary" layout="row"
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd('รอการชำระเงิน')"
+                                    ng-if="ctrl.model.status == 'รอการยืนยันจากผู้รับจ้าง' ">
+                                    ยืนยันการทำงานฝีมือ
+                                </md-button>
+
+                                <md-button type="submit" class="md-raised md-warn" layout="row"
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd('ยกเลิก')"
+                                    ng-if="ctrl.model.status == 'รอการยืนยันจากผู้รับจ้าง' ">
+                                    ไม่รับงาน
+                                </md-button>
+
+
+                                <md-button type="submit" class="md-raised md-primary" layout="row"
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd('กำลังทำงานฝีมือ')"
+                                    ng-if="ctrl.model.status == 'รอการตรวจสอบการชำระเงิน' ">
+                                    ชำระเงินถูกต้อง
+                                </md-button>
+
+                                <md-button type="submit" class="md-raised md-primary" layout="row"
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd('เสร็จสิ้น')"
+                                    ng-if="ctrl.model.status == 'รอการตรวจสอบการชำระเงิน' && ctrl.model.is_deposit == 'T'">
+                                    ชำระเงินถูกต้อง2
+                                </md-button>
+
+                                <md-button type="submit" class="md-raised md-warn" layout="row"
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd('การชำระเงินไม่ถูกต้อง')"
+                                    ng-if="ctrl.model.status == 'รอการตรวจสอบการชำระเงิน' ">
+                                    ชำระเงินไม่ถูกต้อง
+                                </md-button>
+
+                                <md-button type="button" class="md-raised md-secondary" layout="row"
+                                    layout-align="center center" ng-click="ctrl.cancelForm('')">
+                                    Cancel
+                                </md-button>
+                            </div>
+                        </section>
+
                     </div>
-
-
-
                 </div>
             </div>
         </div>
