@@ -9,95 +9,149 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-body">
+                    <div class="container">
+                        <h4 class="text-center"><u>รายละเอียดลูกค้า</u></h4>
 
-
-                    <form name="employedForm" class="container" novalidate>
                         <md-content layout-padding>
                             <div layout-gt-sm="row">
-                                <md-input-container class="md-block" flex="70" flex-gt-sm>
-                                    <label>ชื่องานฝีมือ</label>
-                                    <input type="text" required ng-model="ctrl.modelSave.name" ng-disabled="isView">
+                                <md-input-container class="md-block" flex="60" flex-gt-sm>
+                                    <label>ชื่อ - สกุล</label>
+                                    <input type="text" ng-model="ctrl.model.nameTH" ng-disabled="isView">
                                 </md-input-container>
 
-                                <md-input-container class="md-block" flex="30" flex-gt-sm>
-                                    <label>ราคา</label>
-                                    <input type="number" min="0" required ng-model="ctrl.modelSave.price" ng-disabled="isView">
+                                <md-input-container class="md-block" flex="40" flex-gt-sm>
+                                    <label>เบอร์ติดต่อ</label>
+                                    <input type="text" min="0" ng-model="ctrl.model.tel" ng-disabled="isView">
                                 </md-input-container>
                             </div>
 
                             <div layout="row">
-                                <md-input-container flex="30" flex-gt-sm>
-                                    <label>ประเภทงานฝีมือ</label>
-                                    <md-select name="type" ng-model="ctrl.modelSave.type_id" required ng-disabled="isView">
-                                        <md-option ng-repeat="item in ctrl.listType" value="{{ item.id }}">
-                                            {{ item.type }}
-                                        </md-option>
-                                    </md-select>
+                                <md-input-container class="md-block" flex="100" flex-sm="100">
+                                    <label>ที่อยู่</label>
+                                    <textarea ng-model="ctrl.model.address" rows="3" md-select-on-focus
+                                        ng-disabled="isView">
+                                    </textarea>
                                 </md-input-container>
-
-                                <md-content flex="70" class="pl-1" flex-gt-sm>
-                                    <md-chips ng-model="ctrl.modelSave.color" placeholder="รายละเอียดสี *" md-add-on-blur="true" input-aria-label="Fruit names" md-on-remove="" readonly="isView"></md-chips>
-                                </md-content>
                             </div>
-
-                            <div layout="row">
-                                <md-input-container flex="30" flex-gt-sm>
-                                    <label>เลือกสี</label>
-                                    <md-select name="type" ng-model="ctrl.model.color" ng-disabled="ctrl.modelSave.color.length == 0" ng-change="ctrl.mapchipModel(ctrl.model.color)">
-                                        <md-option ng-repeat="item in ctrl.modelSave.color" value="{{ item }}">
-                                            {{ item }}</md-option>
-                                    </md-select>
-                                </md-input-container>
-
-                                <md-content flex="70" class="pl-1" flex-gt-sm ng-if="ctrl.model.color">
-                                    <md-chips ng-model="ctrl.model.size" placeholder="รายละเอียดขนาด *" md-add-on-blur="true" input-aria-label="Fruit names" md-on-remove="ctrl.removableSize($chip)" md-transform-chip="ctrl.chipModel($chip)" readonly="isView">
-                                    </md-chips>
-                                </md-content>
-                            </div>
-
-
-                            <div layout="row" flex-gt-sm ng-if="!isView">
-                                <div flow-init flow-name="uploader.flow" flow-files-added="ctrl.processFiles($files)">
-                                    <div class="upload-btn-wrapper">
-                                        <button class="btn-upload">อัพโหลดรูปภาพ</button>
-                                        <input flow-btn type="file" multiple>
-                                    </div>
-                                    <ul ng-repeat="file in uploader.flow.files track by $index">
-                                        <li>
-                                            {{file.name}}
-                                            <a href="" ng-click="file.cancel(); ctrl.delImg(file.name)" class="pl-1">X</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div layout="row" flex-gt-sm ng-if="ctrl.typePage.Type != 'add'">
-                                <h5>รูปภาพ</h5>
-                                <ul>
-                                    <li ng-repeat="item in ctrl.model.imageStrings">
-                                        <a href="{{item.path}}" target="_blank" style="color: black;">{{item.image}}</a>
-                                        <a href="" ng-click="ctrl.imageStringsDel(item.id)" class="pl-1" ng-if="!isView">X</a>
-                                    </li>
-                                </ul>
-                            </div>
-
 
 
                         </md-content>
 
 
+                        <h4 class="text-center"><u>รายละเอียดคำสั่งซื่้อฝีมือ</u></h4>
+                        <md-content layout-padding>
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex="70" flex-gt-sm>
+                                    <label>ชื่องานฝีมือ</label>
+                                    <input type="text" ng-model="ctrl.model.name_handmade" ng-disabled="isView">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex="30" flex-gt-sm>
+                                    <label>ราคา</label>
+                                    <input type="text" min="0" ng-model="ctrl.model.price_handmade" ng-disabled="isView">
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex="33" flex-gt-sm>
+                                    <label>จำนวน</label>
+                                    <input type="text" ng-model="ctrl.model.unit" ng-disabled="isView">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex="33" flex-gt-sm>
+                                    <label>ยอดมัดจำ</label>
+                                    <input type="text" min="0" ng-model="ctrl.model.deposit" ng-disabled="isView">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex="33" flex-gt-sm>
+                                    <label>ยอดเต็ม</label>
+                                    <input type="text" min="0" ng-model="ctrl.model.priceFull" ng-disabled="isView">
+                                </md-input-container>
+
+                            </div>
+
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex="50" flex-gt-sm>
+                                    <label>สี/ประเภท</label>
+                                    <input type="text" min="0" ng-model="ctrl.model.color" ng-disabled="isView">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex="50" flex-gt-sm>
+                                    <label>ขนาด</label>
+                                    <input type="text" min="0" ng-model="ctrl.model.size" ng-disabled="isView">
+                                </md-input-container>
+                            </div>
+
+                            <div layout="row">
+                                <md-input-container class="md-block" flex="100" flex-sm="100">
+                                    <label>เพิ่มเติม</label>
+                                    <textarea ng-model="ctrl.model.detail" rows="3" md-select-on-focus
+                                        ng-disabled="isView">
+                                    </textarea>
+                                </md-input-container>
+                            </div>
+                        </md-content>
+                       
+
+
+                        <h4 class="text-center"><u>รายละเอียดการชำระ</u></h4>
+
+                        <md-content layout-padding layout="row">
+
+                            <md-input-container class="md-block" flex="100" flex-sm="100">
+                                <label>เลขที่อ้างอิง</label>
+                                <input type="text" min="0" ng-model="ctrl.model.reference " ng-disabled="isView">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex="100" flex-sm="100">
+                                <label>สถานะ</label>
+                                <input type="text" min="0" ng-model="ctrl.model.status " ng-disabled="isView">
+                            </md-input-container>
+        
+                        </md-content>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="text-center">
+                                    <th width="100px">เลือก</th>
+                                    <th>รูป</th>
+                                    <th>ธนาคาร</th>
+                                    <th>เลขบัญชี</th>
+                                    <th>ชื่อบัญชี</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center" ng-repeat="x in ctrl.listBank">
+                                    <th><input type="radio" ng-model="ctrl.model.id_bank" ng-value="x.id" ng-disabled="isView">
+                                    </th>
+                                    <td><img src="{{x.path}}" width="30%"></td>
+                                    <td>{{x.bank}}</td>
+                                    <td>{{x.number}}</td>
+                                    <td>{{x.name_bank}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
                         <section>
                             <div class="footer-form-button pt-5" layout="row" layout-align="center center">
-                                <md-button type="submit" class="md-raised md-primary" layout="row" layout-align="center center" ng-click="ctrl.saveFormAdd()" ng-if="!isView">
-                                    Save
+
+                                <md-button type="submit" class="md-raised md-primary" layout="row"
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd()">
+                                    ชำระเงินถูกต้อง
                                 </md-button>
-                                <md-button type="button" class="md-raised md-secondary" layout="row" layout-align="center center" ng-click="ctrl.cancelForm()">
+
+                                <md-button type="submit" class="md-raised md-warn" layout="row"
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd()">
+                                    ชำระเงินไม่ถูกต้อง
+                                </md-button>
+
+                                <md-button type="button" class="md-raised md-secondary" layout="row"
+                                    layout-align="center center" ng-click="ctrl.cancelForm()">
                                     Cancel
                                 </md-button>
                             </div>
                         </section>
-                    </form>
+                    </div>
 
 
 

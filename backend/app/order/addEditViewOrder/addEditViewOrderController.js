@@ -1,125 +1,50 @@
 'use strict'
 
 app.controller("addEditViewOrderController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings', 'commonService',
-    function($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
+    function ($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
         let _this = this;
-        this.modelSave = {
-            id: null,
-            name: null,
-            price: null,
-            type_id: null,
-            color: [],
-            size: [],
-            imageStrings: [],
-            imageStringsDel: [],
-            employed_id: userService.getID()
-        };
-
         this.model = {
+            id: null,
+            name_handmade: $routeParams.id,
+            price_handmade: null,
+            unit: null,
             color: null,
             size: null,
-            imageStrings: []
+            detail: null,
+            deposit: null,
+            priceFull: null,
+            status: null,
+            reference: null,
+            nameTH: null,
+            tel: null,
+            address: null,
+            id_bank: null,
         };
-
         this.typePage = {};
         $scope.isView = false;
-        this.init = function() {
+        this.init = function () {
             checkRouteParams()
-            getType()
-        }
-
-
-        this.chipModel = (chip) => {
-            let item = {
-                color: _this.model.color,
-                size: chip
-            }
-            _this.modelSave.size.push(item);
-        }
-
-        this.removableSize = (item) => {
-            let delIndex = _this.modelSave.size.findIndex((x) => x.size == item && x.color == _this.model.color);
-            _this.modelSave.size.splice(delIndex, 1);
-        }
-
-        this.mapchipModel = (item) => {
-            _this.model.size = [];
-            _this.modelSave.size.filter((e) => {
-                if (e.color == item) {
-                    _this.model.size.push(e.size);
-                }
-            })
-        }
-
-
-        //อัพโหลด
-        this.processFiles = (files) => {
-            angular.forEach(files, function(flowFile, i) {
-                var fileReader = new FileReader();
-                fileReader.onload = function(event) {
-                    let item = {
-                        image: event.target.result,
-                        name: flowFile.name
-                    }
-                    _this.modelSave.imageStrings.push(item);
-                };
-                fileReader.readAsDataURL(flowFile.file);
-            });
-        };
-
-        this.delImg = (item) => {
-            let delIndex = _this.modelSave.imageStrings.findIndex((x) => x.name == item);
-            _this.modelSave.imageStrings.splice(delIndex, 1);
-        }
-
-        this.imageStringsDel = (item) => {
-            // console.log(item);
-            let delModel = _this.model.imageStrings.findIndex((x) => x.id == item);
-            _this.model.imageStrings.splice(delModel, 1);
-
-            let delModelSave = _this.modelSave.imageStrings.findIndex((x) => x.id == item);
-            _this.modelSave.imageStringsDel.push(_this.modelSave.imageStrings[delModelSave])
-            _this.modelSave.imageStrings.splice(delModelSave, 1);
-
-
-
         }
 
         this.cancelForm = () => {
-            $location.path("handmade");
+            $location.path("order");
         }
 
         this.saveFormAdd = () => {
-            if (!$scope.employedForm.$valid) {
-                showAlertBox(msgSettings.msgValidForm, null);
-            } else if (_this.modelSave.color.length <= 0) {
-                showAlertBox(msgSettings.msgValidForm, null);
-            } else if (_this.modelSave.size.length <= 0) {
-                showAlertBox(msgSettings.msgValidForm, null);
 
-            } else if (_this.modelSave.imageStrings.length <= 0) {
-                showAlertBox("กรุณาเลือกรูปภาพ", null);
-            } else {
-
-                $http.post(webURL.webApi + "handmade/addEditHandmadeService.php", _this.modelSave).then((res) => {
-                    // console.log("res.data", res.data);
-                    showAlertBox(msgSettings.msgSaveSucc, null);
-                    $location.path("handmade");
-                }).catch((err) => {
-                    showAlertBox(msgSettings.msgErrorApi, null);
-                })
-            }
         }
 
         const getVerifyViewEdit = (ID) => {
-            $http.post(webURL.webApi + "verify/getViewEditVerifyService.php", ID).then((res) => {
-                if (res.data.status == "200") {
-                    var color = (res.data.color) ? JSON.parse(res.data.color) : null;
-                    var size = (res.data.size) ? JSON.parse(res.data.size) : null;
-                    console.log("res.data", res.data);
-                    getHandmadeImageEdit(res.data.id_handmade_o)
-                } else {
+            $http.post(webURL.webApi + "order/getViewOrderService.php", ID).then((res) => {
+                if (res.data.status == "400") {
                     showAlertBox(msgSettings.msgErrorApi, null);
+                } else {
+                    console.log("res.data", res.data);
+                    getBank(res.data.employed_id)
+                    _this.model = res.data
+                    let deposit = ((res.data.unit * res.data.price_handmade) * 30 ) / 100
+                    _this.model.priceFull =  Number(res.data.unit) * Number(res.data.price_handmade)
+                    _this.model.deposit = (res.data.status_type == "handmadeMade") ? deposit.toFixed() : 0 ;
                 }
             }).catch((err) => {
                 console.log("Error");
@@ -136,7 +61,7 @@ app.controller("addEditViewOrderController", ['$scope', '$rootScope', '$location
 
         function checkRouteParams() {
             _this.typePage = $routeParams;
-             if (_this.typePage.Type == "view") {
+            if (_this.typePage.Type == "view") {
                 $scope.title = "ข้อมูลงานฝีมือ";
                 getVerifyViewEdit(_this.typePage.ID)
                 $scope.isView = true;
@@ -145,58 +70,22 @@ app.controller("addEditViewOrderController", ['$scope', '$rootScope', '$location
             }
         }
 
-        const getHandmadeEdit = (ID) => {
+
+        const getBank = (id) => {
+            _this.getBank = {
+                id_employed: id
+            }
             loading.open();
-            $http.post(webURL.webApi + "handmade/getViewEditHandmadeService.php", ID).then((res) => {
+            $http.post(webURL.webApi + "bank/searchBankEmployedService.php", _this.getBank).then((res) => {
                 // console.log("res.data", res.data);
-                if (res.data.status == "200") {
-                    var color = (res.data.color) ? JSON.parse(res.data.color) : null;
-                    var size = (res.data.size) ? JSON.parse(res.data.size) : null;
-                    this.modelSave = {
-                        id: res.data.id,
-                        name: res.data.name,
-                        price: Number(res.data.price),
-                        type_id: res.data.type_id,
-                        color: color,
-                        size: size,
-                        imageStrings: [],
-                        imageStringsDel: [],
-                        employed_id: userService.getID()
-                    };
-                    _this.model.color = _this.modelSave.color[0]
-                    _this.mapchipModel(_this.model.color)
-                    getHandmadeImageEdit(ID)
-
-                } else {
-                    showAlertBox(msgSettings.msgErrorApi, null);
-                }
-            }).catch((err) => {
-                console.log("Error");
-                loading.close();
-                showAlertBox(msgSettings.msgErrorApi, null);
-            })
-        }
-
-        const getHandmadeImageEdit = (ID) => {
-            $http.post(webURL.webApi + "handmade/getViewEditHandmadeImageService.php", ID).then((res) => {
-                // console.log("res.data", res.data);
-                res.data.filter(e => e.path = webURL.webImagesView + e.image)
-                _this.modelSave.imageStrings = res.data;
-                _this.model.imageStrings = angular.copy(res.data);
+                res.data.filter((e) => {
+                    e.path = webURL.webImagesView + e.img
+                })
+                _this.listBank = res.data
                 loading.close();
             }).catch((err) => {
                 console.log("Error");
                 loading.close();
-                showAlertBox(msgSettings.msgErrorApi, null);
-            })
-        }
-
-        const getType = () => {
-            $http.get(webURL.webApi + "type/getTypeService.php").then((res) => {
-                // console.log("res.data", res.data);
-                _this.listType = res.data
-            }).catch((err) => {
-                console.log("Error");
                 showAlertBox(msgSettings.msgErrorApi, null);
             })
         }
