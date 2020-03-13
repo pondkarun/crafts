@@ -132,7 +132,7 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
             },
         },
     }).when("/order", {
-        templateUrl: "app/order/searchorder/template/order.html",
+        templateUrl: "app/order/searchOrder/template/order.html",
         controller: "orderController",
         resolve: {
             check: function($location, userService, $http) {
