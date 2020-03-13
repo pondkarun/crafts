@@ -63,6 +63,9 @@
                                 <h5 ng-if="item.status_type == 'handmadeMade'">ยอดมัดจำ 30% : <span
                                         class="text-red pl-2">฿
                                         {{((item.unit * item.price) * 30 ) / 100 | number:0}} </span></h5>
+                                <h5 ng-if="item.status_type == 'handmadeMade' && item.is_deposit == 'T'">ยอดที่ต้องชำระ : <span
+                                        class="text-red pl-2">฿
+                                        {{(item.unit * item.price) - (((item.unit * item.price) * 30 ) / 100) | number:0}} </span></h5>
                                 <md-button type="button" class="md-raised md-primary" layout-align="center"
                                     ng-if="item.status == 'รอการชำระเงิน' || item.status == 'การชำระเงินไม่ถูกต้อง'"
                                     ng-click="ctrl.payment(item)">

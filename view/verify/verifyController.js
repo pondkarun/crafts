@@ -18,6 +18,10 @@ app.controller("verifyController", ['$scope', '$rootScope', '$location', '$route
 
         this.init = function () {
             _this.queue();
+            setInterval(function () {
+                _this.queue();
+            }, 5000);
+
         }
 
         this.statusClick = (item) => {
@@ -56,7 +60,7 @@ app.controller("verifyController", ['$scope', '$rootScope', '$location', '$route
 
         this.searchOrder = () => {
             // console.log("modelSearch", _this.modelSearch);
-            loading.open();
+
             $http.post(webURL.webApi + "order/searchOrderService.php", _this.modelSearch).then((res) => {
                 // console.log("res.data", res.data);
                 res.data.filter((e) => {
@@ -80,10 +84,10 @@ app.controller("verifyController", ['$scope', '$rootScope', '$location', '$route
 
                 _this.listOrder = angular.copy(res.data)
                 _this.setPage(1);
-                loading.close();
+
             }).catch((err) => {
                 console.log("Error");
-                loading.close();
+
                 showAlertBox(msgSettings.msgErrorApi, null);
             })
         }

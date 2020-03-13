@@ -18,8 +18,10 @@ try {
     oh.detail,
     oh.status,
     oh.is_deposit,
+    oh.comment,
     oh.status_type,
     oms.reference,
+    oms.image_slip,
     CONCAT(c.name , ' ', c.surname) AS nameTH,
     c.tel,
     c.address,
@@ -29,7 +31,9 @@ try {
     INNER JOIN handmade AS h ON oh.id_handmade = h.id
     LEFT JOIN order_map_slip AS oms ON oh.id = oms.id_order_handmade
     INNER JOIN customers AS c ON c.id = oh.id_customers
-    WHERE oh.id = '".$ID."'";
+    WHERE oh.id = '".$ID."'
+    ORDER BY oms.datetime DESC
+    LIMIT 1";
     $result = $condb->query($sql);
 
     if (mysqli_num_rows($result) == 1) {
@@ -45,7 +49,9 @@ try {
         $response['status'] = $row['status'];
         $response['status_type'] = $row['status_type'];
         $response['is_deposit'] = $row['is_deposit'];
+        $response['comment'] = $row['comment'];
         $response['reference'] = $row['reference'];
+        $response['image_slip'] = $row['image_slip'];
         $response['nameTH'] = $row['nameTH'];
         $response['tel'] = $row['tel'];
         $response['address'] = $row['address'];

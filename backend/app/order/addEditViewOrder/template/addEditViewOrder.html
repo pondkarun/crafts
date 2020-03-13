@@ -98,7 +98,7 @@
 
 
 
-                        <section ng-if="ctrl.model.id_bank  && ctrl.model.status != 'การชำระเงินไม่ถูกต้อง'">
+                        <section ng-if="ctrl.model.id_bank  ">
                             <h4 class="text-center p-3"><u>รายละเอียดการชำระ</u></h4>
                             <md-content layout-padding layout="row">
 
@@ -112,6 +112,20 @@
                                     <input type="text" min="0" ng-model="ctrl.model.status" ng-disabled="isView">
                                 </md-input-container>
 
+
+                            </md-content>
+
+                            <md-content layout-padding>
+
+                                <div layout="row">
+                                    <md-input-container class="md-block" flex="100" flex-sm="100">
+                                        <label>เพิ่มเติม</label>
+                                        <textarea ng-model="ctrl.model.comment" rows="3" md-select-on-focus
+                                            ng-disabled="ctrl.model.status != 'รอการตรวจสอบการชำระเงิน'">
+                                    </textarea>
+                                    </md-input-container>
+                                </div>
+
                             </md-content>
 
                             <table class="table table-bordered">
@@ -122,6 +136,7 @@
                                         <th>ธนาคาร</th>
                                         <th>เลขบัญชี</th>
                                         <th>ชื่อบัญชี</th>
+                                        <th>สลิป</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -133,6 +148,10 @@
                                         <td>{{x.bank}}</td>
                                         <td>{{x.number}}</td>
                                         <td>{{x.name_bank}}</td>
+                                        <td>
+                                            <a href="{{ctrl.model.pathImg}}" target="_blank"
+                                                ng-if="ctrl.model.id_bank == x.id">ดูรูป</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -180,14 +199,20 @@
 
                                 <md-button type="submit" class="md-raised md-primary" layout="row"
                                     layout-align="center center" ng-click="ctrl.saveFormAdd('กำลังทำงานฝีมือ')"
-                                    ng-if="ctrl.model.status == 'รอการตรวจสอบการชำระเงิน' ">
-                                    ชำระเงินถูกต้อง
+                                    ng-if="ctrl.model.status == 'รอการตรวจสอบการชำระเงิน' && ctrl.model.is_deposit == 'F'">
+                                    ชำระเงินมัดจำถูกต้อง
+                                </md-button>
+
+                                <md-button type="submit" class="md-raised md-primary" layout="row"
+                                    layout-align="center center" ng-click="ctrl.saveFormAdd('รอการชำระเงิน')"
+                                    ng-if="ctrl.model.status == 'กำลังทำงานฝีมือ' ">
+                                    เรียกเก็ยยอดที่เหลือ
                                 </md-button>
 
                                 <md-button type="submit" class="md-raised md-primary" layout="row"
                                     layout-align="center center" ng-click="ctrl.saveFormAdd('เสร็จสิ้น')"
                                     ng-if="ctrl.model.status == 'รอการตรวจสอบการชำระเงิน' && ctrl.model.is_deposit == 'T'">
-                                    ชำระเงินถูกต้อง2
+                                    ชำระเงินถูกต้อง
                                 </md-button>
 
                                 <md-button type="submit" class="md-raised md-warn" layout="row"

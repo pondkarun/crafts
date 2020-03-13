@@ -37,6 +37,7 @@ try {
     o.status_type,
     h.employed_id,
     o.status,
+    o.is_deposit,
     CONCAT(e.name  , ' ' ,  e.surname) AS NameTH,
     (SELECT image FROM handmade_image WHERE id_handmade = h.id LIMIT 1) AS path
     FROM order_handmade AS o

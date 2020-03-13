@@ -13,6 +13,9 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
         this.pager = {};
         this.init = function() {
             _this.searchHandmade();
+            setInterval(function () {
+                _this.searchHandmade();
+            }, 30000);
             getType();
         }
 
@@ -32,7 +35,7 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
 
         this.searchHandmade = () => {
             // console.log("modelSearch", _this.modelSearch);
-            loading.open();
+            // loading.open();
             $http.post(webURL.webApi + "handmade/searchHandmadeService.php", _this.modelSearch).then((res) => {
                 // console.log("res.data", res.data);
                 res.data.filter((e) => {
@@ -43,10 +46,10 @@ app.controller("homeController", ['$scope', '$rootScope', '$location', '$routePa
 
                 _this.listHandmade = angular.copy(res.data)
                 _this.setPage(1);
-                loading.close();
+                // loading.close();
             }).catch((err) => {
                 console.log("Error");
-                loading.close();
+                // loading.close();
                 showAlertBox(msgSettings.msgErrorApi, null);
             })
         }
