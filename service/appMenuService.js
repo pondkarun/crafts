@@ -54,6 +54,16 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                 }
             }
         }
+    }).when("/account", {
+        templateUrl: "view/account/template/account.html",
+        controller: "accountController",
+        resolve: {
+            check: function($location, customerService) {
+                if (!customerService.isUserLoggedIn()) {
+                    $location.path("/home");
+                }
+            }
+        }
     }).otherwise({ redirectTo: '/home' });
 });
 

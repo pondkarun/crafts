@@ -41,11 +41,14 @@
                     <li class="nav-item" ng-if="showMenu()">
                         <a class="nav-link" ng-class="{'active': 'verify' == states.activeItem}"
                             ng-click="ctrl.routep('verify')" href=""><i class="fa fa-shopping-cart"></i>
-                            ตรวจสอบสถานะ</a>
+                            ตรวจสอบสถานะ
+                        </a>
                     </li>
                     <li class="nav-item" ng-if="showMenu()">
-                        <a class="nav-link" ng-class="{'active': item.ROUTEP == states.activeItem}" href=""><i
-                                class="fa fa-user"></i> ข้อมูลส่วนตัว</a>
+                        <a class="nav-link" ng-class="{'active': 'account' == states.activeItem}"
+                            ng-click="ctrl.routep('account')" href="">
+                            <i class="fa fa-user"></i> ข้อมูลส่วนตัว
+                        </a>
                     </li>
                     <li class="nav-item" ng-if="!showMenu()">
                         <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter">
@@ -126,15 +129,19 @@
 
                     <ul class="navbar-nav">
                         <li class="nav-item" ng-class="{'active': 'home' == states.activeItem}">
-                            <a class="nav-link" ng-click="ctrl.routep('home')" href=""><i class="fa fa-home"></i>
-                                หน้าแรก</a>
+                            <a class="nav-link" ng-click="ctrl.routep('home')" href="">
+                                <i class="fa fa-home"></i> หน้าแรก
+                            </a>
                         </li>
                         <li class="nav-item" ng-if="showMenu()" ng-class="{'active': 'verify' == states.activeItem}">
-                            <a class="nav-link" ng-click="ctrl.routep('verify')" href=""><i
-                                    class="fa fa-shopping-cart"></i> ตรวจสอบสถานะ</a>
+                            <a class="nav-link" ng-click="ctrl.routep('verify')" href="">
+                                <i class="fa fa-shopping-cart"></i> ตรวจสอบสถานะ
+                            </a>
                         </li>
-                        <li class="nav-item" ng-if="showMenu()" ng-class="{'active': item.ROUTEP == states.activeItem}">
-                            <a class="nav-link" href=""><i class="fa fa-user"></i> ข้อมูลส่วนตัว</a>
+                        <li class="nav-item" ng-if="showMenu()" ng-class="{'active':  'account' == states.activeItem}">
+                            <a class="nav-link" ng-click="ctrl.routep('account')" href="">
+                                <i class="fa fa-user"></i> ข้อมูลส่วนตัว
+                            </a>
                         </li>
                         <li class="nav-item" ng-if="!showMenu()">
                             <a class="nav-link" href="" data-toggle="modal" data-target="#exampleModalCenter">
@@ -143,8 +150,9 @@
                         </li>
 
                         <li class="nav-item" ng-if="showMenu()">
-                            <a class="nav-link" href="" ng-click="ctrl.logOut()"><i class="fa fa-sign-out"></i>
-                                ออกจากระบบ</a>
+                            <a class="nav-link" href="" ng-click="ctrl.logOut()">
+                                <i class="fa fa-sign-out"></i> ออกจากระบบ
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -213,6 +221,7 @@
     <script src="view/detail/detailController.js"></script>
     <script src="view/verify/verifyController.js"></script>
     <script src="view/payment/paymentController.js"></script>
+    <script src="view/account/accountController.js"></script>
 
     <!-- Load directive -->
     <script src="directive/shared/gridMaster/gridMaster.js"></script>
