@@ -1,0 +1,121 @@
+<div ng-controller="searchReportController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">รายงาน</h1>
+
+    </div>
+
+
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+
+                    <div layout-gt-sm="row" class="pl-5">
+                        <md-input-container flex="20" flex-gt-sm>
+                            <label for="">ประเภทรายงาน</label>
+                            <md-select name="typeReport" ng-model="ctrl.modelSearch.typeReport" ng-change="ctrl.changeSelected(ctrl.modelSearch.typeReport)">
+                                <md-option value="handmade">รายงานสั่งซื้องานฝีมือ</md-option>
+                                <md-option value="handmadeMade">รายงานสั่งทำงานฝีมือ</md-option>
+                                <!-- <md-option value="2">รายงานลูกค้า</md-option> -->
+                            </md-select>
+                        </md-input-container>
+                    </div>
+
+                    <form name="reportForm" novalidate ng-if="ctrl.modelSearch.typeReport">
+
+                        <div layout-gt-sm="row" class="pl-5">
+
+                            <md-input-container flex="20">
+                                <label>สถานะ</label>
+                                <md-select name="type" ng-model="ctrl.modelSearch.status">
+                                    <md-option ng-repeat="item in ctrl.listStatusOrder" value="{{ item.status }}">
+                                        {{ item.status_show }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-switch ng-model="data.cb1" aria-label="Switch 1">กำหนดวัน</md-switch>
+
+                            <md-input-container flex-md="30" ng-if="data.cb1">
+                                <label>วันเริ่มต้น</label>
+                                <md-datepicker ng-model="ctrl.dateStart" md-placeholder="Enter date" required></md-datepicker>
+                            </md-input-container>
+
+                            <md-input-container flex-md="30" ng-if="data.cb1">
+                                <label>วันสิ้นสุด</label>
+                                <md-datepicker ng-model="ctrl.dateEnd" md-placeholder="Enter date" required></md-datepicker>
+                            </md-input-container>
+
+
+
+                            <md-input-container flex="" class="pl-3">
+                                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="ctrl.searchOrder()">
+                                    <i class="fas fa-search fa-sm text-white-50"></i> ออกรายงาน
+                                </button>
+                                <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm" ng-click="ctrl.clearOrder()">
+                                    <i class="fas fa-repeat fa-sm text-white-50"></i> ค่าเริ่มต้น
+                                </button>
+                            </md-input-container>
+                        </div>
+                    </form>
+                    <div ng-if="ctrl.listReport.length > 0">
+                        <!-- <button class="Button Button--outline" ng-click="printDiv()">Print</button> -->
+                        <md-input-container flex="">
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="printDiv()">
+                                <i class="fas fa-print fa-sm text-white-50"></i> Print
+                            </button>
+                        </md-input-container>
+                        <div id="printTable">
+                            <div class="page-list">
+                                <h3 style="text-align: center; padding-bottom: 10px;">รายงานคำสั่งซื้อ/สั่งทำ งานฝีมือ</h3>
+                                <table class="table table-bordered" width="100%" cellspacing="0" border="1" cellpadding="3">
+                                    <thead style="text-align: center;">
+                                        <tr>
+                                            <th>วันที่</th>
+                                            <th>เลขใบคำสั้งซื้อ</th>
+                                            <th>รายการงานฝีมือ</th>
+                                            <th>จำนวน</th>
+                                            <th>ราคามัดจำ</th>
+                                            <th>ราคาเต็ม</th>
+                                            <th>สถานะ</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody style="text-align: center;">
+                                        <tr ng-repeat="x in ctrl.listReport">
+                                            <td>{{x.datetime}}</td>
+                                            <td>{{x.order_code}}</td>
+                                            <td style="text-align: left; padding-left: 5px;">{{x.name}}</td>
+                                            <td>{{x.unit | number}}</td>
+                                            <td>{{x.deposit | number}}</td>
+                                            <td>{{x.priceFull | number}}</td>
+                                            <td style="text-align: left; padding-left: 5px;">{{x.status}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.listReport.length == 0">
+                        <p class="text-center">-- ไม่พบข้อมูล --</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .page-list {
+        background-color: #fff;
+        padding: 5px;
+        text-align: left;
+        color: black;
+        height: 500px;
+        overflow-x: auto;
+    }
+</style>

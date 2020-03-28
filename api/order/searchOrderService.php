@@ -15,6 +15,8 @@ $postRequest = json_decode($input);
 @$type_id = $postRequest->type_id;
 @$price1 = $postRequest->price1;
 @$price2 = $postRequest->price2;
+@$dateStart = $postRequest->dateStart;
+@$dateEnd = $postRequest->dateEnd;
 @$employed_id = $postRequest->employed_id;
 @$id_customers = $postRequest->id_customers;
 @$is_use = $postRequest->is_use;
@@ -38,6 +40,7 @@ try {
     h.employed_id,
     o.status,
     o.is_deposit,
+    o.datetime,
     CONCAT(e.name  , ' ' ,  e.surname) AS NameTH,
     (SELECT image FROM handmade_image WHERE id_handmade = h.id LIMIT 1) AS path
     FROM order_handmade AS o
@@ -57,6 +60,10 @@ try {
         $query .= " AND (h.price BETWEEN '".$price1."' AND  '".$price2."') ";
     } elseif ($price1) {
         $query .= " AND (h.price LIKE  '%".$price1."%') ";
+    }
+
+    if ($dateStart && $dateEnd) {
+        $query .= " AND (o.datetime BETWEEN '".$dateStart."' AND  '".$dateEnd."') ";
     }
 
     if ($is_use && $is_use != 'all') {

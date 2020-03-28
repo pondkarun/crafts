@@ -171,6 +171,26 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                 }
             },
         },
+    }).when("/report", {
+        templateUrl: "app/report/searchReport/template/searchReport.html",
+        controller: "searchReportController",
+        resolve: {
+            check: function($location, userService, $http) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path('/login');
+                } else {
+                    let model = {
+                        ROUTEP: "report",
+                        ID_STATUS_EM: userService.getStatusID()
+                    }
+                    $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
+                        if (Number(res.data.COUNT_ID) <= 0) {
+                            $location.path('/account');
+                        }
+                    })
+                }
+            },
+        },
     }).otherwise({ redirectTo: '/account' });
 
 });

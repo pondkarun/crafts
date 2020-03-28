@@ -1,105 +1,26 @@
 'use strict'
 
-app.controller("orderController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings', 'commonService',
+app.controller("searchReportController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'customDialog', 'msgSettings', 'commonService',
     function($scope, $rootScope, $location, $routeParams, userService, $http, customDialog, msgSettings, commonService) {
         let _this = this;
-        this.listStatusOrder = []
-        this.listHandmade = []
-        this.modelSearch = {
-            status_type: "handmade",
-            order_code: null,
-            name: null,
-            unit: null,
-            deposit: null,
-            price: null,
-            status: "รอการตรวจสอบการชำระเงิน",
-            employed_id: userService.getID()
-        };
-
-        this.typePage = {};
 
         this.init = () => {
-            list();
-            this.changeSelected("handmade")
-            this.searchOrder();
+            list()
         }
 
-        this.gridOptions = {
-            gridID: 'gridSearchOrder',
-            dataSource: new kendo.data.DataSource({ data: [], pageSize: 10 }),
-            sortable: true,
-            pageable: true,
-            columns: [{
-                    field: "order_code",
-                    title: "เลขใบคำสั้งซื้อ",
-                    attributes: {
-                        class: "text-center"
-                    }
-                },
-
-                {
-                    field: "name",
-                    title: "รายการงานฝีมือ",
-                    attributes: {
-                        class: "text-center"
-                    }
-                },
-
-                {
-                    field: "unit",
-                    title: "จำนวน",
-                    attributes: {
-                        class: "text-center"
-                    }
-                },
-
-                {
-                    field: "deposit",
-                    title: "ราคามัดจำ",
-                    attributes: {
-                        class: "text-center"
-                    }
-                },
-
-                {
-                    field: "priceFull",
-                    title: "ราคาเต็ม",
-                    attributes: {
-                        class: "text-center"
-                    }
-                },
-                {
-                    field: "status",
-                    title: "สถานะ",
-                    attributes: {
-                        class: "text-center"
-                    }
-                }
-
-
-            ],
-            management: true,
-            operation: {
-                view: true,
-                del: false,
-                edit: false
-            },
-            showIndex: false,
-        };
-
-
-        this.gridCallbackView = (item) => {
-            $location.path("order" + "/view/" + item.id);
+        this.clearOrder = () => {
+            this.modelSearch = {}
         }
-
-
 
         this.searchOrder = () => {
-            // console.log("modelSearch", _this.modelSearch);
-            if (_this.modelSearch.price2 && !_this.modelSearch.price1) {
+            this.listReport = []
+            if ((_this.dateStart && !_this.dateEnd) || (!_this.dateStart && _this.dateEnd)) {
                 showAlertBox(msgSettings.msgValidForm, null);
             } else {
                 loading.open();
+                _this.modelSearch.dateStart = (_this.dateStart) ? commonService.formatDatDB(_this.dateStart) : null;
+                _this.modelSearch.dateEnd = (_this.dateEnd) ? commonService.formatDatDB(_this.dateEnd) : null;
+                console.log(" _this.modelSearch", _this.modelSearch);
                 $http.post(webURL.webApi + "order/searchOrderService.php", _this.modelSearch).then((res) => {
                     let priceFull = null;
                     let deposit = null;
@@ -108,10 +29,8 @@ app.controller("orderController", ['$scope', '$rootScope', '$location', '$routeP
                         deposit = ((e.unit * e.price) * 30) / 100
                         e.priceFull = priceFull.toLocaleString()
                         e.deposit = (e.status_type == "handmadeMade") ? deposit.toFixed() : "-";
-
-
                     })
-                    _this.gridOptions.dataSource.data(res.data);
+                    this.listReport = res.data
                     loading.close();
                 }).catch((err) => {
                     console.log("Error");
@@ -121,20 +40,34 @@ app.controller("orderController", ['$scope', '$rootScope', '$location', '$routeP
             }
         }
 
-        this.clearOrder = () => {
-            this.modelSearch = {
-                status_type: "handmade",
-                code_handmade: null,
-                handmade: null,
-                unit: null,
-                deposit: null,
-                price: null,
-                status: "รอการตรวจสอบการชำระเงิน",
-                employed_id: userService.getID()
-            };
-            _this.searchOrder();
+
+        $scope.printDiv = () => {
+            var divToPrint = document.getElementById("printTable");
+            var newWin = window.open("");
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
         }
 
+        this.changeSelected = (item) => {
+            // console.log(item);
+            this.listStatusOrder = [];
+            if (item == "handmade") {
+                this.modelSearch.status = "all"
+                this.listHandmade.filter((e) => {
+                    if (e.status_type == item) {
+                        _this.listStatusOrder.push(e)
+                    }
+                })
+            } else if (item == "handmadeMade") {
+                this.modelSearch.status = "all"
+                this.listHandmade.filter((e) => {
+                    if (e.status_type == item) {
+                        _this.listStatusOrder.push(e)
+                    }
+                })
+            }
+        }
 
         //************dialog func***************//
 
@@ -151,28 +84,6 @@ app.controller("orderController", ['$scope', '$rootScope', '$location', '$routeP
         }
 
         //************end dialog func***************//
-
-        this.changeSelected = (item) => {
-            // console.log(item);
-            this.listStatusOrder = [];
-            if (item == "handmade") {
-                this.modelSearch.status = "รอการตรวจสอบการชำระเงิน"
-                this.listHandmade.filter((e) => {
-                    if (e.status_type == item) {
-                        _this.listStatusOrder.push(e)
-                    }
-                })
-            } else if (item == "handmadeMade") {
-                this.modelSearch.status = "รอการยืนยันจากผู้รับจ้าง"
-                this.listHandmade.filter((e) => {
-                    if (e.status_type == item) {
-                        _this.listStatusOrder.push(e)
-                    }
-                })
-            }
-
-            this.searchOrder();
-        }
 
         const list = () => {
             this.listHandmade = [{
@@ -265,5 +176,7 @@ app.controller("orderController", ['$scope', '$rootScope', '$location', '$routeP
                 },
             ];
         }
+
+
     }
 ]);
