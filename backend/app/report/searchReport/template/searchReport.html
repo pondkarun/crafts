@@ -19,12 +19,12 @@
                             <md-select name="typeReport" ng-model="ctrl.modelSearch.typeReport" ng-change="ctrl.changeSelected(ctrl.modelSearch.typeReport)">
                                 <md-option value="handmade">รายงานสั่งซื้องานฝีมือ</md-option>
                                 <md-option value="handmadeMade">รายงานสั่งทำงานฝีมือ</md-option>
-                                <!-- <md-option value="2">รายงานลูกค้า</md-option> -->
+                                <md-option value="customers">รายงานลูกค้า</md-option>
                             </md-select>
                         </md-input-container>
                     </div>
 
-                    <form name="reportForm" novalidate ng-if="ctrl.modelSearch.typeReport">
+                    <form name="reportForm" novalidate ng-if="ctrl.modelSearch.typeReport && ctrl.modelSearch.typeReport != 'customers'">
 
                         <div layout-gt-sm="row" class="pl-5">
 
@@ -60,8 +60,7 @@
                             </md-input-container>
                         </div>
                     </form>
-                    <div ng-if="ctrl.listReport.length > 0">
-                        <!-- <button class="Button Button--outline" ng-click="printDiv()">Print</button> -->
+                    <div ng-if="ctrl.listReport.length > 0 && ctrl.modelSearch.typeReport != 'customers'">
                         <md-input-container flex="">
                             <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="printDiv()">
                                 <i class="fas fa-print fa-sm text-white-50"></i> Print
@@ -69,6 +68,7 @@
                         </md-input-container>
                         <div id="printTable">
                             <div class="page-list">
+
                                 <h3 style="text-align: center; padding-bottom: 10px;">รายงานคำสั่งซื้อ/สั่งทำ งานฝีมือ</h3>
                                 <table class="table table-bordered" width="100%" cellspacing="0" border="1" cellpadding="3">
                                     <thead style="text-align: center;">
@@ -95,11 +95,48 @@
                                         </tr>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
                     <div ng-if="ctrl.listReport.length == 0">
                         <p class="text-center">-- ไม่พบข้อมูล --</p>
+                    </div>
+
+                    <div ng-if="ctrl.modelSearch.typeReport == 'customers'">
+                        <md-input-container flex="">
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="printDiv()">
+                                <i class="fas fa-print fa-sm text-white-50"></i> Print
+                            </button>
+                        </md-input-container>
+                        <div id="printTable">
+                            <div class="page-list">
+
+                                <h3 style="text-align: center; padding-bottom: 10px;">รายชื่อลูกค้า</h3>
+                                <table class="table table-bordered" width="100%" cellspacing="0" border="1" cellpadding="3">
+                                    <thead style="text-align: center;">
+                                        <tr>
+                                            <th>ลำดับ</th>
+                                            <th>ชื่อ - นามสกุล</th>
+                                            <th>E-mail</th>
+                                            <th>เบอร์ติดต่อ</th>
+                                            <th>ที่อยู่</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody style="text-align: center;">
+                                        <tr ng-repeat="x in ctrl.listCustomers">
+                                            <td>{{$index + 1}}</td>
+                                            <td style="text-align: left; padding-left: 5px;">{{x.nameTH}}</td>
+                                            <td style="text-align: left; padding-left: 5px;">{{x.email}}</td>
+                                            <td>{{x.tel}}</td>
+                                            <td style="text-align: left; padding-left: 5px;">{{x.address}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
                     </div>
 
 

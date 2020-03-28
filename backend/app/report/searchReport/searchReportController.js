@@ -66,7 +66,18 @@ app.controller("searchReportController", ['$scope', '$rootScope', '$location', '
                         _this.listStatusOrder.push(e)
                     }
                 })
+            } else if (item == "customers") {
+                $http.post(webURL.webApi + "customers/searchCustomersService.php").then((res) => {
+                    this.listCustomers = res.data
+                    loading.close();
+                }).catch((err) => {
+                    console.log("Error");
+                    loading.close();
+                    showAlertBox(msgSettings.msgErrorApi, null);
+                })
             }
+
+
         }
 
         //************dialog func***************//
