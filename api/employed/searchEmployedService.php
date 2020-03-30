@@ -12,6 +12,7 @@ $postRequest = json_decode($input);
 @$id_card = $postRequest->id_card;
 @$Name = $postRequest->Name;
 @$status = $postRequest->status;
+@$id_position = $postRequest->id_position;
 
 $data = array();
 
@@ -28,7 +29,7 @@ try {
     p.position AS status
     FROM employed AS e
     INNER JOIN position AS p ON e.id_position = p.id
-    WHERE e.id_position = 1";
+    WHERE 1";
     if ($id_card) {
         $query .= " AND (e.id_card like '%" . $id_card . "%') ";
     }
@@ -37,6 +38,11 @@ try {
     }
     if ($status && $status != "all") {
         $query .= " AND (e.status like '" . $status . "') ";
+    }
+    if ($id_position == 'employed') {
+        $query .= " AND e.id_position != '1'";
+    }else{
+        $query .= " AND e.id_position = '1' ";
     }
 
     $query .= " ORDER BY e.name ASC ";

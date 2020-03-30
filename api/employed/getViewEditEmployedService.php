@@ -34,6 +34,7 @@ try {
         $response['email'] = $row["email"];
         $response['address'] = $row["address"];;
         $response['tel'] = $row["tel"];
+        $response['id_position'] = $row["id_position"];
         $response['STATUS'] = $row["status"];
         $response['status'] = '200';
     } else {

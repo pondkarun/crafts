@@ -6,9 +6,13 @@ app.controller("employedController", ['$scope', '$rootScope', '$location', '$rou
         this.modelSearch = {
             id_card: null,
             Name: null,
-            status: "ปกติ"
+            status: "ปกติ",
+            id_position:  (userService.getPositionID() == '3' ? "employed": null)
         };
         _this.ID = userService.getID();
+        this.id_position = userService.getPositionID();
+        $scope.title = (this.id_position == '3') ? "เจ้าหน้าที่" : "ผู้รับจ้าง";
+        
 
         this.init = function() {
             _this.searchEmployed();

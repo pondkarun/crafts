@@ -38,6 +38,7 @@ if ($id) {
         `surname` = '" . $surname . "',
         `email` = '" . $email . "',
         `address` = '" . $address . "',
+        `id_position` = '" . $id_position . "',
         `tel` = '" . $tel . "',
         `STATUS` = '" . $STATUS . "'
     

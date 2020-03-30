@@ -9,10 +9,13 @@ app.controller("addEditEmployedController", ['$scope', '$rootScope', '$location'
             id_card: null,
             tel: null,
             email: null,
-            address: null
+            address: null,
+            id_position: null
         };
         this.typePage = {};
         $scope.isView = false;
+        this.id_position = userService.getPositionID();
+        $scope.titelPosition = (this.id_position == '3') ? "เจ้าหน้าที่" : "ผู้รับจ้าง";
         this.init = function() {
             checkRouteParams()
         }
@@ -53,12 +56,12 @@ app.controller("addEditEmployedController", ['$scope', '$rootScope', '$location'
             _this.typePage = $routeParams;
             // console.log("_this.typePage", _this.typePage);
             if (_this.typePage.Type == "edit") {
-                $scope.title = "แก้ไขผู้รับจ้าง";
+                $scope.title = "แก้ไข" + $scope.titelPosition;
                 getEmployedEdit(_this.typePage.ID);
             } else if (_this.typePage.Type == "add") {
-                $scope.title = "เพิ่มผู้รับจ้าง";
+                $scope.title = "เพิ่ม" + $scope.titelPosition;
             } else if (_this.typePage.Type == "view") {
-                $scope.title = "ข้อมูลผู้รับจ้าง";
+                $scope.title = "ข้อมูล" + $scope.titelPosition;
                 getEmployedEdit(_this.typePage.ID);
                 $scope.isView = true;
             } else {
