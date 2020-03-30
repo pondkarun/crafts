@@ -7,11 +7,11 @@ app.controller("employedController", ['$scope', '$rootScope', '$location', '$rou
             id_card: null,
             Name: null,
             status: "ปกติ",
-            id_position:  (userService.getPositionID() == '3' ? "employed": null)
+            id_position:  (userService.getPositionID() == '3' ? "all": null)
         };
         _this.ID = userService.getID();
         this.id_position = userService.getPositionID();
-        $scope.title = (this.id_position == '3') ? "เจ้าหน้าที่" : "ผู้รับจ้าง";
+        $scope.title = (this.id_position == '3') ? "เจ้าหน้าที่และผู้รับจ้าง" : "ผู้รับจ้าง";
         
 
         this.init = function() {

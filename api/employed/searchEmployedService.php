@@ -39,9 +39,11 @@ try {
     if ($status && $status != "all") {
         $query .= " AND (e.status like '" . $status . "') ";
     }
-    if ($id_position == 'employed') {
-        $query .= " AND e.id_position != '1'";
-    }else{
+
+    if ($id_position && $id_position != "all") {
+        $query .= " AND e.id_position = '" . $id_position . "' ";
+        
+    }else if(!$id_position){
         $query .= " AND e.id_position = '1' ";
     }
 

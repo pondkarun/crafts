@@ -1,7 +1,8 @@
 <div ng-controller="employedController as ctrl" ng-init="ctrl.init()">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">จัดการ{{title}}</h1>
-        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ng-click="ctrl.addEmployed()"><i class="fas fa-plus fa-sm text-white-50"></i> เพิ่ม{{title}}
+        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+            ng-click="ctrl.addEmployed()"><i class="fas fa-plus fa-sm text-white-50"></i> เพิ่ม{{title}}
         </button>
     </div>
 
@@ -28,7 +29,7 @@
                         </md-input-container>
 
 
-                        <md-input-container flex="20">
+                        <md-input-container flex="15">
                             <label>สถานะ</label>
                             <md-select name="type" ng-model="ctrl.modelSearch.status">
                                 <md-option value="all">Search All</md-option>
@@ -37,17 +38,30 @@
                             </md-select>
                         </md-input-container>
 
+                        <md-input-container flex="15" ng-if="ctrl.id_position == '3'">
+                            <label>ตำแน่ง</label>
+                            <md-select name="type" ng-model="ctrl.modelSearch.id_position">
+                                <md-option value="all">ทั้งหมด</md-option>
+                                <md-option value="1">ผู้รับจ้าง</md-option>
+                                <md-option value="2">เจ้าหน้าที่</md-option>
+                                <md-option value="3">ผอ.</md-option>
+                            </md-select>
+                        </md-input-container>
+
                         <md-input-container flex="" class="pl-3">
-                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="ctrl.searchEmployed()">
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
+                                ng-click="ctrl.searchEmployed()">
                                 <i class="fas fa-search fa-sm text-white-50"></i> ค้นหา
                             </button>
-                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm" ng-click="ctrl.clearEmployed()">
+                            <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-dark shadow-sm"
+                                ng-click="ctrl.clearEmployed()">
                                 <i class="fas fa-repeat fa-sm text-white-50"></i> ค่าเริ่มต้น
                             </button>
                         </md-input-container>
 
                     </div>
-                    <grid-search flex="100" g-option="ctrl.gridOptions" on-callback-view="ctrl.gridCallbackView" on-callback-edit="ctrl.gridCallbackEdit">
+                    <grid-search flex="100" g-option="ctrl.gridOptions" on-callback-view="ctrl.gridCallbackView"
+                        on-callback-edit="ctrl.gridCallbackEdit">
                     </grid-search>
                 </div>
             </div>

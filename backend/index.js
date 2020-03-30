@@ -3,6 +3,7 @@
 app.controller("craftsController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http',
     function($scope, $rootScope, $location, $routeParams, userService, $http) {
         $scope.menuShow = [];
+       
         this.init = () => {
             $rootScope.getMenu();
         }
@@ -38,6 +39,7 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
                 for (let i = 0; i < res.data.length; i++) {
                     $scope.menuShow.push(res.data[i]);
                 }
+                $scope.positionName = userService.getPositionName()
                 loading.close();
             }).catch((err) => {
                 loading.close();

@@ -10,12 +10,12 @@ app.controller("addEditEmployedController", ['$scope', '$rootScope', '$location'
             tel: null,
             email: null,
             address: null,
-            id_position: null
+            id_position: "1"
         };
         this.typePage = {};
         $scope.isView = false;
         this.id_position = userService.getPositionID();
-        $scope.titelPosition = (this.id_position == '3') ? "เจ้าหน้าที่" : "ผู้รับจ้าง";
+        $scope.titelPosition = (this.id_position == '3') ? "เจ้าหน้าที่และผู้รับจ้าง" : "ผู้รับจ้าง";
         this.init = function() {
             checkRouteParams()
         }

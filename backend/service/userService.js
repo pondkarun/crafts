@@ -61,6 +61,14 @@ app.service('userService', function() {
         }
         return STATUS_MENU;
     };
+    this.getPositionName = function() {
+        let STATUS_MENU = null;
+        if (localStorage.getItem('loginCrafts')) {
+            let position = JSON.parse(localStorage.getItem('loginCrafts'));
+            STATUS_MENU = position.position
+        }
+        return STATUS_MENU;
+    };
 
     this.getPositionID = function() {
         var data = JSON.parse(localStorage.getItem('loginCrafts'));
