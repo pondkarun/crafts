@@ -16,11 +16,13 @@
                     <div layout-gt-sm="row" class="pl-5">
                         <md-input-container flex="20" flex-gt-sm>
                             <label for="">ประเภทรายงาน</label>
+
                             <md-select name="typeReport" ng-model="ctrl.modelSearch.typeReport" ng-change="ctrl.changeSelected(ctrl.modelSearch.typeReport)">
                                 <md-option value="handmade">รายงานสั่งซื้องานฝีมือ</md-option>
                                 <md-option value="handmadeMade">รายงานสั่งทำงานฝีมือ</md-option>
                                 <md-option value="customers">รายงานลูกค้า</md-option>
                             </md-select>
+
                         </md-input-container>
                     </div>
 
