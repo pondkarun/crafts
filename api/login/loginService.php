@@ -12,6 +12,8 @@ $password = $condb->real_escape_string($postRequest->password);
 $sql = "SELECT 
 e.id,
 e.username,
+e.name,
+e.surname,
 e.id_card,
 e.id_position, 
 p.position
@@ -24,6 +26,7 @@ if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_array($result);
     $response['id'] = $row["id"];
     $response['username'] = $row["username"];
+    $response['nameTH'] = $row["name"] . " " . $row["surname"];
     $response['id_card'] = $row["id_card"];
     $response['id_position'] = $row["id_position"];
     $response['position'] = $row["position"];

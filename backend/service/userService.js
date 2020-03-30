@@ -5,6 +5,7 @@ app.service('userService', function() {
     var id_card;
     var position;
     var id_position;
+    var nameTH;
     var loggedin = false;
     var id;
 
@@ -15,6 +16,7 @@ app.service('userService', function() {
         id_card = data.id_card;
         position = data.position;
         id_position = data.id_position;
+        nameTH = data.nameTH;
         id = data.id;
         loggedin = true;
         localStorage.setItem('loginCrafts', JSON.stringify({
@@ -23,6 +25,7 @@ app.service('userService', function() {
             id_position: id_position,
             position: position,
             id: id,
+            nameTH: nameTH,
             loggedin: loggedin
         }));
     };
@@ -73,6 +76,11 @@ app.service('userService', function() {
     this.getPositionID = function() {
         var data = JSON.parse(localStorage.getItem('loginCrafts'));
         return data.id_position;
+    };
+    
+    this.getnameTH = function() {
+        var data = JSON.parse(localStorage.getItem('loginCrafts'));
+        return data.nameTH;
     };
 
 })

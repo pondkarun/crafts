@@ -22,6 +22,11 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
             $scope.states.activeItem = item
             $location.path(item);
         }
+        $scope.account = () => {
+            $scope.states.activeItem = "account"
+            $location.path("account");
+        }
+        
 
         $scope.logOut = () => {
             location.reload();
@@ -39,7 +44,7 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
                 for (let i = 0; i < res.data.length; i++) {
                     $scope.menuShow.push(res.data[i]);
                 }
-                $scope.positionName = userService.getPositionName()
+                $scope.positionName = userService.getnameTH() + " (" + userService.getPositionName() + ")";
                 loading.close();
             }).catch((err) => {
                 loading.close();
