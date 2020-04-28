@@ -7,14 +7,18 @@ app.controller("appController", ['$scope', '$rootScope', '$location', '$routePar
             username: null,
             password: null
         }
-        this.init = () => { }
+        this.init = () => {
+            getNameTH()
+        }
         $scope.states = {};
         $scope.states.activeItem = 'home';
         $scope.modal = null
         $scope.register = () => {
             $location.path("register");
         }
-        $scope.NameTH = customerService.getNameTH()
+        const getNameTH = () => {
+            $scope.NameTH = customerService.getNameTH()
+        }
         $scope.showMenu = () => {
             return customerService.isUserLoggedIn()
         }
@@ -33,6 +37,7 @@ app.controller("appController", ['$scope', '$rootScope', '$location', '$routePar
                 // console.log("res.data", res.data);
                 if (res.data.loginCustomersStatus == '200') {
                     customerService.saveData(res.data);
+                    getNameTH()
                     $scope.modal = "modal";
                 } else {
                     _this.modelLogin.password = null

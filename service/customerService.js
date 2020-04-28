@@ -39,7 +39,7 @@ app.service('customerService', function() {
 
     this.getNameTH = function() {
         var data = JSON.parse(localStorage.getItem('loginCustomer'));
-        return data.nameTH;
+        return data ? data.nameTH : null;
     };
 
     this.setID = function(userID) {

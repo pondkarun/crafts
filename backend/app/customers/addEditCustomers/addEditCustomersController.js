@@ -11,7 +11,8 @@ app.controller("addEditCustomersController", ['$scope', '$rootScope', '$location
             surname: null,
             email: null,
             address: null,
-            tel: null
+            tel: null,
+            statusCustomers: "ปกติ"
         }
 
         $scope.isDisabled = ($routeParams.Type == "add") ? false : true;
@@ -22,7 +23,7 @@ app.controller("addEditCustomersController", ['$scope', '$rootScope', '$location
             checkRouteParams()
         }
 
-        this.cancelForm = () => {
+        this.cancel = () => {
             $location.path("customers");
         }
 
