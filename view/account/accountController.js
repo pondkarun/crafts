@@ -61,7 +61,7 @@ app.controller("accountController", ['$scope', '$rootScope', '$location', '$rout
         }
 
         const getCustomerFormEdit = (ID) => {
-            console.log(ID);
+            // console.log(ID);
             
             loading.open();
             $http.post(webURL.webApi + "customers/getViewEditCustomerService.php", ID).then((res) => {

@@ -11,14 +11,16 @@ $password = $condb->real_escape_string($postRequest->password);
 
 $sql = "SELECT 
 e.id,
-e.username
+e.username,
+CONCAT(name , ' ' , surname) AS nameTH
 FROM customers AS e 
-WHERE e.username = '" . $username . "' AND e.password = '" . $password . "' ";
+WHERE e.username = '" . $username . "' AND e.password = '" . $password . "' AND status = 'ปกติ'";
 $result = $condb->query($sql);
 
 if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_array($result);
     $response['id'] = $row["id"];
+    $response['nameTH'] = $row["nameTH"];
     $response['username'] = $row["username"];
     $response['loginCustomersStatus'] = '200';
 } else {

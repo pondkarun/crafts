@@ -3,17 +3,20 @@
 app.service('customerService', function() {
     var id;
     var username;
+    var nameTH;
     var loggedin = false;
 
     this.saveData = function(data) {
-        console.log("data", data);
+        // console.log("data", data);
 
         id = data.id;
         username = data.username;
+        nameTH = data.nameTH;
         loggedin = true;
         localStorage.setItem('loginCustomer', JSON.stringify({
             id: id,
             username: username,
+            nameTH: nameTH,
             loggedin: loggedin
         }));
     };
@@ -32,6 +35,11 @@ app.service('customerService', function() {
 
     this.getUsername = function() {
         return username;
+    };
+
+    this.getNameTH = function() {
+        var data = JSON.parse(localStorage.getItem('loginCustomer'));
+        return data.nameTH;
     };
 
     this.setID = function(userID) {

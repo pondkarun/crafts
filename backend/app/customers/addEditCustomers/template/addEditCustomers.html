@@ -1,0 +1,107 @@
+<div ng-controller="addEditCustomersController as ctrl" ng-init="ctrl.init()">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{title}}</h1>
+    </div>
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+
+
+                    <form name="register" class="col-md-6 offset-md-3" novalidate>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputUsername">ชื่อผู้ใช้งาน *</label>
+                                <input type="text" ng-model="ctrl.modelSave.username" class="form-control"
+                                    ng-class="{'is-invalid': !ctrl.modelSave.username && register.$dirty}"
+                                    ng-required="true" id="inputUsername" pattern="[A-Za-z0-9]*" ng-disabled="isDisabled">
+                            </div>
+                        </div>
+
+                        <div class="form-row" ng-if="modelSave">
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword">รหัสผ่าน *</label>
+                                <input type="password" ng-model="ctrl.modelSave.password" class="form-control"
+                                    ng-class="{'is-invalid': !ctrl.modelSave.password && register.$dirty}"
+                                    ng-required="true" id="inputPassword" ng-disabled="isDisabled">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPasswordCon">ยืนยันรหัสผ่าน *</label>
+                                <input type="password" ng-model="ctrl.modelSave.password_con" class="form-control"
+                                    ng-class="{'is-invalid': !ctrl.modelSave.password_con && register.$dirty}"
+                                    ng-required="true" id="inputPasswordCon" ng-disabled="isDisabled">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail">E-mail *</label>
+                            <input type="email" ng-model="ctrl.modelSave.email" class="form-control"
+                                ng-class="{'is-invalid': !ctrl.modelSave.email && register.$dirty}" ng-required="true"
+                                id="inputEmail" ng-disabled="isDisabled">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputName">ชื่อจริง *</label>
+                                <input type="text" ng-model="ctrl.modelSave.name" class="form-control"
+                                    ng-class="{'is-invalid': !ctrl.modelSave.name && register.$dirty}"
+                                    ng-required="true" id="inputName" ng-disabled="isView">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputSurname">นามสกุล *</label>
+                                <input type="text" ng-model="ctrl.modelSave.surname" class="form-control"
+                                    ng-class="{'is-invalid': !ctrl.modelSave.surname && register.$dirty}"
+                                    ng-required="true" id="inputSurname" ng-disabled="isView">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputAddress">ที่อยู่ปัจจุบัน *</label>
+                            <textarea class="form-control" ng-model="ctrl.modelSave.address" id="inputAddress"
+                                ng-class="{'is-invalid': !ctrl.modelSave.address && register.$dirty}" ng-required="true"
+                                rows="3" ng-disabled="isView"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputTel">เบอร์ติดต่อ *</label>
+                            <input type="tel" ng-model="ctrl.modelSave.tel" class="form-control"
+                                ng-class="{'is-invalid': !ctrl.modelSave.tel && register.$dirty}" ng-required="true"
+                                id="inputTel" ng-disabled="isView">
+                        </div>
+
+                        <md-input-container flex="15">
+                            <label>สถานะ</label>
+                            <md-select name="type" ng-model="ctrl.modelSave.statusCustomers" ng-disabled="isView">
+                                <md-option value="ปกติ">ปกติ</md-option>
+                                <md-option value="ยกเลิกการใช้งาน">ยกเลิกการใช้งาน</md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <div class="footer-form-button pt-3" layout="row" layout-align="center center">
+
+                            <md-button type="submit" class="md-raised md-primary" layout="row"
+                                layout-align="center center" ng-click="ctrl.save()" ng-if="!isView">
+                                บันทึก
+                            </md-button>
+
+                            <md-button type="button" class="md-raised md-secondary" layout="row"
+                                layout-align="center center" ng-click="ctrl.cancel()">
+                                ยกเลิก
+                            </md-button>
+                        </div>
+
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

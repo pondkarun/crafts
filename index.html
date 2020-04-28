@@ -47,7 +47,8 @@
                     <li class="nav-item" ng-if="showMenu()">
                         <a class="nav-link" ng-class="{'active': 'account' == states.activeItem}"
                             ng-click="ctrl.routep('account')" href="">
-                            <i class="fa fa-user"></i> ข้อมูลส่วนตัว
+                            <!-- <i class="fa fa-user"></i> ข้อมูลส่วนตัว -->
+                            <i class="fa fa-user"></i> {{NameTH}}
                         </a>
                     </li>
                     <li class="nav-item" ng-if="!showMenu()">
@@ -140,7 +141,7 @@
                         </li>
                         <li class="nav-item" ng-if="showMenu()" ng-class="{'active':  'account' == states.activeItem}">
                             <a class="nav-link" ng-click="ctrl.routep('account')" href="">
-                                <i class="fa fa-user"></i> ข้อมูลส่วนตัว
+                                <i class="fa fa-user"></i> {{NameTH}}
                             </a>
                         </li>
                         <li class="nav-item" ng-if="!showMenu()">

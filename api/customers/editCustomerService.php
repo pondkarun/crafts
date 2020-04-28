@@ -15,6 +15,7 @@ $tel = @$postRequest->tel;
 $email = @$postRequest->email;
 $address = @$postRequest->address;
 $password = @$postRequest->passwordNew;
+$statusCustomers = @$postRequest->statusCustomers;
 
 if ($id) {
     echo  $sql = "UPDATE `customers` SET
@@ -24,6 +25,7 @@ if ($id) {
         `surname` = '".$surname."',
         `email` = '".$email."',
         `address` = '".$address."',
+        `status` = '".$statusCustomers."',
         `tel` = '".$tel."'
     
         WHERE id = '".$id."'

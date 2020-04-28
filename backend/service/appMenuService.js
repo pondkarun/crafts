@@ -71,6 +71,46 @@ app.config(function($routeProvider, $mdDateLocaleProvider) {
                 }
             },
         },
+    }).when("/customers", {
+        templateUrl: "app/customers/searchCustomers/template/customers.html",
+        controller: "customersController",
+        resolve: {
+            check: function($location, userService, $http) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path('/login');
+                } else {
+                    let model = {
+                        ROUTEP: "customers",
+                        ID_STATUS_EM: userService.getStatusID()
+                    }
+                    $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
+                        if (Number(res.data.COUNT_ID) <= 0) {
+                            $location.path('/account');
+                        }
+                    })
+                }
+            },
+        },
+    }).when("/customers/:Type/:ID", {
+        templateUrl: "app/customers/addEditCustomers/template/addEditCustomers.html",
+        controller: "addEditCustomersController",
+        resolve: {
+            check: function($location, userService, $http) {
+                if (!userService.isUserLoggedIn()) {
+                    $location.path('/login');
+                } else {
+                    let model = {
+                        ROUTEP: "customers",
+                        ID_STATUS_EM: userService.getStatusID()
+                    }
+                    $http.post(webURL.webApi + "menu/chackMenuUserService.php", model).then((res) => {
+                        if (Number(res.data.COUNT_ID) <= 0) {
+                            $location.path('/account');
+                        }
+                    })
+                }
+            },
+        },
     }).when("/handmade", {
         templateUrl: "app/handmade/searchHandmade/template/handmade.html",
         controller: "handmadeController",

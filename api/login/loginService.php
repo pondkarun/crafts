@@ -19,7 +19,7 @@ e.id_position,
 p.position
 FROM employed AS e 
 INNER JOIN position AS p ON p.id = e.id_position 
-WHERE username = '" . $username . "' AND password = '" . $password . "' ";
+WHERE username = '" . $username . "' AND password = '" . $password . "' AND status = 'ปกติ' ";
 $result = $condb->query($sql);
 
 if (mysqli_num_rows($result) == 1) {
