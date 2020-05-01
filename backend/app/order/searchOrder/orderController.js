@@ -74,6 +74,13 @@ app.controller("orderController", ['$scope', '$rootScope', '$location', '$routeP
                     attributes: {
                         class: "text-center"
                     }
+                },
+                {
+                    field: "NameCustomers",
+                    title: "ลูกค้า",
+                    attributes: {
+                        class: "text-center"
+                    }
                 }
 
 

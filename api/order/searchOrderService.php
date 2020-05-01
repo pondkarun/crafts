@@ -42,10 +42,12 @@ try {
     o.is_deposit,
     o.datetime,
     CONCAT(e.name  , ' ' ,  e.surname) AS NameTH,
+    CONCAT(c.name  , ' ' ,  c.surname) AS NameCustomers,
     (SELECT image FROM handmade_image WHERE id_handmade = h.id LIMIT 1) AS path
     FROM order_handmade AS o
     INNER JOIN handmade AS h ON o.id_handmade = h.id
     INNER JOIN employed AS e ON h.employed_id = e.id
+    INNER JOIN customers AS c ON o.id_customers = c.id 
     INNER JOIN type AS t ON t.id = h.type_id 
     WHERE 1";
 

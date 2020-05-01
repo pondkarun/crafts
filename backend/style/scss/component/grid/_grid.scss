@@ -145,6 +145,9 @@ div#gridSearchOrder[kendo-grid] {
                 &:nth-child(6) {
                     width: 150px;
                 }
+                &:nth-child(7) {
+                    width: 200px;
+                }
                 @include last-child() {
                     width: 100px;
                 }

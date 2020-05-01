@@ -11,7 +11,6 @@ app.controller("searchReportController", ['$scope', '$rootScope', '$location', '
         this.clearOrder = () => {
             this.modelSearch = {}
         }
-
         this.searchOrder = () => {
             this.listReport = []
             if ((_this.dateStart && !_this.dateEnd) || (!_this.dateStart && _this.dateEnd)) {

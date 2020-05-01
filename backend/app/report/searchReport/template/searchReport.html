@@ -17,7 +17,7 @@
                         <md-input-container flex="20" flex-gt-sm>
                             <label for="">ประเภทรายงาน</label>
 
-                            <md-select name="typeReport" ng-model="ctrl.modelSearch.typeReport" ng-change="ctrl.changeSelected(ctrl.modelSearch.typeReport)">
+                            <md-select name="status_type" ng-model="ctrl.modelSearch.status_type" ng-change="ctrl.changeSelected(ctrl.modelSearch.status_type)">
                                 <md-option value="handmade">รายงานสั่งซื้องานฝีมือ</md-option>
                                 <md-option value="handmadeMade">รายงานสั่งทำงานฝีมือ</md-option>
                                 <md-option value="customers">รายงานลูกค้า</md-option>
@@ -26,7 +26,7 @@
                         </md-input-container>
                     </div>
 
-                    <form name="reportForm" novalidate ng-if="ctrl.modelSearch.typeReport && ctrl.modelSearch.typeReport != 'customers'">
+                    <form name="reportForm" novalidate ng-if="ctrl.modelSearch.status_type && ctrl.modelSearch.status_type != 'customers'">
 
                         <div layout-gt-sm="row" class="pl-5">
 
@@ -62,7 +62,7 @@
                             </md-input-container>
                         </div>
                     </form>
-                    <div ng-if="ctrl.listReport.length > 0 && ctrl.modelSearch.typeReport != 'customers'">
+                    <div ng-if="ctrl.listReport.length > 0 && ctrl.modelSearch.status_type != 'customers'">
                         <md-input-container flex="">
                             <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="printDiv()">
                                 <i class="fas fa-print fa-sm text-white-50"></i> Print
@@ -82,6 +82,7 @@
                                             <th>ราคามัดจำ</th>
                                             <th>ราคาเต็ม</th>
                                             <th>สถานะ</th>
+                                            <th>ลูกค้า</th>
                                         </tr>
                                     </thead>
 
@@ -93,7 +94,8 @@
                                             <td>{{x.unit | number}}</td>
                                             <td>{{x.deposit | number}}</td>
                                             <td>{{x.priceFull | number}}</td>
-                                            <td style="text-align: left; padding-left: 5px;">{{x.status}}</td>
+                                            <td>{{x.status}}</td>
+                                            <td style="text-align: left; padding-left: 5px;">{{x.NameCustomers}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -105,7 +107,7 @@
                         <p class="text-center">-- ไม่พบข้อมูล --</p>
                     </div>
 
-                    <div ng-if="ctrl.modelSearch.typeReport == 'customers'">
+                    <div ng-if="ctrl.modelSearch.status_type == 'customers'">
                         <md-input-container flex="">
                             <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" ng-click="printDiv()">
                                 <i class="fas fa-print fa-sm text-white-50"></i> Print
