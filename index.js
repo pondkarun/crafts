@@ -29,39 +29,54 @@ app.controller("appController", ['$scope', '$rootScope', '$location', '$routePar
             $location.path(item);
         }
 
+        function set() {
+            var o = document.getElementsByTagName("BODY")[0]
+            o.style.cssText = "padding-right: 0px;"
+        }
 
         this.login = () => {
             loading.open();
             _this.modelLogin.password = md5(_this.modelLogin.password);
             $http.post(webURL.webApi + "login/loginCustomersService.php", _this.modelLogin).then((res) => {
-                // console.log("res.data", res.data);
+                console.log("res.data", res.data);
                 if (res.data.loginCustomersStatus == '200') {
                     customerService.saveData(res.data);
                     getNameTH()
                     $scope.modal = "modal";
+                    showAlertBox(msgSettings.msgWelcomeLogin + " " + $scope.NameTH, set);
                 } else {
                     _this.modelLogin.password = null
                     loading.close();
-                    alert(msgSettings.msgErrUserNot)
+                    showAlertBox(msgSettings.msgErrUserNot, set);
                 }
             }).catch((err) => {
                 _this.modelLogin.password = null
             }).finally(() => {
                 loading.close();
+               
             });
 
         }
 
         this.logOut = () => {
-            location.reload();
-            localStorage.removeItem("loginCustomer");
-            $location.path("home");
+            var callback = (res) => {
+                location.reload();
+                localStorage.removeItem("loginCustomer");
+                $location.path("home");
+            }
+            showConfirmBox(msgSettings.msglogOut, callback, null);  
         }
 
         function showAlertBox(msg, callback) {
             var dialog = customDialog.defaultObj();
             dialog.content = msg;
             customDialog.alert(callback, dialog);
+        }
+
+        function showConfirmBox(msg, okCallback, cancelCallback) {
+            var dialog = customDialog.defaultObj();
+            dialog.content = msg;
+            customDialog.confirm(okCallback, cancelCallback, dialog);
         }
 
     }

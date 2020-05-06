@@ -39,7 +39,8 @@ app.constant('msgSettings', {
     msgErrorApi: 'มีบางอย่างผิดพลาด! กรุณาลองใหม่อีกครั้ง',
     msgRepeatedlyData: 'มีข้อมูลซ้ำกัน กรุณาลองทำรายการใหม่',
     msgLogin: 'กรุณาเข้าสู่ระบบ',
-
+    msgWelcomeLogin: 'ยินดีต้อนรับ',
+    msglogOut: 'ยืนยันการออกจากระบบ',
 });
 
 app.factory('PaginationService', function PaginationService() {

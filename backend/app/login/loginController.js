@@ -22,6 +22,7 @@ app.controller("loginController", ['$scope', '$rootScope', '$location', '$routeP
                     userService.saveData(res.data);
                     $rootScope.getMenu();
                     $location.path("/");
+                    showAlertBox(msgSettings.msgWelcomeLogin + " " + userService.getnameTH());
                 } else {
                     $scope.model.password = null
                     showAlertBox(msgSettings.msgErrPassword);

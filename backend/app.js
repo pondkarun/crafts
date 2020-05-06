@@ -38,5 +38,7 @@ app.constant('msgSettings', {
     msgErrUserRepeat: 'ชื่อผู้ใช้นี้ได้ลงทะเบียนแล้ว',
     msgErrorApi: 'มีบางอย่างผิดพลาด! กรุณาลองใหม่อีกครั้ง',
     msgRepeatedlyData: 'มีข้อมูลซ้ำกัน กรุณาลองทำรายการใหม่',
+    msgWelcomeLogin: 'ยินดีต้อนรับ',
+    msglogOut: 'ยืนยันการออกจากระบบ',
 
 });

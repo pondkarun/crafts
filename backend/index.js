@@ -1,7 +1,7 @@
 ﻿'use strict'
 
-app.controller("craftsController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http',
-    function($scope, $rootScope, $location, $routeParams, userService, $http) {
+app.controller("craftsController", ['$scope', '$rootScope', '$location', '$routeParams', 'userService', '$http', 'msgSettings' , 'customDialog' ,
+    function($scope, $rootScope, $location, $routeParams, userService, $http , msgSettings , customDialog) {
         $scope.menuShow = [];
        
         this.init = () => {
@@ -29,9 +29,12 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
         
 
         $scope.logOut = () => {
-            location.reload();
-            localStorage.removeItem("loginCrafts");
-            $location.path("loginCrafts");
+            var callback = (res) => {
+                location.reload();
+                localStorage.removeItem("loginCrafts");
+                $location.path("loginCrafts");
+            }
+            showConfirmBox(msgSettings.msglogOut, callback, null);  
         }
 
         /** เรียก sidebar */
@@ -50,6 +53,17 @@ app.controller("craftsController", ['$scope', '$rootScope', '$location', '$route
                 loading.close();
                 console.log("Error");
             })
+        }
+
+        function showAlertBox(msg, callback) {
+            var dialog = customDialog.defaultObj();
+            dialog.content = msg;
+            customDialog.alert(callback, dialog);
+        }
+        function showConfirmBox(msg, okCallback, cancelCallback) {
+            var dialog = customDialog.defaultObj();
+            dialog.content = msg;
+            customDialog.confirm(okCallback, cancelCallback, dialog);
         }
 
 
